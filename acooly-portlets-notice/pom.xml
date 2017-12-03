@@ -7,8 +7,8 @@
         <artifactId>acooly-portlets</artifactId>
         <version>4.1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>acooly-portlets-message</artifactId>
-    <name>acooly-portlets-message</name>
+    <artifactId>acooly-portlets-notice</artifactId>
+    <name>acooly-portlets-notice</name>
 
     <dependencies>
 
