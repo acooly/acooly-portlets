@@ -50,7 +50,7 @@ public class NoticeInfo extends AbstractEntity {
      * 消息内容
      */
     @NotEmpty
-    @Size(max = 1024)
+    @Size(max  = 1024)
     private String content = "";
 
     /**
@@ -112,5 +112,20 @@ public class NoticeInfo extends AbstractEntity {
      */
     @Size(max = 255)
     private String comments;
+    
+    /**
+     * 自定义分组
+     */
+    private String customGroup;
+    
+    /**
+     * 消息接收人  如果是广播的话为ALL
+     */
+    private String receiver;
+    
+    /**
+     * 该消息是否已读
+     */
+    private Boolean readed;
 
 }

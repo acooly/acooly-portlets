@@ -18,5 +18,18 @@ import com.acooly.portlets.notice.core.entity.NoticeRead;
  *
  */
 public interface NoticeReadService extends EntityService<NoticeRead> {
+	
+	/**
+	 * 阅读广播
+	 * @param receiver 接收人
+	 */
+	void readBroadcast(String receiver,long noticeId);
+	
+	/**
+	 * 根据消息接收人获取消息阅读记录
+	 * @param receiver
+	 * @return
+	 */
+	NoticeRead findByReceiver(String receiver);
 
 }
