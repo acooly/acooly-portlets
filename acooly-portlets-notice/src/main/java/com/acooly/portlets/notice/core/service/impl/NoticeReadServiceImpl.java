@@ -31,14 +31,14 @@ public class NoticeReadServiceImpl extends EntityServiceImpl<NoticeRead, NoticeR
 		if (noticeRead == null) {
 			noticeRead = new NoticeRead ();
 			noticeRead.setReceiver (receiver);
-			noticeRead.setMessageRead (noticeId + "");
+			noticeRead.setBroadcastRead (noticeId + "");
 			noticeRead.setStatus (AbleStatus.enable);
 			getEntityDao ().create (noticeRead);
 		} else {
-			if (StringUtils.isBlank (noticeRead.getMessageRead ())) {
-				noticeRead.setMessageRead (noticeId + "");
+			if (StringUtils.isBlank (noticeRead.getBroadcastRead ())) {
+				noticeRead.setBroadcastRead (noticeId + "");
 			} else {
-				noticeRead.setMessageRead (noticeRead.getMessageRead () + "," + noticeId);
+				noticeRead.setBroadcastRead (noticeRead.getBroadcastRead () + "," + noticeId);
 			}
 			
 			getEntityDao ().update (noticeRead);

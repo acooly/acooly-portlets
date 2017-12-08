@@ -47,13 +47,7 @@ public class NoticeRead extends AbstractEntity {
      * 广播已读
      */
     @Size(max = 2048)
-    private String messageRead;
-
-    /**
-     * 群发未读
-     */
-    @Size(max = 2048)
-    private String messageUnread;
+    private String broadcastRead;
 
     /**
      * 状态

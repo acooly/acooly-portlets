@@ -127,5 +127,10 @@ public class NoticeInfo extends AbstractEntity {
      * 该消息是否已读
      */
     private Boolean readed;
+    
+    /**
+     * 是否需要推送
+     */
+    private Boolean push;
 
 }

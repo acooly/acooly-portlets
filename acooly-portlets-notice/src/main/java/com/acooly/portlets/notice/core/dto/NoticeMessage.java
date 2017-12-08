@@ -52,13 +52,11 @@ public class NoticeMessage {
      * 可以用于业务扩展。比如：收到消息后，根据业务扩展参数引导业务流程等
      */
     private Map<String, Object> context;
-
+    
     /**
-     * 系统属性参数
-     * <p>
-     * 扩展属性，主要考虑在push等场景需要传递特殊参数。预留
+     * 上层业务系统对消息按照自己的策略进行分组
      */
-    private Map<String, Object> properties;
+    private String customGroup;
 
     /**
      * 是否push
@@ -66,6 +64,13 @@ public class NoticeMessage {
      * 该参数优先级大于配置文件参数
      */
     private boolean push = true;
+    
+    /**
+     * 系统属性参数
+     * <p>
+     * 扩展属性，主要考虑在push等场景需要传递特殊参数。预留
+     */
+    private Map<CustomPushPropertyEnums, Object> properties;
 
 
     public NoticeMessage() {

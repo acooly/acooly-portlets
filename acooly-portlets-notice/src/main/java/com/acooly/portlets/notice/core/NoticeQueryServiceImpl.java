@@ -9,13 +9,13 @@ package com.acooly.portlets.notice.core;
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
+import com.acooly.portlets.notice.core.dto.NoticeComponentConstants;
 import com.acooly.portlets.notice.core.dto.PageableNoticeInfo;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
 import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.google.common.collect.Lists;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,8 +61,8 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 		}
 		
 		List<String> readList = Lists.newArrayList ();
-		if (StringUtils.isNoneBlank (noticeRead.getMessageRead ())) {
-			readList = Lists.newArrayList (noticeRead.getMessageRead ().split (","));
+		if (StringUtils.isNoneBlank (noticeRead.getBroadcastRead ())) {
+			readList = Lists.newArrayList (noticeRead.getBroadcastRead ().split (","));
 		}
 		
 		PageInfo<PageableNoticeInfo> pageInfo = new PageInfo<> ();
