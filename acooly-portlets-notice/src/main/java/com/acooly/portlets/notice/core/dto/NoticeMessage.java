@@ -71,6 +71,11 @@ public class NoticeMessage {
      * 扩展属性，主要考虑在push等场景需要传递特殊参数。预留
      */
     private Map<CustomPushPropertyEnums, Object> properties;
+    
+    /**
+     * 推送流水号 保证消息不会被重复推送 如果不传递组件内自动生成
+     */
+    private String pushNo;
 
 
     public NoticeMessage() {

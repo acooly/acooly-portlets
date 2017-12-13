@@ -48,7 +48,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 			orderBy.put ("createTime", false);
 		}
 		
-		params.put ("receiver", receiver);
+		params.put ("EQ_receiver", receiver);
 		
 		PageInfo<NoticeInfo> pageResult = noticeInfoService.query (pager, params, orderBy);
 		
@@ -75,6 +75,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 			if(readList.contains (pageableNoticeInfo.getId ().toString ())){
 				pageableNoticeInfo.setReaded (true);
 			}
+			pageInfo.getPageResults ().add (pageableNoticeInfo);
 		}
 		
 		return pageInfo;

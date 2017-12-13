@@ -85,6 +85,8 @@ public class JPushOrder {
   public void setNotification(JPushNotification notification) {
     this.notification = notification;
   }
+  
+  
 
   @Override
   public String toString() {

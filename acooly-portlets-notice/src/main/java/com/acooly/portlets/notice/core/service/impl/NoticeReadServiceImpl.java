@@ -7,6 +7,7 @@
 package com.acooly.portlets.notice.core.service.impl;
 
 import com.acooly.core.utils.enums.AbleStatus;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import com.acooly.core.common.service.EntityServiceImpl;
 import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.acooly.portlets.notice.core.dao.NoticeReadDao;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
+
+import java.util.List;
 
 /**
  * 公告消息读取状态 Service实现
@@ -27,7 +30,7 @@ public class NoticeReadServiceImpl extends EntityServiceImpl<NoticeRead, NoticeR
 	
 	@Override
 	public void readBroadcast (String receiver, long noticeId) {
-		NoticeRead noticeRead = getEntityDao ().findUniqu ("receiver", receiver);
+		NoticeRead noticeRead = getEntityDao ().findUniqu ("EQ_receiver", receiver);
 		if (noticeRead == null) {
 			noticeRead = new NoticeRead ();
 			noticeRead.setReceiver (receiver);
@@ -37,16 +40,19 @@ public class NoticeReadServiceImpl extends EntityServiceImpl<NoticeRead, NoticeR
 		} else {
 			if (StringUtils.isBlank (noticeRead.getBroadcastRead ())) {
 				noticeRead.setBroadcastRead (noticeId + "");
+				getEntityDao ().update (noticeRead);
 			} else {
-				noticeRead.setBroadcastRead (noticeRead.getBroadcastRead () + "," + noticeId);
+				List<String> broadcastReaded = Lists.newArrayList (noticeRead.getBroadcastRead ().split (","));
+				if(!broadcastReaded.contains (noticeId+"")){
+					noticeRead.setBroadcastRead (noticeRead.getBroadcastRead () + "," + noticeId);
+					getEntityDao ().update (noticeRead);
+				}
 			}
-			
-			getEntityDao ().update (noticeRead);
 		}
 	}
 	
 	@Override
 	public NoticeRead findByReceiver (String receiver) {
-		return getEntityDao ().findUniqu ("receiver", receiver);
+		return getEntityDao ().findUniqu ("EQ_receiver", receiver);
 	}
 }

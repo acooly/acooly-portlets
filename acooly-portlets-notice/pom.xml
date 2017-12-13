@@ -10,6 +10,17 @@
     <artifactId>acooly-portlets-notice</artifactId>
     <name>acooly-portlets-notice</name>
 
+    <distributionManagement>
+        <repository>
+            <id>pccb-releases</id>
+            <url>http://192.168.55.202:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>pccb-snapshot</id>
+            <url>http://192.168.55.202:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
 
         <dependency>

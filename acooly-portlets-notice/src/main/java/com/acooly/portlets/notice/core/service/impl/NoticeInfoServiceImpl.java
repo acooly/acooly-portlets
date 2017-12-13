@@ -6,6 +6,7 @@
  */
 package com.acooly.portlets.notice.core.service.impl;
 
+import com.acooly.portlets.notice.core.enums.NoticeStatusEnum;
 import org.springframework.stereotype.Service;
 
 import com.acooly.core.common.service.EntityServiceImpl;
@@ -23,5 +24,9 @@ import com.acooly.portlets.notice.core.entity.NoticeInfo;
  */
 @Service("noticeInfoService")
 public class NoticeInfoServiceImpl extends EntityServiceImpl<NoticeInfo, NoticeInfoDao> implements NoticeInfoService {
-
+	
+	@Override
+	public void noticePushSuccess (String pushNo) {
+		getEntityDao ().updateStatusByPushNo (NoticeStatusEnum.finish,pushNo);
+	}
 }

@@ -13,6 +13,7 @@ package com.acooly.portlets.notice;
 import com.acooly.core.common.dao.support.StandardDatabaseScriptIniter;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -41,17 +42,17 @@ public class PortletNoticeAutoConfig {
 		return new StandardDatabaseScriptIniter () {
 			@Override
 			public String getEvaluateTable () {
-				return "app_banner";
+				return "p_notice_info";
 			}
 			
 			@Override
 			public String getComponentName () {
-				return "app";
+				return "notice";
 			}
 			
 			@Override
 			public List<String> getInitSqlFile () {
-				return Lists.newArrayList ("app", "app_urls");
+				return Lists.newArrayList ("portlets_notice_init","portlets_notice_init_urls");
 			}
 		};
 	}

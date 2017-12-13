@@ -132,5 +132,10 @@ public class NoticeInfo extends AbstractEntity {
      * 是否需要推送
      */
     private Boolean push;
+    
+    /**
+     * 推送流水号  防止多次推送
+     */
+    private String pushNo;
 
 }

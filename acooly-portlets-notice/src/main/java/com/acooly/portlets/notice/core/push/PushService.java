@@ -11,6 +11,7 @@ package com.acooly.portlets.notice.core.push;
 
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
 import com.acooly.portlets.notice.core.push.providers.PushProviderEnums;
+import com.sun.org.apache.bcel.internal.generic.PUSH;
 
 import java.util.List;
 
@@ -25,14 +26,14 @@ public interface PushService {
 	 * @param noticeMessage 消息
 	 * @param targets 发送目标，一般使用唯一用户标识
 	 */
-	void group (NoticeMessage noticeMessage, List<String> targets);
+	PushResult group (NoticeMessage noticeMessage, List<String> targets);
 	
 	/**
 	 * 广播
 	 *
 	 * @param noticeMessage
 	 */
-	void broadcast (NoticeMessage noticeMessage);
+	PushResult broadcast (NoticeMessage noticeMessage);
 	
 	
 	/**

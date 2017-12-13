@@ -8,6 +8,9 @@
 
 import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
+import com.acooly.portlets.notice.core.enums.NoticeStatusEnum;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * 公告消息 Mybatis Dao
@@ -16,5 +19,8 @@ import com.acooly.portlets.notice.core.entity.NoticeInfo;
  * @author acooly
  */
 public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
+ 
+ @Update ("update p_notice_info set status=#{status} where push_no =#{pushNo} ")
+  void updateStatusByPushNo(@Param ("status") NoticeStatusEnum status,@Param ("pushNo") String pushNo);
 
 }

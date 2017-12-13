@@ -18,5 +18,12 @@ import com.acooly.portlets.notice.core.entity.NoticeInfo;
  *
  */
 public interface NoticeInfoService extends EntityService<NoticeInfo> {
+	
+	
+	/**
+	 * 同一pushNo的消息推送成功 变更状态
+	 * @param pushNo
+	 */
+	void noticePushSuccess(String pushNo);
 
 }

@@ -19,6 +19,11 @@
             <artifactId>acooly-portlets-assemble</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-notice</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 
 
         <dependency>

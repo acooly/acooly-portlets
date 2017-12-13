@@ -52,12 +52,6 @@ public class JPushSendService {
 		order.getAudience ().setRegistrationId (Lists.newArrayList (new String[]{"buyer"}));
 		// 推送选项参数
 		order.getOptions ().setApnsProduction (false);
-		JPushMessage jm = new JPushMessage ();
-		jm.setTitle (title);
-		jm.setMsgContent (content);
-		jm.setContentType ("text/html");
-		jm.setExtras (extras);
-		order.setMessage (jm);
 		
 		JPushNotification jn = new JPushNotification ();
 		

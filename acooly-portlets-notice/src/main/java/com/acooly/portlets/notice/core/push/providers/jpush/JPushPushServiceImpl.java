@@ -11,10 +11,12 @@ package com.acooly.portlets.notice.core.push.providers.jpush;
 
 import com.acooly.core.common.boot.EnvironmentHolder;
 import com.acooly.core.utils.Collections3;
+import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.portlets.notice.PortletNoticeProperties;
 import com.acooly.portlets.notice.core.dto.CustomPushPropertyEnums;
 import com.acooly.portlets.notice.core.dto.NoticeComponentConstants;
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
+import com.acooly.portlets.notice.core.push.PushResult;
 import com.acooly.portlets.notice.core.push.PushService;
 import com.acooly.portlets.notice.core.push.providers.PushProviderEnums;
 import com.acooly.portlets.notice.core.push.providers.jpush.dto.JPushMessage;
@@ -47,7 +49,8 @@ public class JPushPushServiceImpl implements PushService {
 	private PortletNoticeProperties noticeProperties;
 	
 	@Override
-	public void group (NoticeMessage noticeMessage, List<String> targets) {
+	public PushResult group (NoticeMessage noticeMessage, List<String> targets) {
+		PushResult pushResult = new PushResult ();
 		try {
 			JPushOrder order = new JPushOrder ();
 			// audience
@@ -102,19 +105,27 @@ public class JPushPushServiceImpl implements PushService {
 			}
 			
 			JPushResult result = jPushSendService.request (order);
+			BeanCopier.copy (result,pushResult);
 			if (result.getHttpStatus () != 200) {
-				throw new RuntimeException (result.getCode () + ":" + result.getMessage ());
+				pushResult.setSuccess (false);
 			}
-			logger.info ("JPush推送成功: request:{}, result:{}", order, result);
+			else{
+				logger.info ("JPush推送成功: request:{}, result:{}", order, result);
+				pushResult.setSuccess (true);
+			}
 		} catch (Exception e) {
 			logger.error ("JPush通知发送失败", e);
-			throw new RuntimeException ("JPush通知发送失败:" + e.getMessage ());
+			pushResult.setSuccess (false);
+			pushResult.setCode ("UNEXPECT_EXCEPTION");
+			pushResult.setMessage (e.getMessage ());
 		}
+		
+		return pushResult;
 	}
 	
 	@Override
-	public void broadcast (NoticeMessage noticeMessage) {
-		group (noticeMessage, null);
+	public PushResult broadcast (NoticeMessage noticeMessage) {
+		return group (noticeMessage, null);
 	}
 	
 	@Override
