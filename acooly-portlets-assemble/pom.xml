@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
-            <artifactId>acooly-portlets-notice</artifactId>
+            <artifactId>portlets-notice-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

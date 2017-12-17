@@ -24,12 +24,14 @@
             <artifactId>acooly-component-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>yiji-2.5.21</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-component-dubbo</artifactId>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
         </dependency>
         <dependency>
             <groupId>com.acooly</groupId>
