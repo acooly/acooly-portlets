@@ -8,8 +8,8 @@ package com.acooly.portlets.notice;
 
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.portlets.notice.core.NoticeQueryService;
-import com.acooly.portlets.notice.core.dto.PageableNoticeInfo;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
+import com.acooly.portlets.notice.facade.dto.PageableNoticeInfo;
 import com.acooly.test.NoWebTestBase;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
