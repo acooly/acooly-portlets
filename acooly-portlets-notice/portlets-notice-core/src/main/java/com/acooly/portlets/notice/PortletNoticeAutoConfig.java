@@ -33,7 +33,7 @@ import java.util.List;
 @EnableConfigurationProperties({PortletNoticeProperties.class})
 @ConditionalOnProperty(value = PREFIX + ".enable", matchIfMissing = true)
 @ComponentScan(basePackages = "com.acooly.portlets.notice")
-public class PortletNoticeAutoConfig {
+public class PortletNoticeAutoConfig{
 	@Autowired
 	private PortletNoticeProperties noticeProperties;
 	

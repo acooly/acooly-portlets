@@ -43,7 +43,7 @@ public class JPushPushServiceImpl implements PushService {
 	private static final Logger logger = LoggerFactory.getLogger (JPushPushServiceImpl.class);
 	
 	@Resource
-	protected JPushSendService jPushSendService;
+	protected PortletsJPushSendService jPushSendService;
 	
 	@Autowired
 	private PortletNoticeProperties noticeProperties;

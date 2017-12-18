@@ -42,6 +42,10 @@ public class NoticeServiceImpl implements NoticeService {
 	@Resource(name = "jpushPushService")
 	private PushService jpushService;
 	
+	@Resource(name = "uMengPushService")
+	private PushService uMengPushService;
+	
+	
 	@Autowired
 	private NoticeInfoService noticeInfoService;
 	
@@ -67,7 +71,13 @@ public class NoticeServiceImpl implements NoticeService {
 				pushResult = jpushService.group (noticeMessage, targets);
 			}
 			else if(PushProviderEnums.UMENG.equals (noticeProperties.getPushProvider ())){
-			
+				Assert.notNull (noticeMessage.getDeviceType (), "使用友盟推送设备类型不能为空");
+				if(targets == null){
+					pushResult = uMengPushService.broadcast (noticeMessage);
+				}
+				else{
+					pushResult = uMengPushService.group (noticeMessage,targets);
+				}
 			}
 		
 			if(pushResult.getSuccess ()){

@@ -4,6 +4,7 @@
 package com.acooly.portlets.notice.core.dto;
 
 import com.acooly.portlets.notice.facade.enums.CustomPushPropertyEnums;
+import com.acooly.portlets.notice.facade.enums.DeviceTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -77,6 +78,11 @@ public class NoticeMessage {
      * 推送流水号 保证消息不会被重复推送 如果不传递组件内自动生成
      */
     private String pushNo;
+    
+    /**
+     * 设备类型
+     */
+    private DeviceTypeEnum deviceType;
 
 
     public NoticeMessage() {

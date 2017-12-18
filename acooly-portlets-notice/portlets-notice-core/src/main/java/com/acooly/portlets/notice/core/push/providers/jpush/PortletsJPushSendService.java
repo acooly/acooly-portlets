@@ -13,7 +13,6 @@ import com.acooly.core.utils.mapper.JsonMapper;
 import com.acooly.core.utils.net.HttpResult;
 import com.acooly.core.utils.net.Https;
 import com.acooly.portlets.notice.PortletNoticeProperties;
-import com.acooly.portlets.notice.core.push.providers.jpush.dto.JPushMessage;
 import com.acooly.portlets.notice.core.push.providers.jpush.dto.JPushNotification;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -33,9 +32,9 @@ import java.util.Map;
  * @date 2015年11月4日
  */
 @Service
-public class JPushSendService {
+public class PortletsJPushSendService {
 	
-	private static final Logger logger = LoggerFactory.getLogger (JPushSendService.class);
+	private static final Logger logger = LoggerFactory.getLogger (PortletsJPushSendService.class);
 	JsonMapper jsonMapper = JsonMapper.nonEmptyMapper ();
 	@Autowired
 	private PortletNoticeProperties noticeProperties;
@@ -111,7 +110,7 @@ public class JPushSendService {
 	
 	protected String getAuthorization () {
 		String p =
-				noticeProperties.getAppKey () + ":" + noticeProperties.getMasterSecret ();
+				noticeProperties.getJpush ().getAppKey () + ":" + noticeProperties.getJpush ().getMasterSecret ();
 		return "Basic " + Base64.encodeBase64String (p.getBytes ());
 	}
 	

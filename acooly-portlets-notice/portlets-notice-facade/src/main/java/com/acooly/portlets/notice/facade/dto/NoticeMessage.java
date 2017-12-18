@@ -12,6 +12,7 @@ package com.acooly.portlets.notice.facade.dto;
 import com.acooly.core.common.exception.OrderCheckException;
 import com.acooly.core.common.facade.DtoBase;
 import com.acooly.portlets.notice.facade.enums.CustomPushPropertyEnums;
+import com.acooly.portlets.notice.facade.enums.DeviceTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.PushTypeEnum;
 import lombok.Getter;
@@ -95,6 +96,11 @@ public class NoticeMessage  extends DtoBase{
      * 消息接收人
      */
     private List<String> targets;
+    
+    /**
+     * 设备类型  使用友盟推送需要填写
+     */
+    private DeviceTypeEnum deviceType;
 
 
     public NoticeMessage () {
