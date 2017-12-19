@@ -7,13 +7,33 @@
 
 ## 2.使用说明
 ### 2.1 配置项说明
-`acooly.portlets.notice.enable`   是否需要启用该组件
-`acooly.portlets.notice.pushProvider` 推送渠道：`JPUSH、UMENG`
-`acooly.portlets.notice.gateway` 推送api地址
-`acooly.portlets.notice.appKey` 推送应用id，在渠道方后台配置
-`acooly.portlets.notice.masterSecret` 应用密钥，在渠道方后台生成 
-`acooly.portlets.notice.push` 是否开启推送功能，默认为推送。只有在该标识为`true`时才会进行消息推送
+```
+#是否需要启用该组件
+acooly.portlets.notice.enable
+#推送渠道:JPUSH、UMENG
+acooly.portlets.notice.pushProvider
+#推送api地址
+acooly.portlets.notice.gateway
+#是否开启推送功能，默认为推送。只有在该标识为true时才会进行消息推送
+acooly.portlets.notice.push
+#使用jpush做推送时，推送应用id，在渠道方后台配置
+acooly.portlets.notice.jpush.appKey
+#使用jpush做推送时，应用密钥，在渠道方后台生成
+acooly.portlets.notice.jpush.masterSecret
+#使用友盟推送时 安卓应用id
+acooly.portlets.notice.umeng.androidAppKey
+#使用友盟推送时 安卓应用密钥
+acooly.portlets.notice.umeng.androidMasterSecret
+#使用友盟推送时 IOS应用id
+acooly.portlets.notice.umeng.iosAppKey
+#使用友盟推送时 IOS应用密钥
+acooly.portlets.notice.umeng.iosMasterSecret
+```
 
+
+
+
+ 
 ### 2.2推荐配置
 ```
 acooly.portlets.notice.enable=true
