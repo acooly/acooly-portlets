@@ -1,18 +1,16 @@
 /*
- * acooly.cn Inc.
- * Copyright (c) 2017 All Rights Reserved.
- * create by acooly
- * date:2017-11-23
  *
+ * www.prosysoft.com Inc.
+ * Copyright (c) 2017  All Rights Reserved
  */
-package com.acooly.portlets.notice.core.enums;
+package com.acooly.portlets.notice.facade.enums;
+
+import com.acooly.core.utils.enums.Messageable;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.acooly.core.utils.enums.Messageable;
 
 /**
  * 公告消息 NoticeInfoTypeEnum 枚举定义
@@ -31,7 +29,7 @@ public enum NoticeTypeEnum implements Messageable {
 	private final String code;
 	private final String message;
 
-	private NoticeTypeEnum(String code, String message) {
+	private NoticeTypeEnum (String code, String message) {
 		this.code = code;
 		this.message = message;
 	}

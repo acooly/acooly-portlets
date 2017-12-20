@@ -9,10 +9,14 @@ package com.acooly.portlets.notice.facade.dto;
 import com.acooly.core.common.facade.DtoBase;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
+import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
 import com.acooly.portlets.notice.facade.enums.PushTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -84,9 +88,8 @@ public class NoticeDto extends DtoBase {
     /**
      * 消息类型
      */
-    private PushTypeEnum type;
-
-
+    private NoticeTypeEnum type;
+    
     /**
      * 备注
      */

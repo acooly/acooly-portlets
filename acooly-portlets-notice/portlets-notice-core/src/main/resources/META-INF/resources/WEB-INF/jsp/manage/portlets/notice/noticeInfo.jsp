@@ -73,7 +73,7 @@ function formatBool(value){
 
     <!-- 表格的工具栏 -->
     <div id="manage_noticeInfo_toolbar">
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/portlets/notice/noticeInfo/create.html',entity:'noticeInfo',width:500,height:400})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>推送消息</a>
+      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/portlets/notice/noticeInfo/create.html',entity:'noticeInfo',width:500,height:450,title:'推送消息',addButton:'推送',reload:true})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>推送消息</a>
     </div>
   </div>
 

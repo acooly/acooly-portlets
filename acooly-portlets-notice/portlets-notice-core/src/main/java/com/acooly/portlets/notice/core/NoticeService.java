@@ -9,6 +9,8 @@
  */
 package com.acooly.portlets.notice.core;
 
+
+
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
 
 import java.util.List;

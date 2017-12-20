@@ -8,9 +8,9 @@ package com.acooly.portlets.notice.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;
-import com.acooly.portlets.notice.core.enums.NoticeTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
+import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;

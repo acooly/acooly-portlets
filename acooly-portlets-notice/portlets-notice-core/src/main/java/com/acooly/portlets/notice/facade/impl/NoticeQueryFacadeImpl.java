@@ -43,6 +43,7 @@ public class NoticeQueryFacadeImpl implements NoticeQueryFacade {
 		NoticeDto noticeDto = new NoticeDto ();
 		BeanCopier.copy (noticeInfo, noticeDto);
 		
+		
 		result.setDto (noticeDto);
 		return result;
 	}

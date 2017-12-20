@@ -10,13 +10,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * Created by liubin@prosysoft.com on 2017/12/5.
  */
 @Getter
 @Setter
 @ToString
-public class PageableNoticeInfo {
+public class PageableNoticeInfo implements Serializable{
 	
 	/**
 	 * 消息id
