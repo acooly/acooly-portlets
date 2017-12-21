@@ -34,5 +34,4 @@ public interface NoticeService {
      * @param noticeMessage
      */
     void broadcast(NoticeMessage noticeMessage);
-
 }

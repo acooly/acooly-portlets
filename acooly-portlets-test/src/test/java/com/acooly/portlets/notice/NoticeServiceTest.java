@@ -9,9 +9,11 @@ package com.acooly.portlets.notice;
 import com.acooly.core.utils.Ids;
 import com.acooly.portlets.notice.core.NoticeService;
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
+import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.facade.enums.DeviceTypeEnum;
 import com.acooly.test.NoWebTestBase;
 import com.google.common.collect.Lists;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,6 +28,10 @@ public class NoticeServiceTest extends NoWebTestBase {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private NoticeInfoService infoService;
+	
 	
 	@Test
 	public void testBroadcast () {
@@ -64,6 +70,13 @@ public class NoticeServiceTest extends NoWebTestBase {
 		
 		noticeService.group (noticeMessage, Lists.newArrayList ("yanjun89"));
 		
+	}
+	
+	
+	@Test
+	public void testCount(){
+		long count = infoService.countByGroup ("liubin");
+		Assert.assertTrue (count == 3);
 	}
 	
 	

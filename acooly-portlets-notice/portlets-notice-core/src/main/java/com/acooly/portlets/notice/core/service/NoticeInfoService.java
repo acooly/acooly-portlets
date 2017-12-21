@@ -25,5 +25,12 @@ public interface NoticeInfoService extends EntityService<NoticeInfo> {
 	 * @param pushNo
 	 */
 	void noticePushSuccess(String pushNo);
+	
+	/**
+	 * 根据自定义组统计消息数
+	 * @param customGroup
+	 * @return
+	 */
+	long countByGroup(String customGroup);
 
 }

@@ -10,6 +10,7 @@ import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -22,5 +23,10 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
  
  @Update ("update p_notice_info set status=#{status} where push_no =#{pushNo} ")
   void updateStatusByPushNo(@Param ("status") NoticeStatusEnum status, @Param ("pushNo") String pushNo);
-
+ 
+ 
+ @Select ("select count(id) from p_notice_info where custom_group = #{customGroup}")
+ long coutByGroup(@Param ("customGroup") String customGroup);
+ 
+ 
 }

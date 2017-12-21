@@ -29,4 +29,9 @@ public class NoticeInfoServiceImpl extends EntityServiceImpl<NoticeInfo, NoticeI
 	public void noticePushSuccess (String pushNo) {
 		getEntityDao ().updateStatusByPushNo (NoticeStatusEnum.finish, pushNo);
 	}
+	
+	@Override
+	public long countByGroup (String customGroup) {
+		return getEntityDao ().coutByGroup (customGroup);
+	}
 }
