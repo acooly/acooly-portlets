@@ -48,7 +48,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 			orderBy.put ("createTime", false);
 		}
 		
-		params.put ("EQ_receiver", receiver);
+		params.put ("IN_receiver", new String[]{receiver,NoticeComponentConstants.BROADCAST_RECEIVER});
 		
 		PageInfo<NoticeInfo> pageResult = noticeInfoService.query (pager, params, orderBy);
 		
