@@ -56,6 +56,18 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void group (NoticeMessage noticeMessage, List<String> targets) {
 		
+		Assert.notEmpty (targets,"群组推送时收信人不能为空");
+		
+		noticePush (noticeMessage, targets);
+	}
+	
+	@Override
+	public void broadcast (NoticeMessage noticeMessage) {
+		noticePush (noticeMessage,null);
+	}
+	
+	
+	private void noticePush (NoticeMessage noticeMessage, List<String> targets) {
 		Validators.assertJSR303 (noticeMessage);
 		
 		if(StringUtils.isBlank (noticeMessage.getPushNo ())){
@@ -72,12 +84,7 @@ public class NoticeServiceImpl implements NoticeService {
 			}
 			else if(PushProviderEnums.UMENG.equals (noticeProperties.getPushProvider ())){
 				Assert.notNull (noticeMessage.getDeviceType (), "使用友盟推送设备类型不能为空");
-				if(targets == null){
-					pushResult = uMengPushService.broadcast (noticeMessage);
-				}
-				else{
-					pushResult = uMengPushService.group (noticeMessage,targets);
-				}
+				pushResult = uMengPushService.group (noticeMessage,targets);
 			}
 		
 			if(pushResult.getSuccess ()){
@@ -132,10 +139,5 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		
 		noticeInfoService.saves (noticeInfos);
-	}
-	
-	@Override
-	public void broadcast (NoticeMessage noticeMessage) {
-		group (noticeMessage,null);
 	}
 }

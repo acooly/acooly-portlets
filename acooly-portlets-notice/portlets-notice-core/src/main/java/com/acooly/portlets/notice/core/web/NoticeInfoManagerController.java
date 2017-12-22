@@ -27,6 +27,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
@@ -74,6 +75,8 @@ public class NoticeInfoManagerController extends AbstractJQueryEntityController<
 	public JsonResult push (NoticeInfo noticeInfo, DeviceTypeEnum deviceType) {
 		JsonResult jsonResult = new JsonResult ();
 		try {
+			
+			Assert.notNull (noticeInfo.getType (),"发送类型不能为空");
 			NoticeMessage noticeMessage = new NoticeMessage ();
 			noticeMessage.setDeviceType (deviceType);
 			if (StringUtils.isNotBlank (noticeInfo.getContext ())) {
@@ -94,6 +97,7 @@ public class NoticeInfoManagerController extends AbstractJQueryEntityController<
 			if (NoticeTypeEnum.broadcast.equals (noticeInfo.getType ())) {
 				noticeService.broadcast (noticeMessage);
 			} else {
+				Assert.notEmpty (targets,"选择群发时收信人必须填写");
 				noticeService.group (noticeMessage, targets);
 			}
 			jsonResult.setMessage ("消息推送成功");
