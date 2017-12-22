@@ -7,6 +7,8 @@
  */
 package com.acooly.portlets.notice.core.service;
 
+import java.util.List;
+
 import com.acooly.core.common.service.EntityService;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
 
@@ -32,5 +34,21 @@ public interface NoticeInfoService extends EntityService<NoticeInfo> {
 	 * @return
 	 */
 	long countByGroup(String customGroup);
-
+	
+	
+	/**
+	 * 全部已读
+	 * @param receiver
+	 * @param customGroup
+	 */
+	void readAll(String receiver,String customGroup);
+	
+	
+	/**
+	 *
+	 * @param receiver
+	 * @param customGroup
+	 * @return
+	 */
+	List<Long> getAllBroadcatIds(String receiver,String customGroup);
 }

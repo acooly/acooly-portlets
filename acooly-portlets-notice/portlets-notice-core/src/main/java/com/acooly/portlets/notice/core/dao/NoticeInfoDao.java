@@ -5,6 +5,8 @@
  * date:2017-11-23
  */
  package com.acooly.portlets.notice.core.dao;
+ 
+ import  java.util.List;
 
 import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
@@ -28,5 +30,15 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
  @Select ("select count(id) from p_notice_info where custom_group = #{customGroup}")
  long coutByGroup(@Param ("customGroup") String customGroup);
  
+ @Update ("update p_notice_info set readed = true where receiver=#{receiver} and custom_group = #{customGroup}")
+ void updateAllNoticeReadedByGroup (@Param ("receiver") String receiver, @Param ("customGroup") String customGroup);
  
+ @Update ("update p_notice_info set readed = true where receiver=#{receiver}")
+ void updateAllNoticeReaded (@Param ("receiver") String receiver);
+ 
+ @Select ("select id from p_notice_info where receiver='ALL' and custom_group = #{customGroup}")
+ List<Long> getAllBroadcatIdsByGroup (@Param ("customGroup") String customGroup);
+ 
+ @Select ("select id from p_notice_info where receiver='ALL'")
+ List<Long> getAllBroadcatIds();
 }

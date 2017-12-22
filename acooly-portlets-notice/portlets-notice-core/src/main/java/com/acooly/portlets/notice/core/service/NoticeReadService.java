@@ -7,6 +7,7 @@
  */
 package com.acooly.portlets.notice.core.service;
 
+import java.util.List;
 import com.acooly.core.common.service.EntityService;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
 
@@ -31,5 +32,11 @@ public interface NoticeReadService extends EntityService<NoticeRead> {
 	 * @return
 	 */
 	NoticeRead findByReceiver(String receiver);
+	
+	/**
+	 * 根据id已读对应的广播
+	 * @param receiver
+	 */
+	void read(String receiver,List<Long> ids);
 
 }

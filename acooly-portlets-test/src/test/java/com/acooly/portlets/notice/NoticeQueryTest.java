@@ -53,4 +53,9 @@ public class NoticeQueryTest extends NoWebTestBase {
 		NoticeInfo noticeInfo = noticeQueryService.readNotice ("111111", 1L);
 		Assert.assertTrue (noticeInfo.getId ().equals (1) && noticeInfo.getReceiver ().equals ("ALL"));
 	}
+	
+	@Test
+	public void testReadAll(){
+		noticeQueryService.readAll ("yanjun89",null);
+	}
 }

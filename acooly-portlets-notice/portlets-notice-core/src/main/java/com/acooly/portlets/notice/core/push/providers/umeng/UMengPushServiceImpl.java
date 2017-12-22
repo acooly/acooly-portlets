@@ -204,7 +204,7 @@ public class UMengPushServiceImpl implements PushService {
 				result += str + ",";
 			}
 			
-			return result.substring (0, result.length ());
+			return result.substring (0, result.length ()-1);
 		} else {
 			return "";
 		}

@@ -19,6 +19,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.HashMap;
@@ -94,5 +95,13 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 		}
 		
 		return notice;
+	}
+	
+	@Override
+	@Transactional
+	public void readAll (String receiver,String customGroup) {
+		noticeInfoService.readAll (receiver,customGroup);
+		List<Long> ids = noticeInfoService.getAllBroadcatIds (receiver,customGroup);
+		noticeReadService.read (receiver,ids);
 	}
 }
