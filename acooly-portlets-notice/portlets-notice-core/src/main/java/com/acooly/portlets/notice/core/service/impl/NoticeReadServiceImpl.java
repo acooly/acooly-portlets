@@ -6,10 +6,13 @@
  */
 package com.acooly.portlets.notice.core.service.impl;
 
+import com.acooly.core.utils.Collections3;
 import com.acooly.core.utils.enums.AbleStatus;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hpsf.ReadingNotSupportedException;
 import org.springframework.stereotype.Service;
 
 import com.acooly.core.common.service.EntityServiceImpl;
@@ -17,6 +20,8 @@ import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.acooly.portlets.notice.core.dao.NoticeReadDao;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -68,7 +73,31 @@ public class NoticeReadServiceImpl extends EntityServiceImpl<NoticeRead, NoticeR
 			noticeRead.setStatus (AbleStatus.enable);
 			getEntityDao ().create (noticeRead);
 		} else {
-			noticeRead.setBroadcastRead (strIds);
+			String readIds = noticeRead.getBroadcastRead ();
+			
+			if(StringUtils.isNotBlank (readIds)){
+				String[] readIdsArr = readIds.split (",");
+				List<Long> readLongIds = new ArrayList<> ();
+				for(String id : readIdsArr){
+					readLongIds.add (Long.parseLong (id));
+				}
+				
+				for(Long lId : ids){
+					if(!readLongIds.contains (lId)){
+						readLongIds.add (lId);
+					}
+				}
+				
+				Collections.sort (readLongIds);
+				
+				noticeRead.setBroadcastRead (list2StringSplitByComma (readLongIds));
+			
+			}
+			else{
+				noticeRead.setBroadcastRead (strIds);
+			}
+			
+			
 			getEntityDao ().update (noticeRead);
 		}
 	}

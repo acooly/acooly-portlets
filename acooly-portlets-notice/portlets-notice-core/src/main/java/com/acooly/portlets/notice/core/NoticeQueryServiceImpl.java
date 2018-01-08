@@ -16,6 +16,8 @@ import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.acooly.portlets.notice.facade.dto.PageableNoticeInfo;
 import com.google.common.collect.Lists;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ import java.util.Map;
  * Created by liubin@prosysoft.com on 2017/12/5.
  */
 @Service
+@Slf4j
 public class NoticeQueryServiceImpl implements NoticeQueryService {
 	
 	@Autowired
@@ -48,7 +51,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 			orderBy = new HashMap<> ();
 			orderBy.put ("createTime", false);
 		}
-		
+		params.remove ("EQ_receiver");
 		params.put ("IN_receiver", new String[]{receiver,NoticeComponentConstants.BROADCAST_RECEIVER});
 		
 		PageInfo<NoticeInfo> pageResult = noticeInfoService.query (pager, params, orderBy);

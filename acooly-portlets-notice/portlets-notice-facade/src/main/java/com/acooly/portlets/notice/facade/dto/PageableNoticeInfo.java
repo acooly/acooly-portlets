@@ -44,4 +44,14 @@ public class PageableNoticeInfo implements Serializable{
 	 * 已读
 	 */
 	private Boolean readed;
+	
+	/**
+	 * 业务参数
+	 */
+	private String context;
+	
+	/**
+	 * 客户自定义分组
+	 */
+	private String customGroup;
 }

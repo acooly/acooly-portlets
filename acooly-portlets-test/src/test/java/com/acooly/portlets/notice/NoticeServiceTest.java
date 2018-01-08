@@ -75,7 +75,7 @@ public class NoticeServiceTest extends NoWebTestBase {
 	
 	@Test
 	public void testCount(){
-		long count = infoService.countByGroup ("liubin");
+		long count = infoService.countByGroup ("liu");
 		Assert.assertTrue (count == 3);
 	}
 	

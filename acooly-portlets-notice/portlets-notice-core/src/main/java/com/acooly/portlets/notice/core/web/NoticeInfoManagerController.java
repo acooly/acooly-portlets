@@ -6,34 +6,29 @@
 */
 package com.acooly.portlets.notice.core.web;
 
-import java.util.Map;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.acooly.core.common.boot.EnvironmentHolder;
+import com.acooly.core.common.web.AbstractJQueryEntityController;
 import com.acooly.core.common.web.support.JsonResult;
 import com.acooly.core.utils.mapper.JsonMapper;
 import com.acooly.portlets.notice.PortletNoticeProperties;
 import com.acooly.portlets.notice.core.NoticeService;
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
-import com.acooly.portlets.notice.core.push.providers.PushProviderEnums;
+import com.acooly.portlets.notice.core.entity.NoticeInfo;
+import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.facade.enums.DeviceTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
-import com.alibaba.dubbo.common.json.JSON;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.acooly.core.common.web.AbstractJQueryEntityController;
-import com.acooly.portlets.notice.core.entity.NoticeInfo;
-import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 公告消息 管理控制器

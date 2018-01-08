@@ -56,6 +56,6 @@ public class NoticeQueryTest extends NoWebTestBase {
 	
 	@Test
 	public void testReadAll(){
-		noticeQueryService.readAll ("yanjun89",null);
+		noticeQueryService.readAll ("yanjun89","liu");
 	}
 }
