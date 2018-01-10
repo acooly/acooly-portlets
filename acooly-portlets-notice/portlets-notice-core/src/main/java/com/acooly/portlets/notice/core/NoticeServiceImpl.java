@@ -80,11 +80,22 @@ public class NoticeServiceImpl implements NoticeService {
 		if (noticeMessage.isPush () && noticeProperties.isPush ()) {
 			PushResult pushResult = new PushResult ();
 			if(PushProviderEnums.JPUSH.equals (noticeProperties.getPushProvider ())){
-				pushResult = jpushService.group (noticeMessage, targets);
+				if(CollectionUtils.isEmpty (targets)){
+					pushResult = jpushService.broadcast (noticeMessage);
+				}
+				else{
+					pushResult = jpushService.group (noticeMessage, targets);
+				}
+				
 			}
 			else if(PushProviderEnums.UMENG.equals (noticeProperties.getPushProvider ())){
 				Assert.notNull (noticeMessage.getDeviceType (), "使用友盟推送设备类型不能为空");
-				pushResult = uMengPushService.group (noticeMessage,targets);
+				if(CollectionUtils.isEmpty (targets)){
+					pushResult = uMengPushService.broadcast (noticeMessage);
+				}
+				else{
+					pushResult = uMengPushService.group (noticeMessage,targets);
+				}
 			}
 		
 			if(pushResult.getSuccess ()){
