@@ -102,6 +102,9 @@ public class NoticeServiceImpl implements NoticeService {
 				noticeInfoService.noticePushSuccess (noticeMessage.getPushNo ());
 			}
 		}
+		else{
+			noticeInfoService.noticePushSuccess (noticeMessage.getPushNo ());
+		}
 	}
 	
 	private void saveNoticeInfo (NoticeMessage noticeMessage, List<String> targets) {

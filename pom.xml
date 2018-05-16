@@ -21,6 +21,26 @@
         <module>acooly-portlets-alog</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>pccb-releases</id>
+            <url>http://prosysoft.cn/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>pccb-snapshot</id>
+            <url>http://prosysoft.cn/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+
+       <!-- <repository>
+            <id>acooly-releases</id>
+            <url>http://acooly.cn/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>acooly-snapshots</id>
+            <url>http://acooly.cn/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>-->
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.acooly</groupId>

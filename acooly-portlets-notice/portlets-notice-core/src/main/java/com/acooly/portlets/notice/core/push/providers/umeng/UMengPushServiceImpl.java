@@ -32,6 +32,8 @@ import java.util.Map;
 @Service("uMengPushService")
 public class UMengPushServiceImpl implements PushService {
 	
+	private final String ALIAS_TYPE="USER_ID";
+	
 	@Autowired
 	private PortletNoticeProperties noticeProperties;
 	
@@ -68,14 +70,12 @@ public class UMengPushServiceImpl implements PushService {
 		PushResult pushResult = new PushResult ();
 		try {
 			PushClient pushClient = new PushClient ();
-			
-			if (DeviceTypeEnum.ANDROID.equals (noticeMessage.getDeviceType ())) {
-				AndroidBroadcast broadcast = contructAndroidBroadcast (noticeMessage);
-				pushClient.send (broadcast);
-			} else {
-				IOSBroadcast broadcast = constructIosBroadcast (noticeMessage);
-				pushClient.send (broadcast);
-			}
+			//安卓广播
+			AndroidBroadcast broadcast = contructAndroidBroadcast (noticeMessage);
+			pushClient.send (broadcast);
+			//ios广播
+			IOSBroadcast iosBroadcast = constructIosBroadcast (noticeMessage);
+			pushClient.send (iosBroadcast);
 			pushResult.setSuccess (true);
 		} catch (IllegalArgumentException ie) {
 			pushResult.setMessage (ie.getMessage ());
@@ -103,7 +103,7 @@ public class UMengPushServiceImpl implements PushService {
 				noticeProperties.getUmeng ().getAndroidAppKey (),
 				noticeProperties.getUmeng ().getAndroidMasterSecret ());
 		
-		androidCustomizedcast.setAlias (list2StringSplitByComma (targets), "USER_ID");
+		androidCustomizedcast.setAlias (list2StringSplitByComma (targets), ALIAS_TYPE);
 		androidCustomizedcast.setTicker (noticeMessage.getTitle ());
 		androidCustomizedcast.setTitle (noticeMessage.getTitle ());
 		androidCustomizedcast.setText (noticeMessage.getContent ());
@@ -159,7 +159,7 @@ public class UMengPushServiceImpl implements PushService {
 			}
 		}
 		//                iosCustomizedcast.setAlert(umengNotifyDto.getContent());
-		iosCustomizedcast.setAlias (list2StringSplitByComma (targets), "USER_ID");
+		iosCustomizedcast.setAlias (list2StringSplitByComma (targets), ALIAS_TYPE);
 		//判断开启线上还是线下
 		if (isOnline ()) {
 			iosCustomizedcast.setProductionMode ();

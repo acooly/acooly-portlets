@@ -11,7 +11,7 @@ import com.acooly.core.common.BootApp;
 @BootApp(sysName = "acooly-component-portlets", httpPort = 8080)
 public class Main {
     public static void main(String[] args) {
-        Apps.setProfileIfNotExists("sdev");
+        Apps.setProfileIfNotExists("dev");
         new SpringApplication(Main.class).run(args);
     }
 }

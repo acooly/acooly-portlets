@@ -19,6 +19,7 @@ import com.google.common.collect.Lists;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +77,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 		for(NoticeInfo noticeInfo : pageResult.getPageResults ()){
 			PageableNoticeInfo pageableNoticeInfo = new PageableNoticeInfo ();
 			BeanCopier.copy (noticeInfo, pageableNoticeInfo);
+			pageableNoticeInfo.setSendTime(DateFormatUtils.format(noticeInfo.getSendTime(),"yyyy-MM-dd HH:mm:ss"));
 			if(readList.contains (pageableNoticeInfo.getId ().toString ())){
 				pageableNoticeInfo.setReaded (true);
 			}
