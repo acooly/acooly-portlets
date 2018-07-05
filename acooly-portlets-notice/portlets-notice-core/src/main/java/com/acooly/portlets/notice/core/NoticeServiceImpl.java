@@ -89,7 +89,6 @@ public class NoticeServiceImpl implements NoticeService {
 				
 			}
 			else if(PushProviderEnums.UMENG.equals (noticeProperties.getPushProvider ())){
-				Assert.notNull (noticeMessage.getDeviceType (), "使用友盟推送设备类型不能为空");
 				if(CollectionUtils.isEmpty (targets)){
 					pushResult = uMengPushService.broadcast (noticeMessage);
 				}

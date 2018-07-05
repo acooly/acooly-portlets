@@ -47,7 +47,14 @@ public class UMengPushServiceImpl implements PushService {
 			if (DeviceTypeEnum.ANDROID.equals (noticeMessage.getDeviceType ())) {
 				AndroidCustomizedcast androidCustomizedcast = contructAndroidCustomcast (noticeMessage, targets);
 				pushClient.send (androidCustomizedcast);
-			} else {
+			} else if(DeviceTypeEnum.IOS.equals(noticeMessage.getDeviceType())){
+				IOSCustomizedcast iosCustomizedcast = constructIosCustomcast (noticeMessage, targets);
+				pushClient.send (iosCustomizedcast);
+			}
+			else{
+				AndroidCustomizedcast androidCustomizedcast = contructAndroidCustomcast (noticeMessage, targets);
+				pushClient.send (androidCustomizedcast);
+
 				IOSCustomizedcast iosCustomizedcast = constructIosCustomcast (noticeMessage, targets);
 				pushClient.send (iosCustomizedcast);
 			}
