@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.acooly</groupId>
         <artifactId>acooly-portlets-notice</artifactId>
-        <version>4.1.0-SNAPSHOT</version>
+        <version>4.2.0-SNAPSHOT</version>
     </parent>
     <artifactId>portlets-notice-core</artifactId>
     <name>portlets-notice-core</name>
@@ -24,10 +24,8 @@
             <artifactId>acooly-component-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>yiji-2.5.21</version>
-            <scope>provided</scope>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-dubbo</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -41,6 +39,10 @@
             <groupId>com.acooly</groupId>
             <artifactId>portlets-notice-facade</artifactId>
             <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
     </dependencies>
 </project>
