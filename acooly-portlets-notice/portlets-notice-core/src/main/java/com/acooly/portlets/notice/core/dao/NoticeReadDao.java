@@ -8,6 +8,7 @@
 
 import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * 公告消息读取状态 Mybatis Dao
@@ -16,5 +17,8 @@ import com.acooly.portlets.notice.core.entity.NoticeRead;
  * @author acooly
  */
 public interface NoticeReadDao extends EntityMybatisDao<NoticeRead> {
+
+    @Select("select * from p_notice_read where receiver=#{receiver} and status='enable'")
+    NoticeRead findByReceiver(String receiver);
 
 }

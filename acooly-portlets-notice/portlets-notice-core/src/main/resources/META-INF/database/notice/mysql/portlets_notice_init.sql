@@ -3,7 +3,7 @@ CREATE TABLE `p_notice_info` (
   `title` varchar(64) DEFAULT NULL COMMENT '消息标题',
   `content` varchar(1024) NOT NULL DEFAULT '' COMMENT '消息内容',
   `content_type` varchar(16) NOT NULL DEFAULT '' COMMENT '内容类型 {text:信息,data:数据}',
-  `context` varchar(255) DEFAULT NULL COMMENT '会话（附带的自定义结构体）',
+  `context` varchar(1024) DEFAULT NULL COMMENT '会话（附带的自定义结构体）',
   `scheduler_time` datetime DEFAULT NULL COMMENT '定时发送时间(保留)',
   `send_time` datetime DEFAULT NULL COMMENT '发送时间',
   `sender` varchar(32) NOT NULL DEFAULT '' COMMENT '发送人',

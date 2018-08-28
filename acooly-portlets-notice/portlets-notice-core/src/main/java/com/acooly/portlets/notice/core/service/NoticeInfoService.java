@@ -33,7 +33,7 @@ public interface NoticeInfoService extends EntityService<NoticeInfo> {
 	 * @param customGroup
 	 * @return
 	 */
-	long countByGroup(String customGroup);
+	long countUnreadByGroup(String receiver,String customGroup);
 	
 	
 	/**

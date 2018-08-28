@@ -8,6 +8,7 @@ package com.acooly.portlets.notice.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;
+import com.acooly.core.utils.ToString;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
@@ -39,7 +40,6 @@ public class NoticeInfo extends AbstractEntity {
      */
     private static final long serialVersionUID = 1L;
 
-
     /**
      * 消息标题
      */
@@ -63,7 +63,7 @@ public class NoticeInfo extends AbstractEntity {
     /**
      * 会话（附带的自定义结构体）
      */
-    @Size(max = 255)
+    @Size(max = 1024)
     private String context;
 
     /**

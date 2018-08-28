@@ -16,12 +16,14 @@ import com.acooly.module.appservice.AppService;
 import com.acooly.portlets.notice.core.NoticeQueryService;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
 import com.acooly.portlets.notice.facade.NoticeQueryFacade;
+import com.acooly.portlets.notice.facade.dto.CountNoticeDto;
 import com.acooly.portlets.notice.facade.dto.NoticeDto;
 import com.acooly.portlets.notice.facade.dto.NoticeReadDto;
 import com.acooly.portlets.notice.facade.dto.PageableNoticeInfo;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.google.common.io.CountingOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
@@ -63,4 +65,13 @@ public class NoticeQueryFacadeImpl implements NoticeQueryFacade {
 		
 		return pageResult;
 	}
+
+    @Override
+    @AppService
+    public SingleResult<Long> countUnreadNotice(SingleOrder<CountNoticeDto> order) {
+	    long count = noticeQueryService.countUnreadNotice(order.getDto().getReceiver(),order.getDto().getCustomGroup());
+	    SingleResult<Long> result = new SingleResult<>();
+	    result.setDto(count);
+        return result;
+    }
 }

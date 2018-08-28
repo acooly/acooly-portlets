@@ -61,12 +61,14 @@ public class PortletNoticeProperties implements InitializingBean {
 	
 	@Override
 	public void afterPropertiesSet () throws Exception {
-		if(PushProviderEnums.UMENG.equals (pushProvider)){
-			Validators.assertJSR303 (umeng);
-		}
-		else{
-			Validators.assertJSR303 (jpush);
-		}
+	    if(enable){
+            if(PushProviderEnums.UMENG.equals (pushProvider)){
+                Validators.assertJSR303 (umeng);
+            }
+            else{
+                Validators.assertJSR303 (jpush);
+            }
+        }
 	}
 	
 	

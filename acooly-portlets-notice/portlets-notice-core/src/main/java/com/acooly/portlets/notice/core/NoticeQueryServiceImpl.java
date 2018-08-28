@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -98,15 +99,20 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 				noticeInfoService.update (notice);
 			}
 		}
-		
+
 		return notice;
 	}
 	
 	@Override
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void readAll (String receiver,String customGroup) {
 		noticeInfoService.readAll (receiver,customGroup);
 		List<Long> ids = noticeInfoService.getAllBroadcatIds (receiver,customGroup);
 		noticeReadService.read (receiver,ids);
 	}
+
+    @Override
+    public long countUnreadNotice(String receiver, String customGroup) {
+        return noticeInfoService.countUnreadByGroup(receiver,customGroup);
+    }
 }

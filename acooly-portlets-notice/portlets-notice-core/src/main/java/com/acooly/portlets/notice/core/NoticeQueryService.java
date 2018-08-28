@@ -45,4 +45,12 @@ public interface NoticeQueryService {
 	 * @param receiver
 	 */
 	void readAll(String receiver,String customGroup);
+
+    /**
+     * 查询未读消息条数
+     * @param receiver 接收人
+     * @param customGroup 消息组 如果不传递则返回所有消息
+     * @return
+     */
+	long countUnreadNotice(String receiver,String customGroup);
 }

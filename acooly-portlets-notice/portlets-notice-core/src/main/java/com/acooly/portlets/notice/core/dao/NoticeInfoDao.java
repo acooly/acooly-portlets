@@ -27,8 +27,11 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
   void updateStatusByPushNo(@Param ("status") NoticeStatusEnum status, @Param ("pushNo") String pushNo);
  
  
- @Select ("select count(id) from p_notice_info where custom_group = #{customGroup}")
- long coutByGroup(@Param ("customGroup") String customGroup);
+ @Select ("select count(id) from p_notice_info where (receiver='ALL' or receiver=#{receiver}) and custom_group = #{customGroup} and readed=false")
+ long countUnreadByGroup(@Param("receiver") String receiver,@Param ("customGroup") String customGroup);
+
+ @Select ("select count(id) from p_notice_info where (receiver='ALL' or receiver=#{receiver}) and readed=false")
+ long countUnread(@Param("receiver") String receiver);
  
  @Update ("update p_notice_info set readed = true where receiver=#{receiver} and custom_group = #{customGroup}")
  void updateAllNoticeReadedByGroup (@Param ("receiver") String receiver, @Param ("customGroup") String customGroup);

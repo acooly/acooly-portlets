@@ -10,6 +10,7 @@ import com.acooly.core.common.facade.PageOrder;
 import com.acooly.core.common.facade.PageResult;
 import com.acooly.core.common.facade.SingleOrder;
 import com.acooly.core.common.facade.SingleResult;
+import com.acooly.portlets.notice.facade.dto.CountNoticeDto;
 import com.acooly.portlets.notice.facade.dto.NoticeDto;
 import com.acooly.portlets.notice.facade.dto.NoticeReadDto;
 import com.acooly.portlets.notice.facade.dto.PageableNoticeInfo;
@@ -33,4 +34,11 @@ public interface NoticeQueryFacade {
 	 * @return
 	 */
 	PageResult<PageableNoticeInfo> pageList(PageOrder order);
+
+    /**
+     * 统计客户维度消息
+     * @param order
+     * @return
+     */
+	SingleResult<Long> countUnreadNotice(SingleOrder<CountNoticeDto> order);
 }
