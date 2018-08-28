@@ -7,6 +7,7 @@
 package com.acooly.portlets.notice.core;
 
 import com.acooly.core.common.dao.support.PageInfo;
+import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.portlets.notice.core.dto.NoticeComponentConstants;
@@ -95,8 +96,13 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 			if (NoticeComponentConstants.BROADCAST_RECEIVER.equals (notice.getReceiver ())) {
 				noticeReadService.readBroadcast (receiver, id);
 			} else {
-				notice.setReaded (true);
-				noticeInfoService.update (notice);
+			    if(StringUtils.isNotBlank(receiver) && receiver.equals(notice.getReceiver())){
+                    notice.setReaded (true);
+                    noticeInfoService.update (notice);
+                }
+                else{
+			        throw new BusinessException("消息接收人不匹配",false);
+                }
 			}
 		}
 
