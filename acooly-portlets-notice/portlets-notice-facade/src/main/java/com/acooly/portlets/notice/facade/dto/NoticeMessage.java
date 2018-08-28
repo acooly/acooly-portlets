@@ -19,7 +19,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -48,7 +47,7 @@ public class NoticeMessage  extends DtoBase{
     /**
      * 内容类型
      */
-    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.text;
+    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.MESSAGE;
 
     /**
      * 消息内容

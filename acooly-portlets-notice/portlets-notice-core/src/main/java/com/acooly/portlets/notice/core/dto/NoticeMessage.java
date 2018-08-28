@@ -35,7 +35,7 @@ public class NoticeMessage {
     /**
      * 内容类型
      */
-    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.text;
+    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.MESSAGE;
 
     /**
      * 消息内容

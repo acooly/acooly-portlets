@@ -20,10 +20,9 @@ import java.util.Map;
  */
 public enum NoticeContentTypeEnum implements Messageable {
 
-	text("text", "信息"),
+	MESSAGE("MESSAGE", "消息"),
 
-	data("data", "数据"),
-
+	NOTIFACTION("NOTIFACTION", "通知"),
 	;
 
 	private final String code;

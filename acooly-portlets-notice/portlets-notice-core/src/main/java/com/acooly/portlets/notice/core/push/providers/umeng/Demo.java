@@ -40,7 +40,7 @@ public class Demo {
 		AndroidBroadcast broadcast = new AndroidBroadcast(appkey, appMasterSecret);
 		broadcast.setTicker( "Android broadcast ticker");
 		broadcast.setTitle(  "中文的title");
-		broadcast.setText(   "Android broadcast text");
+		broadcast.setText(   "Android broadcast MESSAGE");
 		broadcast.goAppAfterOpen();
 		broadcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		// TODO Set 'production_mode' to 'false' if it's a test device. 
@@ -57,7 +57,7 @@ public class Demo {
 		unicast.setDeviceToken( "your device token");
 		unicast.setTicker( "Android unicast ticker");
 		unicast.setTitle(  "中文的title");
-		unicast.setText(   "Android unicast text");
+		unicast.setText(   "Android unicast MESSAGE");
 		unicast.goAppAfterOpen();
 		unicast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		// TODO Set 'production_mode' to 'false' if it's a test device. 
@@ -97,7 +97,7 @@ public class Demo {
 		groupcast.setFilter(filterJson);
 		groupcast.setTicker( "Android groupcast ticker");
 		groupcast.setTitle(  "中文的title");
-		groupcast.setText(   "Android groupcast text");
+		groupcast.setText(   "Android groupcast MESSAGE");
 		groupcast.goAppAfterOpen();
 		groupcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		// TODO Set 'production_mode' to 'false' if it's a test device. 
@@ -114,7 +114,7 @@ public class Demo {
 		customizedcast.setAlias("alias", "alias_type");
 		customizedcast.setTicker( "Android customizedcast ticker");
 		customizedcast.setTitle(  "中文的title");
-		customizedcast.setText(   "Android customizedcast text");
+		customizedcast.setText(   "Android customizedcast MESSAGE");
 		customizedcast.goAppAfterOpen();
 		customizedcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		// TODO Set 'production_mode' to 'false' if it's a test device. 
@@ -132,7 +132,7 @@ public class Demo {
 		customizedcast.setFileId(fileId, "alias_type");
 		customizedcast.setTicker( "Android customizedcast ticker");
 		customizedcast.setTitle(  "中文的title");
-		customizedcast.setText(   "Android customizedcast text");
+		customizedcast.setText(   "Android customizedcast MESSAGE");
 		customizedcast.goAppAfterOpen();
 		customizedcast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		// TODO Set 'production_mode' to 'false' if it's a test device. 
@@ -148,7 +148,7 @@ public class Demo {
 		filecast.setFileId( fileId);
 		filecast.setTicker( "Android filecast ticker");
 		filecast.setTitle(  "中文的title");
-		filecast.setText(   "Android filecast text");
+		filecast.setText(   "Android filecast MESSAGE");
 		filecast.goAppAfterOpen();
 		filecast.setDisplayType(AndroidNotification.DisplayType.NOTIFICATION);
 		client.send(filecast);

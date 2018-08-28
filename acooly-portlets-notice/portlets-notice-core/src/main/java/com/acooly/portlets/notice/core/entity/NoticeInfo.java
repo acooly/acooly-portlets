@@ -8,7 +8,6 @@ package com.acooly.portlets.notice.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;
-import com.acooly.core.utils.ToString;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
@@ -58,7 +57,7 @@ public class NoticeInfo extends AbstractEntity {
      */
     @Enumerated(EnumType.STRING)
     @NotNull
-    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.text;
+    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.MESSAGE;
 
     /**
      * 会话（附带的自定义结构体）

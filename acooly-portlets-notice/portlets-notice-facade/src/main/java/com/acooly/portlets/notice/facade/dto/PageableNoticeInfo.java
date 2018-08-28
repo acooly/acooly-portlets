@@ -6,6 +6,7 @@
 
 package com.acooly.portlets.notice.facade.dto;
 
+import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -34,6 +35,11 @@ public class PageableNoticeInfo implements Serializable{
 	 * 消息内容
 	 */
 	private String content;
+
+    /**
+     * 消息类型
+     */
+	private NoticeContentTypeEnum contentType;
 	
 	/**
 	 * 发送时间

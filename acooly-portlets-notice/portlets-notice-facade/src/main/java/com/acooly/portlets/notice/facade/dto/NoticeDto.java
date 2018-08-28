@@ -10,14 +10,9 @@ import com.acooly.core.common.facade.DtoBase;
 import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
-import com.acooly.portlets.notice.facade.enums.PushTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -48,7 +43,7 @@ public class NoticeDto extends DtoBase {
     /**
      * 内容类型
      */
-    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.text;
+    private NoticeContentTypeEnum contentType = NoticeContentTypeEnum.MESSAGE;
 
     /**
      * 会话（附带的自定义结构体）

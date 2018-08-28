@@ -18,7 +18,7 @@ public abstract class AndroidNotification extends UmengNotification {
 	
 	// Keys can be set in the body level
 	protected static final HashSet<String> BODY_KEYS = new HashSet<String>(Arrays.asList(new String[]{
-			"ticker", "title", "text", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound",
+			"ticker", "title", "MESSAGE", "builder_id", "icon", "largeIcon", "img", "play_vibrate", "play_lights", "play_sound",
 			"sound", "after_open", "url", "activity", "custom"}));
 
 	public enum DisplayType{
