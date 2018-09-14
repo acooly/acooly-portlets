@@ -176,7 +176,8 @@ public class UMengPushServiceImpl implements PushService {
 		
 		iosCustomizedcast.setBadge (1);
 		iosCustomizedcast.setSound ("default");
-		iosCustomizedcast.setAlert (noticeMessage.getContent ());
+		iosCustomizedcast.setTitle(noticeMessage.getTitle());
+		iosCustomizedcast.setBody (noticeMessage.getContent ());
 		return iosCustomizedcast;
 	}
 	
@@ -199,7 +200,8 @@ public class UMengPushServiceImpl implements PushService {
 		
 		broadcast.setBadge (1);
 		broadcast.setSound ("default");
-		broadcast.setAlert (noticeMessage.getContent ());
+		broadcast.setBody (noticeMessage.getContent ());
+		broadcast.setTitle(noticeMessage.getTitle());
 		return broadcast;
 	}
 	
