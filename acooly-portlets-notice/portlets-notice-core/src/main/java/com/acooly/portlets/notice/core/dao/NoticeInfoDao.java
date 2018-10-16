@@ -6,14 +6,14 @@
  */
  package com.acooly.portlets.notice.core.dao;
  
- import  java.util.List;
-
-import com.acooly.module.mybatis.EntityMybatisDao;
+ import com.acooly.module.mybatis.EntityMybatisDao;
 import com.acooly.portlets.notice.core.entity.NoticeInfo;
 import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * 公告消息 Mybatis Dao
@@ -45,6 +45,6 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
  @Select ("select id from p_notice_info where receiver='ALL'")
  List<Long> getAllBroadcatIds();
 
- @Select("select * from p_notice_info where push_no=#{pushNo} and (receiver = #{recevier} or receiver = 'ALL')")
+ @Select("select * from p_notice_info where push_no=#{pushNo} and (receiver = #{receiver} or receiver = 'ALL')")
  NoticeInfo findByPushNoAndReceiver(@Param("pushNo") String pushNo,@Param("receiver") String receiver);
 }
