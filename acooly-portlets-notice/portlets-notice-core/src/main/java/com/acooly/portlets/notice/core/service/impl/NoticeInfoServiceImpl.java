@@ -88,4 +88,9 @@ public class NoticeInfoServiceImpl extends EntityServiceImpl<NoticeInfo, NoticeI
             return getEntityDao().getAllBroadcatIds();
         }
     }
+
+    @Override
+    public NoticeInfo findByPushNoAndReceiver(String pushNo, String receiver) {
+        return getEntityDao().findByPushNoAndReceiver(pushNo,receiver);
+    }
 }

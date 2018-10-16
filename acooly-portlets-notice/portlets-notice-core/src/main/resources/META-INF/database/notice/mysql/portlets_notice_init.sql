@@ -22,7 +22,8 @@ CREATE TABLE `p_notice_info` (
   PRIMARY KEY (`id`),
   KEY `idx_custom_group` (`custom_group`),
   KEY `idx_receiver` (`receiver`),
-  KEY `idx_push_no` (`push_no`)
+  KEY `idx_push_no` (`push_no`),
+  KEY `idx_un_push_no_receiver` (`push_no`,`receiver`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='公告消息';
 
 CREATE TABLE `p_notice_read` (

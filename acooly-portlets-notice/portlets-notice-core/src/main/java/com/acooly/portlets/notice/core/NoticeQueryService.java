@@ -39,6 +39,15 @@ public interface NoticeQueryService {
 	 * @return
 	 */
 	NoticeInfo readNotice (String receiver, Long noticeId);
+
+    /**
+     * 阅读消息
+     *
+     * @param
+     *
+     * @return
+     */
+    NoticeInfo readNotice (String pushNo,String receiver);
 	
 	/**
 	 * 全部已读

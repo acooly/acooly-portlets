@@ -51,4 +51,7 @@ public interface NoticeInfoService extends EntityService<NoticeInfo> {
 	 * @return
 	 */
 	List<Long> getAllBroadcatIds(String receiver,String customGroup);
+
+
+	NoticeInfo findByPushNoAndReceiver(String pushNo,String receiver);
 }

@@ -38,6 +38,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class NoticeServiceImpl implements NoticeService {
+
+    private final String PUSH_NO_KEY = "pushNo";
 	
 	@Resource(name = "jpushPushService")
 	private PushService jpushService;
@@ -73,6 +75,10 @@ public class NoticeServiceImpl implements NoticeService {
 		if(StringUtils.isBlank (noticeMessage.getPushNo ())){
 			noticeMessage.setPushNo (Ids.getDid ());
 		}
+
+		if(null != noticeMessage.getContext()){
+		    noticeMessage.getContext().put(PUSH_NO_KEY,noticeMessage.getPushNo());
+        }
 		
 		saveNoticeInfo (noticeMessage, targets);
 		

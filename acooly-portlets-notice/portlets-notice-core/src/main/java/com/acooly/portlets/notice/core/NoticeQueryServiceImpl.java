@@ -108,8 +108,22 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
 
 		return notice;
 	}
-	
-	@Override
+
+    @Override
+    public NoticeInfo readNotice(String pushNo, String receiver) {
+	    NoticeInfo notice = noticeInfoService.findByPushNoAndReceiver(pushNo,receiver);
+        if (notice != null) {
+            if (NoticeComponentConstants.BROADCAST_RECEIVER.equals (notice.getReceiver ())) {
+                noticeReadService.readBroadcast (receiver, notice.getId());
+            } else {
+                notice.setReaded (true);
+                noticeInfoService.update (notice);
+            }
+        }
+        return notice;
+    }
+
+    @Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void readAll (String receiver,String customGroup) {
 		noticeInfoService.readAll (receiver,customGroup);

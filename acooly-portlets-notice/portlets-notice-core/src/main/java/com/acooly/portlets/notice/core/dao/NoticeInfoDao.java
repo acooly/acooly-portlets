@@ -44,4 +44,7 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
  
  @Select ("select id from p_notice_info where receiver='ALL'")
  List<Long> getAllBroadcatIds();
+
+ @Select("select * from p_notice_info where push_no=#{pushNo} and (receiver = #{recevier} or receiver = 'ALL')")
+ NoticeInfo findByPushNoAndReceiver(@Param("pushNo") String pushNo,@Param("receiver") String receiver);
 }
