@@ -12,8 +12,8 @@
     <name>acooly-portlets-notice</name>
 
     <modules>
-        <module>portlets-notice-core</module>
-        <module>portlets-notice-facade</module>
+        <module>acooly-portlets-notice-core</module>
+        <module>acooly-portlets-notice-facade</module>
     </modules>
 
     <dependencyManagement>

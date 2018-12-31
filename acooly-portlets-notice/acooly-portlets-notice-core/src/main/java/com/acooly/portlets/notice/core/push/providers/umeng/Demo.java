@@ -157,7 +157,7 @@ public class Demo {
 	public void sendIOSBroadcast() throws Exception {
 		IOSBroadcast broadcast = new IOSBroadcast(appkey, appMasterSecret);
 
-		broadcast.setAlert("IOS 广播测试");
+//		broadcast.setAlert("IOS 广播测试");
 		broadcast.setBadge( 0);
 		broadcast.setSound( "default");
 		// TODO set 'production_mode' to 'true' if your app is under production mode
@@ -171,7 +171,7 @@ public class Demo {
 		IOSUnicast unicast = new IOSUnicast(appkey, appMasterSecret);
 		// TODO Set your device token
 		unicast.setDeviceToken( "xx");
-		unicast.setAlert("IOS 单播测试");
+//		unicast.setAlert("IOS 单播测试");
 		unicast.setBadge( 0);
 		unicast.setSound( "default");
 		// TODO set 'production_mode' to 'true' if your app is under production mode
@@ -205,7 +205,7 @@ public class Demo {
 		
 		// Set filter condition into rootJson
 		groupcast.setFilter(filterJson);
-		groupcast.setAlert("IOS 组播测试");
+//		groupcast.setAlert("IOS 组播测试");
 		groupcast.setBadge( 0);
 		groupcast.setSound( "default");
 		// TODO set 'production_mode' to 'true' if your app is under production mode
@@ -219,7 +219,7 @@ public class Demo {
 		// And if you have many alias, you can also upload a file containing these alias, then 
 		// use file_id to send customized notification.
 		customizedcast.setAlias("alias", "alias_type");
-		customizedcast.setAlert("IOS 个性化测试");
+//		customizedcast.setAlert("IOS 个性化测试");
 		customizedcast.setBadge( 0);
 		customizedcast.setSound( "default");
 		// TODO set 'production_mode' to 'true' if your app is under production mode
@@ -232,7 +232,7 @@ public class Demo {
 		// TODO upload your device tokens, and use '\n' to split them if there are multiple tokens 
 		String fileId = client.uploadContents(appkey,appMasterSecret,"aa"+"\n"+"bb");
 		filecast.setFileId( fileId);
-		filecast.setAlert("IOS 文件播测试");
+//		filecast.setAlert("IOS 文件播测试");
 		filecast.setBadge( 0);
 		filecast.setSound( "default");
 		// TODO set 'production_mode' to 'true' if your app is under production mode

@@ -7,6 +7,6 @@
         <artifactId>acooly-portlets-notice</artifactId>
         <version>4.2.0-SNAPSHOT</version>
     </parent>
-    <artifactId>portlets-notice-facade</artifactId>
-    <name>portlets-notice-facade</name>
+    <artifactId>acooly-portlets-notice-facade</artifactId>
+    <name>acooly-portlets-notice-facade</name>
 </project>
