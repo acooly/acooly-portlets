@@ -17,7 +17,6 @@ import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.acooly.portlets.notice.facade.dto.PageableNoticeInfo;
 import com.google.common.collect.Lists;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -37,102 +36,106 @@ import java.util.Map;
 @Service
 @Slf4j
 public class NoticeQueryServiceImpl implements NoticeQueryService {
-	
-	@Autowired
-	private NoticeInfoService noticeInfoService;
-	
-	@Autowired
-	private NoticeReadService noticeReadService;
-	
-	@Override
-	public PageInfo<PageableNoticeInfo> pageQuery (String receiver, PageInfo<NoticeInfo> pager,
-	                                               Map<String, Object> params,
-	                                               Map<String, Boolean> orderBy) {
-		Assert.hasText (receiver, "消息接收人不能为空");
-		
-		if (orderBy == null || orderBy.isEmpty ()) {
-			orderBy = new HashMap<> ();
-			orderBy.put ("createTime", false);
-		}
-		params.remove ("EQ_receiver");
-		params.put ("IN_receiver", new String[]{receiver,NoticeComponentConstants.BROADCAST_RECEIVER});
-		
-		PageInfo<NoticeInfo> pageResult = noticeInfoService.query (pager, params, orderBy);
-		
-		NoticeRead noticeRead = noticeReadService.findByReceiver (receiver);
-		if(noticeRead == null){
-			noticeRead = new NoticeRead ();
-			noticeRead.setStatus (AbleStatus.enable);
-			noticeRead.setReceiver (receiver);
-			noticeReadService.save (noticeRead);
-		}
-		
-		List<String> readList = Lists.newArrayList ();
-		if (StringUtils.isNoneBlank (noticeRead.getBroadcastRead ())) {
-			readList = Lists.newArrayList (noticeRead.getBroadcastRead ().split (","));
-		}
-		
-		PageInfo<PageableNoticeInfo> pageInfo = new PageInfo<> ();
-		BeanCopier.copy (pageResult, pageInfo, "pageResults");
-		pageInfo.setPageResults (Lists.newArrayList ());
-		
-		for(NoticeInfo noticeInfo : pageResult.getPageResults ()){
-			PageableNoticeInfo pageableNoticeInfo = new PageableNoticeInfo ();
-			BeanCopier.copy (noticeInfo, pageableNoticeInfo);
-			pageableNoticeInfo.setSendTime(DateFormatUtils.format(noticeInfo.getSendTime(),"yyyy-MM-dd HH:mm:ss"));
-			if(readList.contains (pageableNoticeInfo.getId ().toString ())){
-				pageableNoticeInfo.setReaded (true);
-			}
-			pageInfo.getPageResults ().add (pageableNoticeInfo);
-		}
-		
-		return pageInfo;
-	}
-	
-	@Override
-	public NoticeInfo readNotice (String receiver, Long id) {
-		NoticeInfo notice = noticeInfoService.get (id);
-		if (notice != null) {
-			if (NoticeComponentConstants.BROADCAST_RECEIVER.equals (notice.getReceiver ())) {
-				noticeReadService.readBroadcast (receiver, id);
-			} else {
-			    if(StringUtils.isNotBlank(receiver) && receiver.equals(notice.getReceiver())){
-                    notice.setReaded (true);
-                    noticeInfoService.update (notice);
-                }
-                else{
-			        throw new BusinessException("消息接收人不匹配",false);
-                }
-			}
-		}
 
-		return notice;
-	}
+    @Autowired
+    private NoticeInfoService noticeInfoService;
+
+    @Autowired
+    private NoticeReadService noticeReadService;
+
+    @Override
+    public PageInfo<PageableNoticeInfo> pageQuery(String receiver, PageInfo<NoticeInfo> pager,
+                                                  Map<String, Object> params,
+                                                  Map<String, Boolean> orderBy) {
+        Assert.hasText(receiver, "消息接收人不能为空");
+
+        if (orderBy == null || orderBy.isEmpty()) {
+            orderBy = new HashMap<>();
+            orderBy.put("createTime", false);
+        }
+        params.remove("EQ_receiver");
+        params.put("IN_receiver", new String[]{receiver, NoticeComponentConstants.BROADCAST_RECEIVER});
+
+        PageInfo<NoticeInfo> pageResult = noticeInfoService.query(pager, params, orderBy);
+
+        NoticeRead noticeRead = noticeReadService.findByReceiver(receiver);
+        if (noticeRead == null) {
+            noticeRead = new NoticeRead();
+            noticeRead.setStatus(AbleStatus.enable);
+            noticeRead.setReceiver(receiver);
+            noticeReadService.save(noticeRead);
+        }
+
+        List<String> readList = Lists.newArrayList();
+        if (StringUtils.isNoneBlank(noticeRead.getBroadcastRead())) {
+            readList = Lists.newArrayList(noticeRead.getBroadcastRead().split(","));
+        }
+
+        PageInfo<PageableNoticeInfo> pageInfo = new PageInfo<>();
+        BeanCopier.copy(pageResult, pageInfo, "pageResults");
+        pageInfo.setPageResults(Lists.newArrayList());
+
+        for (NoticeInfo noticeInfo : pageResult.getPageResults()) {
+            PageableNoticeInfo pageableNoticeInfo = new PageableNoticeInfo();
+            BeanCopier.copy(noticeInfo, pageableNoticeInfo);
+            pageableNoticeInfo.setSendTime(DateFormatUtils.format(noticeInfo.getSendTime(), "yyyy-MM-dd HH:mm:ss"));
+            if (readList.contains(pageableNoticeInfo.getId().toString())) {
+                pageableNoticeInfo.setReaded(true);
+            }
+            pageInfo.getPageResults().add(pageableNoticeInfo);
+        }
+
+        return pageInfo;
+    }
+
+    @Override
+    public NoticeInfo readNotice(String receiver, Long id) {
+        NoticeInfo notice = noticeInfoService.get(id);
+        if (notice != null) {
+            if (NoticeComponentConstants.BROADCAST_RECEIVER.equals(notice.getReceiver())) {
+                noticeReadService.readBroadcast(receiver, id);
+            } else {
+                if (StringUtils.isNotBlank(receiver) && receiver.equals(notice.getReceiver())) {
+                    notice.setReaded(true);
+                    noticeInfoService.update(notice);
+                } else {
+                    throw new BusinessException("消息接收人不匹配", false);
+                }
+            }
+        }
+
+        return notice;
+    }
 
     @Override
     public NoticeInfo readNotice(String pushNo, String receiver) {
-	    NoticeInfo notice = noticeInfoService.findByPushNoAndReceiver(pushNo,receiver);
+        NoticeInfo notice = noticeInfoService.findByPushNoAndReceiver(pushNo, receiver);
         if (notice != null) {
-            if (NoticeComponentConstants.BROADCAST_RECEIVER.equals (notice.getReceiver ())) {
-                noticeReadService.readBroadcast (receiver, notice.getId());
+            if (NoticeComponentConstants.BROADCAST_RECEIVER.equals(notice.getReceiver())) {
+                noticeReadService.readBroadcast(receiver, notice.getId());
             } else {
-                notice.setReaded (true);
-                noticeInfoService.update (notice);
+                notice.setReaded(true);
+                noticeInfoService.update(notice);
             }
         }
         return notice;
     }
 
     @Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public void readAll (String receiver,String customGroup) {
-		noticeInfoService.readAll (receiver,customGroup);
-		List<Long> ids = noticeInfoService.getAllBroadcatIds (receiver,customGroup);
-		noticeReadService.read (receiver,ids);
-	}
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public void readAll(String receiver, String customGroup) {
+        noticeInfoService.readAll(receiver, customGroup);
+        List<Long> ids = noticeInfoService.getAllBroadcatIds(receiver, customGroup);
+        noticeReadService.read(receiver, ids);
+    }
 
     @Override
     public long countUnreadNotice(String receiver, String customGroup) {
-        return noticeInfoService.countUnreadByGroup(receiver,customGroup);
+        return noticeInfoService.countUnreadByGroup(receiver, customGroup);
+    }
+
+    @Override
+    public void deleteNotice(String receiver, Long noticeId) {
+        noticeInfoService.removeById(noticeId);
     }
 }

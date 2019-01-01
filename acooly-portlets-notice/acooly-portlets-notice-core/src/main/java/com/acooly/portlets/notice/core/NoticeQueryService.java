@@ -64,4 +64,15 @@ public interface NoticeQueryService {
      * @return 未读消息数
      */
     long countUnreadNotice(String receiver, String customGroup);
+
+
+    /**
+     * 标记删除
+     *
+     * @param receiver 接受人
+     * @param noticeId 消息ID
+     * @return
+     */
+    void deleteNotice(String receiver, Long noticeId);
+
 }
