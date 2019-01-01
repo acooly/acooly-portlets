@@ -1,33 +1,52 @@
 ## 1.组件介绍
-该组件用来向app推送消息使用，支持多种推送渠道：极光、友盟
-### 1.1 支持功能
-1. 利用极光、友盟推送渠道向app端推送消息
+该组件用来向app推送消息使用，支持多种推送渠道：极光、友盟。可结构性扩展。
+
+### 1.1 特性说明
+1. 利用极光、友盟推送渠道向app端推送消息（集成封装提供方的能力，并提供数据持久化管理）
 2. app内查看历史消息，并标识某一条消息是否已读
-3. 推送消息按业务自定义的分组进行分类显示与查询
+3. 以用户身份（用户标志）查看消息列表，并标记已读未读
+4. 消息支付广播和定向发送（单发，群发）
+5. 推送消息按业务自定义的分组进行分类显示与查询（customGroup）
+6. 支持dubbo分布式
+
 
 ## 2.使用说明
-### 2.1 配置项说明
-`acooly.portlets.notice.enable`   是否需要启用该组件
-`acooly.portlets.notice.pushProvider` 推送渠道：`JPUSH、UMENG`
-`acooly.portlets.notice.gateway` 推送api地址
-`acooly.portlets.notice.appKey` 推送应用id，在渠道方后台配置
-`acooly.portlets.notice.masterSecret` 应用密钥，在渠道方后台生成 
-`acooly.portlets.notice.push` 是否开启推送功能，默认为推送。只有在该标识为`true`时才会进行消息推送
+### 2.1 配置说明
 
-### 2.2推荐配置
 ```
-acooly.portlets.notice.enable=true
-acooly.portlets.notice.push=true
-acooly.portlets.notice.gateway=https://api.jpush.cn/v3/push
-acooly.portlets.notice.pushProvider=JPUSH
-acooly.portlets.notice.appKey=ba7797dd3f8ddbe03b63be04
-acooly.portlets.notice.masterSecret=a850862aa8a556912c6471b5
+#################### 公共配置 ###################
+#是否需要启用该组件
+acooly.portlets.notice.enable
+#推送渠道:JPUSH、UMENG
+acooly.portlets.notice.pushProvider
+#推送api地址
+acooly.portlets.notice.gateway
+#是否开启推送功能，默认为推送。只有在该标识为true时才会进行消息推送
+acooly.portlets.notice.push
+
+#################### jpush ###################
+#使用jpush做推送时，推送应用id，在渠道方后台配置
+acooly.portlets.notice.jpush.appKey
+#使用jpush做推送时，应用密钥，在渠道方后台生成
+acooly.portlets.notice.jpush.masterSecret
+
+#################### 友盟 ###################
+#使用友盟推送时 安卓应用id
+acooly.portlets.notice.umeng.androidAppKey
+#使用友盟推送时 安卓应用密钥
+acooly.portlets.notice.umeng.androidMasterSecret
+#使用友盟推送时 IOS应用id
+acooly.portlets.notice.umeng.iosAppKey
+#使用友盟推送时 IOS应用密钥
+acooly.portlets.notice.umeng.iosMasterSecret
 ```
-### 2.3注意事项
+
+### 2.2 注意事项
 1.ios app只有在online 环境下才会推送消息到生产环境，其他环境均推送测试环境
 2.安卓 app在app端会收到推送的 message 和 notification 安卓app需要屏蔽掉notification默认的显示方式
 
 ## 3.代码示例
+
 ### 3.1 核心消息发送api
 ```
 public interface NoticeService {
@@ -77,15 +96,20 @@ public interface NoticeQueryService {
 	NoticeInfo readNotice (String receiver, Long noticeId);
 }
 ```
-### 3.3 代码
-1. 我想要向指定用户推送app消息：
-```
+
+### 3.3 代码示例
+
+#### 我想要向指定用户推送app消息：
+
+```java
 NoticeMessage noticeMessage = new NoticeMessage ();
 noticeMessage.setPushNo (Ids.getDid ());
 noticeMessage.setPush (false);
 noticeMessage.setTitle ("测试消息");
 noticeMessage.setContent ("这是消息、消息、消息。");
 noticeMessage.setPush (true);
+// 自定义消息分类
+noticeMessage.setCustomGroup("0001")
 
 Map<String,Object> context = new HashMap<> ();
 context.put ("customerId","12312312312");
@@ -97,8 +121,10 @@ noticeMessage.setContext (context);
 noticeService.group (noticeMessage, Lists.newArrayList ("yanjun89"));
 
 ```
-2. 我要向所有app用户都推送消息
-```
+
+#### 我要向所有app用户都推送消息
+
+```java
 NoticeMessage noticeMessage = new NoticeMessage ();
 noticeMessage.setPushNo (Ids.getDid ());
 noticeMessage.setPush (false);
@@ -109,16 +135,21 @@ noticeMessage.setPush (true);
 noticeService.broadcast (noticeMessage);
 
 ```
-3. 用户A登录app并且查看自己的未读消息
 
-```
+#### 用户A登录app并且查看自己的未读消息
+
+
+```java
 NoticeInfo noticeInfo = noticeQueryService.readNotice ("用户标识，通常是alias", 消息id);
 
 ```
-4. 分页查询消息
 
-```
+#### 分页查询消息
+
+```java
 Map<String,Object> params = new HashMap<> ();
+//只查询某个自定义分类的消息
+params.put("EQ_customGroup","0001")
 		
 PageInfo pager = new PageInfo ();
 
