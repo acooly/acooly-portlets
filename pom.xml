@@ -19,6 +19,7 @@
         <module>acooly-portlets-test</module>
         <module>acooly-portlets-notice</module>
         <module>acooly-portlets-alog</module>
+        <module>acooly-portlets-comment</module>
     </modules>
 
     <distributionManagement>

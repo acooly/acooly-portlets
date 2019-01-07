@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.comment.core.dao.CommentDao">
+
+    <resultMap id="commentResultMap" type="com.acooly.portlets.comment.core.entity.Comment">
+        <id property="id" column="comment_id"/>
+        <result property="parentId" column="comment_parent_id"/>
+        <result property="commentNo" column="comment_comment_no"/>
+        <result property="path" column="comment_path"/>
+        <result property="busiType" column="comment_busi_type"/>
+        <result property="busiKey" column="comment_busi_key"/>
+        <result property="userNo" column="comment_user_no"/>
+        <result property="userName" column="comment_user_name"/>
+        <result property="title" column="comment_title"/>
+        <result property="content" column="comment_content"/>
+        <result property="thumbsup" column="comment_thumbsup"/>
+        <result property="repeats" column="comment_repeats"/>
+        <result property="sticky" column="comment_sticky"/>
+        <result property="status" column="comment_status"/>
+        <result property="createTime" column="comment_create_time"/>
+        <result property="updateTime" column="comment_update_time"/>
+        <result property="comments" column="comment_comments"/>
+    </resultMap>
+
+    <sql id="commentSqlSelect">
+            comment.id as comment_id,
+            comment.parent_id as comment_parent_id,
+            comment.comment_no as comment_comment_no,
+            comment.path as comment_path,
+            comment.busi_type as comment_busi_type,
+            comment.busi_key as comment_busi_key,
+            comment.user_no as comment_user_no,
+            comment.user_name as comment_user_name,
+            comment.title as comment_title,
+            comment.content as comment_content,
+            comment.thumbsup as comment_thumbsup,
+            comment.repeats as comment_repeats,
+            comment.sticky as comment_sticky,
+            comment.status as comment_status,
+            comment.create_time as comment_create_time,
+            comment.update_time as comment_update_time,
+            comment.comments as comment_comments
+    </sql>
+
+</mapper>

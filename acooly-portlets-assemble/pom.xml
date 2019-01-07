@@ -15,19 +15,64 @@
         <start-class>com.acooly.portlets.Main</start-class>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
+
+        <!-- notice -->
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-portlets-notice-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+
+        <!-- comment -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-comment-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-comment-openapi</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- 组件：安全组件 -->
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-security</artifactId>
+        </dependency>
+
+        <!-- openapi framework -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>openapi-framework-core</artifactId>
+            <version>4.2.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>openapi-framework-service-impl</artifactId>
+            <version>4.2.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>openapi-framework-mock</artifactId>
+            <version>4.2.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>openapi-framework-apidoc</artifactId>
+            <version>4.2.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
     <build>
