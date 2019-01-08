@@ -38,7 +38,7 @@ public class NoticeInfoServiceImpl extends EntityServiceImpl<NoticeInfo, NoticeI
     private NoticeReadDao noticeReadDao;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public void noticePushSuccess(String pushNo) {
         getEntityDao().updateStatusByPushNo(NoticeStatusEnum.finish, pushNo);
     }
