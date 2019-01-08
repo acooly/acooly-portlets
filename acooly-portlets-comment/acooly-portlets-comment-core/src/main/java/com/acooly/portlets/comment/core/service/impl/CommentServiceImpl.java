@@ -126,7 +126,7 @@ public class CommentServiceImpl implements CommentService {
         commentManager.query(pageInfoEntity, params, orderMap);
 
         pageInfo.setTotalPage(pageInfoEntity.getTotalPage());
-        pageInfo.setTotalCount(pageInfo.getTotalCount());
+        pageInfo.setTotalCount(pageInfoEntity.getTotalCount());
 
         if (queryChild == null) {
             queryChild = true;
