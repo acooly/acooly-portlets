@@ -23,8 +23,6 @@ import java.util.List;
 
 import static com.acooly.portlets.comment.core.PortletCommentProperties.PREFIX;
 
-;
-
 /**
  * @author kuli@yiji.com
  */
@@ -37,7 +35,7 @@ public class PortletCommentAutoConfig {
     private PortletCommentProperties portletCommentProperties;
 
     @Bean
-    public StandardDatabaseScriptIniter appScriptIniter() {
+    public StandardDatabaseScriptIniter portletCommentScriptIniter() {
         return new StandardDatabaseScriptIniter() {
             @Override
             public String getEvaluateTable() {
