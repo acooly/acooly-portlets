@@ -8,11 +8,14 @@ import com.acooly.core.utils.Collections3;
 import com.acooly.core.utils.Ids;
 import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.mapper.BeanCopier;
+import com.acooly.module.event.EventBus;
 import com.acooly.portlets.comment.client.dto.CommentBaseInfo;
 import com.acooly.portlets.comment.client.dto.CommentInfo;
 import com.acooly.portlets.comment.core.entity.Comment;
 import com.acooly.portlets.comment.core.manage.CommentManager;
 import com.acooly.portlets.comment.core.service.CommentService;
+import com.acooly.portlets.comment.core.service.CommentSuccessEvent;
+import com.acooly.portlets.comment.core.service.CommentThumbsupEvent;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
@@ -35,10 +38,15 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentManager commentManager;
 
+    @Autowired
+    private EventBus eventBus;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public CommentInfo comment(CommentBaseInfo commentBaseInfo) {
         try {
+            CommentSuccessEvent event = new CommentSuccessEvent();
+            event.setCommentBaseInfo(commentBaseInfo);
             if (commentBaseInfo.getParentId() != null) {
                 Comment parent = commentManager.lockComment(commentBaseInfo.getParentId());
                 if (parent == null) {
@@ -47,6 +55,7 @@ public class CommentServiceImpl implements CommentService {
                 }
                 parent.setRepeats(parent.getRepeats() + 1);
                 commentManager.update(parent);
+                event.setParent(convert(parent));
             }
 
             Comment comment = BeanCopier.copy(commentBaseInfo, Comment.class);
@@ -54,7 +63,11 @@ public class CommentServiceImpl implements CommentService {
                 comment.setCommentNo(Ids.getDid());
             }
             commentManager.save(comment);
-            return convert(comment);
+
+            CommentInfo commentInfo = convert(comment);
+            event.setCommentInfo(commentInfo);
+            eventBus.publish(event);
+            return commentInfo;
         } catch (BusinessException be) {
             throw be;
         } catch (Exception e) {
@@ -75,6 +88,10 @@ public class CommentServiceImpl implements CommentService {
             Comment comment = commentManager.lockComment(commentId);
             comment.setThumbsup(comment.getThumbsup() + 1);
             commentManager.update(comment);
+            CommentThumbsupEvent event = new CommentThumbsupEvent();
+            event.setCommentId(commentId);
+            event.setCommentInfo(convert(comment));
+            eventBus.publish(event);
             return comment.getThumbsup();
         } catch (BusinessException be) {
             throw be;

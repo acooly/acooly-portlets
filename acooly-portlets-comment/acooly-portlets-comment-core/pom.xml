@@ -21,6 +21,11 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-event</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-component-ds</artifactId>
         </dependency>
         <dependency>

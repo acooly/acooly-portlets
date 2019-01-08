@@ -93,7 +93,7 @@ public interface NoticeQueryService {
 	 *
 	 * @return
 	 */
-	NoticeInfo readNotice (String receiver, Long noticeId);
+	NoticeInfo readNotice (String receiver, Long commentId);
 }
 ```
 

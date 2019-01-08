@@ -115,3 +115,12 @@ public interface CommentService {
 * 评论接口：CommentApiService
 * 评论点赞：CommentThumbsupApiService
 * 评论查询：CommentListApiService
+
+### 扩展
+1、评论发布成功事件
+
+com.acooly.portlets.comment.core.service.CommentSuccessEvent
+
+2、评论点赞成功事件
+
+com.acooly.portlets.comment.core.service.CommentThumbsupEvent
