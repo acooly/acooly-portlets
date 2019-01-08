@@ -12,6 +12,7 @@ package com.acooly.portlets.comment.core;
 
 import com.acooly.core.common.dao.support.StandardDatabaseScriptIniter;
 import com.google.common.collect.Lists;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -30,6 +31,7 @@ import static com.acooly.portlets.comment.core.PortletCommentProperties.PREFIX;
 @EnableConfigurationProperties({PortletCommentProperties.class})
 @ConditionalOnProperty(value = PREFIX + ".enable", matchIfMissing = true)
 @ComponentScan(basePackages = {"com.acooly.portlets.comment"})
+@MapperScan("com.acooly.portlets.comment.core.dao")
 public class PortletCommentAutoConfig {
     @Autowired
     private PortletCommentProperties portletCommentProperties;
