@@ -20,7 +20,7 @@ public class AcoolyCoder {
         if (StringUtils.isBlank(service.getGenerateConfiguration().getRootPackage())) {
             service.getGenerateConfiguration().setRootPackage(getRootPackage());
         }
-        service.generateTable("p_comment");
+        service.generateTable("p_comment_log");
     }
 
     public static String getProjectPath() {

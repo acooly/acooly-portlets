@@ -19,8 +19,8 @@ public class CommentApiClientServiceImpl extends AbstractApiClientService implem
     }
 
     @Override
-    public CommentThumbsupApiResponse commentThumbsup(CommentThumbsupApiRequest request) {
-        return request(request, CommentThumbsupApiResponse.class);
+    public CommentActionApiResponse commentAction(CommentActionApiRequest request) {
+        return request(request, CommentActionApiResponse.class);
     }
 
     @Override

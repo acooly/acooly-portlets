@@ -19,7 +19,13 @@ import com.acooly.portlets.comment.core.entity.Comment;
  */
 public interface CommentManager extends EntityService<Comment> {
 
-
+    /**
+     * 悲观锁加载实体
+     *
+     * @param id
+     * @return
+     */
     Comment lockComment(Long id);
+
 
 }

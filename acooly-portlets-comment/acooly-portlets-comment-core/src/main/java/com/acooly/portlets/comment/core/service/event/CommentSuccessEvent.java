@@ -1,4 +1,4 @@
-package com.acooly.portlets.comment.core.service;
+package com.acooly.portlets.comment.core.service.event;
 
 import com.acooly.portlets.comment.client.dto.CommentBaseInfo;
 import com.acooly.portlets.comment.client.dto.CommentInfo;

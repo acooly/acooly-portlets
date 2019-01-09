@@ -77,6 +77,18 @@ public class Comment extends AbstractEntity {
     private String userName;
 
     /**
+     * 用户头像
+     */
+    @Size(max = 255)
+    private String profilePhoto;
+
+    /**
+     * 请求IP
+     */
+    @Size(max = 32)
+    private String userIp;
+
+    /**
      * 标题
      */
     @Size(max = 45)
@@ -88,6 +100,13 @@ public class Comment extends AbstractEntity {
     @NotEmpty
     @Size(max = 1024)
     private String content;
+
+    /**
+     * 原始评论内容
+     */
+    @Size(max = 1024)
+    private String originContent;
+
 
     /**
      * 点赞数

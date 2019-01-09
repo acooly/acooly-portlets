@@ -119,8 +119,8 @@ public interface CommentService {
 ### 扩展
 1、评论发布成功事件
 
-com.acooly.portlets.comment.core.service.CommentSuccessEvent
+com.acooly.portlets.comment.core.service.event.CommentSuccessEvent
 
 2、评论点赞成功事件
 
-com.acooly.portlets.comment.core.service.CommentThumbsupEvent
+com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent

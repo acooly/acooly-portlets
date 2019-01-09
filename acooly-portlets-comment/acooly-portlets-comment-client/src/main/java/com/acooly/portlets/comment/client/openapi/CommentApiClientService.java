@@ -27,12 +27,12 @@ public interface CommentApiClientService {
     CommentApiResponse comment(CommentApiRequest request);
 
     /**
-     * 评论点赞
+     * 评论操作
      *
      * @param request
      * @return
      */
-    CommentThumbsupApiResponse commentThumbsup(CommentThumbsupApiRequest request);
+    CommentActionApiResponse commentAction(CommentActionApiRequest request);
 
 
     /**

@@ -1,6 +1,8 @@
 package com.acooly.portlets.comment.core.service;
 
 import com.acooly.core.common.dao.support.PageInfo;
+import com.acooly.portlets.comment.client.dto.CommentActionInfo;
+import com.acooly.portlets.comment.client.dto.CommentActionResult;
 import com.acooly.portlets.comment.client.dto.CommentBaseInfo;
 import com.acooly.portlets.comment.client.dto.CommentInfo;
 import org.springframework.stereotype.Component;
@@ -23,13 +25,26 @@ public interface CommentService {
      */
     CommentInfo comment(CommentBaseInfo commentBaseInfo);
 
+
     /**
-     * 点赞
+     * 查询单条
      *
      * @param commentId
      * @return
      */
-    Integer thumbsup(Long commentId);
+    CommentInfo load(Long commentId);
+
+
+    /**
+     * SNS操作
+     * <p>
+     * 包括：点赞，举报等
+     *
+     * @param commentActionInfo
+     * @return
+     */
+    CommentActionResult action(CommentActionInfo commentActionInfo);
+
 
     /**
      * 有效评论分页查询

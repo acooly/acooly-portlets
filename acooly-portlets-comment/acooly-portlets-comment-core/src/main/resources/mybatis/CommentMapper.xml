@@ -12,8 +12,11 @@
         <result property="busiKey" column="comment_busi_key"/>
         <result property="userNo" column="comment_user_no"/>
         <result property="userName" column="comment_user_name"/>
+        <result property="profilePhoto" column="comment_profile_photo"/>
+        <result property="userIp" column="comment_user_ip"/>
         <result property="title" column="comment_title"/>
         <result property="content" column="comment_content"/>
+        <result property="originContent" column="comment_origin_content"/>
         <result property="thumbsup" column="comment_thumbsup"/>
         <result property="repeats" column="comment_repeats"/>
         <result property="sticky" column="comment_sticky"/>
@@ -32,8 +35,11 @@
             comment.busi_key as comment_busi_key,
             comment.user_no as comment_user_no,
             comment.user_name as comment_user_name,
+            comment.profile_photo as comment_profile_photo,
+            comment.user_ip as comment_user_ip,
             comment.title as comment_title,
             comment.content as comment_content,
+            comment.origin_content as comment_origin_content,
             comment.thumbsup as comment_thumbsup,
             comment.repeats as comment_repeats,
             comment.sticky as comment_sticky,

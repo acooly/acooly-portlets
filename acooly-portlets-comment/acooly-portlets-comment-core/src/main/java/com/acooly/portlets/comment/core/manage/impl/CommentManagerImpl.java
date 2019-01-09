@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  *
  * @author acooly
  */
-@Service("commentService")
+@Service
 public class CommentManagerImpl extends EntityServiceImpl<Comment, CommentDao> implements CommentManager {
 
 

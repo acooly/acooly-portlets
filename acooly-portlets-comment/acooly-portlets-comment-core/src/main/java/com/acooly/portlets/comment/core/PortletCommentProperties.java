@@ -26,5 +26,10 @@ public class PortletCommentProperties {
      */
     private Boolean enable = true;
 
+    /**
+     * 是否允许用户重复针对一个busiKey点赞
+     */
+    private boolean thumbsupAllowRepeat = false;
+
 
 }

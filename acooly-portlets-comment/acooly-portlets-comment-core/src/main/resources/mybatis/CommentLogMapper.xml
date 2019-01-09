@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.comment.core.dao.CommentLogDao">
+
+    <resultMap id="commentLogResultMap" type="com.acooly.portlets.comment.core.entity.CommentLog">
+        <id property="id" column="commentLog_id"/>
+        <result property="commentId" column="commentLog_comment_id"/>
+        <result property="userNo" column="commentLog_user_no"/>
+        <result property="userName" column="commentLog_user_name"/>
+        <result property="profilePhoto" column="commentLog_profile_photo"/>
+        <result property="actionType" column="commentLog_action_type"/>
+        <result property="userIp" column="commentLog_user_ip"/>
+        <result property="actionContent" column="commentLog_action_content"/>
+        <result property="createTime" column="commentLog_create_time"/>
+        <result property="updateTime" column="commentLog_update_time"/>
+        <result property="comments" column="commentLog_comments"/>
+    </resultMap>
+
+    <sql id="commentLogSqlSelect">
+            commentLog.id as commentLog_id,
+            commentLog.comment_id as commentLog_comment_id,
+            commentLog.user_no as commentLog_user_no,
+            commentLog.user_name as commentLog_user_name,
+            commentLog.profile_photo as commentLog_profile_photo,
+            commentLog.action_type as commentLog_action_type,
+            commentLog.user_ip as commentLog_user_ip,
+            commentLog.action_content as commentLog_action_content,
+            commentLog.create_time as commentLog_create_time,
+            commentLog.update_time as commentLog_update_time,
+            commentLog.comments as commentLog_comments
+    </sql>
+
+</mapper>

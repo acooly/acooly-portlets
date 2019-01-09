@@ -50,6 +50,20 @@ public class CommentBaseInfo extends DtoBase {
     private String userName;
 
     /**
+     * 用户头像
+     */
+    @Size(max = 255)
+    @OpenApiField(desc = "评论人头像", constraint = "评论人头像的URL", demo = "http://www.xxx.com/profilo/123123")
+    private String profilePhoto;
+
+    /**
+     * 请求IP
+     */
+    @Size(max = 32)
+    @OpenApiField(desc = "评论人IP", constraint = "评论人IP", demo = "218.201.89.76")
+    private String userIp;
+
+    /**
      * 评论内容
      */
     @Size(min = 1, max = 1024)
@@ -97,5 +111,13 @@ public class CommentBaseInfo extends DtoBase {
         this.busiKey = busiKey;
     }
 
-
+    public CommentBaseInfo(String userNo, String userName, String profilePhoto, String userIp, String content, String busiKey) {
+        this();
+        this.userNo = userNo;
+        this.userName = userName;
+        this.profilePhoto = profilePhoto;
+        this.userIp = userIp;
+        this.content = content;
+        this.busiKey = busiKey;
+    }
 }

@@ -41,6 +41,20 @@ public class CommentApiRequest extends ApiRequest {
     private String userName;
 
     /**
+     * 用户头像（冗余）
+     */
+    @Size(max = 255)
+    @OpenApiField(desc = "用户头像", constraint = "业务层用户名", demo = "acooly")
+    private String profilePhoto;
+
+    /**
+     * 请求IP
+     */
+    @Size(max = 32)
+    @OpenApiField(desc = "用户IP", constraint = "请求操作的用户IP", demo = "218.210.99.78")
+    private String userIp;
+
+    /**
      * 评论内容
      */
     @Size(min = 1, max = 1024)
