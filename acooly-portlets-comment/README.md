@@ -121,6 +121,6 @@ public interface CommentService {
 
 com.acooly.portlets.comment.core.service.event.CommentSuccessEvent
 
-2、评论点赞成功事件
+2、评论操作（点赞/举报等）成功事件
 
 com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent
