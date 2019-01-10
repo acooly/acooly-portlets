@@ -29,7 +29,7 @@ CREATE TABLE `acooly`.`p_comment_log` (
   `user_name` VARCHAR(45) NULL DEFAULT NULL COMMENT '用户名称',
   `profile_photo` varchar(255) DEFAULT NULL COMMENT '头像',
   `action_type` VARCHAR(45) NOT NULL COMMENT '操作类型{举报:report,thumbsup:点赞}',
-  `action_ip` VARCHAR(45) NULL COMMENT '操作IP',
+  `user_ip` VARCHAR(45) NULL COMMENT '操作IP',
   `action_content` VARCHAR(512) NULL COMMENT '相关内容',
   `create_time` DATETIME NULL COMMENT '创建时间',
   `update_time` DATETIME NULL COMMENT '更新时间',
