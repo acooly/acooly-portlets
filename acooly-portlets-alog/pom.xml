@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>acooly-portlets-alog</artifactId>
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>acooly-portlets-alog-core</module>
+    </modules>
 
 
 </project>

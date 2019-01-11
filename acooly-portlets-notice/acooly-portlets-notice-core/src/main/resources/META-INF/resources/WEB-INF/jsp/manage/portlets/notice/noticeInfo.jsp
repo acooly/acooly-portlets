@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/jsp/manage/common/taglibs.jsp"%>
 <c:if test="${initParam['ssoEnable']=='true'}">
@@ -26,14 +27,23 @@ function formatBool(value){
         <tr>
           <td align="left">
           	<div>
-					发送时间: <input size="15" class="text" id="search_GTE_sendTime" name="search_GTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-					至<input size="15" class="text" id="search_LTE_sendTime" name="search_LTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-					接收人: <input type="text" class="text" size="15" name="search_LIKE_sender"/>
-				状态: <select style="width:80px;height:27px;" name="search_EQ_status" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${allStatuss}"><option value="${e.key}" ${param.search_EQ_status == e.key?'selected':''}>${e.value}</option></c:forEach></select>
+                发送时间: <input size="10" type="text" class="text" id="search_GTE_sendTime" name="search_GTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
+                至 <input size="10" class="text" type="text" id="search_LTE_sendTime" name="search_LTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
+                接收人: <input type="text" class="text" size="15" name="search_LIKE_sender"/>
+				消息分类：
+                <c:if test="${messageGroups == null}">
+                    <input type="text" class="text" size="15" name="search_RLIKE_customGroup"/>
+                </c:if>
+                <c:if test="${messageGroups != null}">
+                    <select name="search_RLIKE_customGroup" editable="false" panelHeight="auto" class="easyui-combobox" data-options="required:true">
+                        <c:forEach items="${messageGroups}" var="e">
+                            <option value="${e.key}">${e.value}</option>
+                        </c:forEach>
+                    </select>
+                </c:if>
+                状态: <select style="width:80px;height:27px;" name="search_EQ_status" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${allStatuss}"><option value="${e.key}" ${param.search_EQ_status == e.key?'selected':''}>${e.value}</option></c:forEach></select>
 				发送类型: <select style="width:80px;height:27px;" name="search_EQ_type" editable="false" panelHeight="auto" class="easyui-combobox"><option value="">所有</option><c:forEach var="e" items="${allTypes}"><option value="${e.key}" ${param.search_EQ_type == e.key?'selected':''}>${e.value}</option></c:forEach></select>
-					创建时间: <input size="15" class="text" id="search_GTE_createTime" name="search_GTE_createTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-					至<input size="15" class="text" id="search_LTE_createTime" name="search_LTE_createTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
-                    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:false" onclick="$.acooly.framework.search('manage_noticeInfo_searchform','manage_noticeInfo_datagrid');"><i class="fa fa-search fa-lg fa-fw fa-col"></i>查询</a>
+                <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:false" onclick="$.acooly.framework.search('manage_noticeInfo_searchform','manage_noticeInfo_datagrid');"><i class="fa fa-search fa-lg fa-fw fa-col"></i>查询</a>
           	</div>
           </td>
         </tr>

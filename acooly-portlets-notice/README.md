@@ -156,5 +156,9 @@ PageInfo pager = new PageInfo ();
 PageInfo<PageableNoticeInfo> pageInfo = noticeQueryService.pageQuery ("yanjun89", pager, params, null);
 ``` 
 
+#### 消息分类
 
-  
+如果集成工程需要在后台管理里面选择消息分类进行查询，请实现：`com.acooly.portlets.notice.core.service.MessageGroup`接口，注入到spring容器中即可，后台BOSS界面后自动判断加载，如果未提供实现，则以文本框方式提供查询条件。
+
+案例: acooly-portlets-test中的：`com.acooly.portlets.notice.CustomMessageGroup`
+
