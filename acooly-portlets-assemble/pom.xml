@@ -23,11 +23,17 @@
             <version>${project.version}</version>
         </dependency>
 
-
         <!-- comment -->
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-portlets-comment-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- comment -->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-feedback-openapi</artifactId>
             <version>${project.version}</version>
         </dependency>
 

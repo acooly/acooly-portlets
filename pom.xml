@@ -14,16 +14,33 @@
     <name>acooly-portlets Group</name>
     <packaging>pom</packaging>
 
+
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+
+
+    </dependencyManagement>
+
     <modules>
         <module>acooly-portlets-assemble</module>
         <module>acooly-portlets-test</module>
         <module>acooly-portlets-notice</module>
         <module>acooly-portlets-alog</module>
         <module>acooly-portlets-comment</module>
+        <module>acooly-portlets-feedback</module>
+        <module>acooly-portlets-common</module>
     </modules>
 
     <distributionManagement>
-       <repository>
+        <repository>
             <id>acooly-releases</id>
             <url>http://acooly.cn/nexus/content/repositories/releases/</url>
         </repository>

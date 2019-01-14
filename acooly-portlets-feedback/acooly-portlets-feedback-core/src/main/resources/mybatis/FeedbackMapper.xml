@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.feedback.openapi.dao.FeedbackDao">
+
+    <resultMap id="feedbackResultMap" type="com.acooly.portlets.feedback.openapi.entity.Feedback">
+        <id property="id" column="feedback_id"/>
+        <result property="type" column="feedback_type"/>
+        <result property="title" column="feedback_title"/>
+        <result property="content" column="feedback_content"/>
+        <result property="userKey" column="feedback_user_key"/>
+        <result property="userName" column="feedback_user_name"/>
+        <result property="userIp" column="feedback_user_ip"/>
+        <result property="phoneNo" column="feedback_phone_no"/>
+        <result property="mail" column="feedback_mail"/>
+        <result property="address" column="feedback_address"/>
+        <result property="contactInfo" column="feedback_contact_info"/>
+        <result property="replyContent" column="feedback_reply_content"/>
+        <result property="replyUser" column="feedback_reply_user"/>
+        <result property="status" column="feedback_status"/>
+        <result property="createTime" column="feedback_create_time"/>
+        <result property="updateTime" column="feedback_update_time"/>
+        <result property="comments" column="feedback_comments"/>
+    </resultMap>
+
+    <sql id="feedbackSqlSelect">
+            feedback.id as feedback_id,
+            feedback.type as feedback_type,
+            feedback.title as feedback_title,
+            feedback.content as feedback_content,
+            feedback.user_key as feedback_user_key,
+            feedback.user_name as feedback_user_name,
+            feedback.user_ip as feedback_user_ip,
+            feedback.phone_no as feedback_phone_no,
+            feedback.mail as feedback_mail,
+            feedback.address as feedback_address,
+            feedback.contact_info as feedback_contact_info,
+            feedback.reply_content as feedback_reply_content,
+            feedback.reply_user as feedback_reply_user,
+            feedback.status as feedback_status,
+            feedback.create_time as feedback_create_time,
+            feedback.update_time as feedback_update_time,
+            feedback.comments as feedback_comments
+    </sql>
+
+</mapper>
