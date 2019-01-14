@@ -37,6 +37,7 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- portlets Test -->
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-portlets-comment-openapi</artifactId>
