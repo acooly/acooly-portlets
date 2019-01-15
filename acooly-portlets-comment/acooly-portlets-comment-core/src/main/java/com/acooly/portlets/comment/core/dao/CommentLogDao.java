@@ -12,6 +12,8 @@ import com.acooly.portlets.comment.core.entity.CommentLog;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * 评论日志 Mybatis Dao
  * <p>
@@ -29,10 +31,23 @@ public interface CommentLogDao extends EntityMybatisDao<CommentLog> {
      * @param actionType
      * @return
      */
-    @Select("select * from p_comment_log where comment_id = #{commentId} and user_no = #{userNo} and action_type = #{actionType} limit 0,1")
+    @Select("select * from p_comment_log where user_no = #{userNo} and comment_id = #{commentId} and action_type = #{actionType} " +
+            "and status = 'enable' limit 0,1")
     CommentLog findByCommentIdAndUserNoAndActionTypeForTop(@Param("commentId") Long commentId,
                                                            @Param("userNo") String userNo,
                                                            @Param("actionType") CommentLogActionTypeEnum actionType);
 
+    @Select("<script>" +
+            "select * from p_comment_log where user_no = #{userNo} and comment_id in " +
+            "<foreach item='item' index='index' collection='commentIds' open='(' separator=',' close=')'>" + "#{item}" + "</foreach> " +
+            "and action_type = #{actionType} and status = 'enable'" +
+            "</script>")
+    List<CommentLog> findByUserNoAndCommentIdsAndActionType(@Param("userNo") String userNo,
+                                                            @Param("commentIds") List<Long> commentIds,
+                                                            @Param("actionType") CommentLogActionTypeEnum actionType);
+
+    @Select("select * from p_comment_log where user_no = #{userNo} and action_type = #{actionType} and status = 'enable'")
+    List<CommentLog> findByUserNoAndActionType(@Param("userNo") String userNo,
+                                               @Param("actionType") CommentLogActionTypeEnum actionType);
 
 }

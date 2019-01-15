@@ -4,7 +4,6 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.PageApiRequest;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -32,5 +31,14 @@ public class CommentListApiRequest extends PageApiRequest {
     @NotEmpty
     @OpenApiField(desc = "业务KEY", constraint = "标记评论的业务,是业务的唯一标志", demo = "1")
     private String busiKey;
+
+
+    /**
+     * 用户编码
+     * 用于标志查询的结果记录中，该用户是否已点赞
+     */
+    @Size(max = 64)
+    @OpenApiField(desc = "操作用户标志", constraint = "操作用户编码", demo = "201111112121212")
+    private String actionUserNo;
 
 }

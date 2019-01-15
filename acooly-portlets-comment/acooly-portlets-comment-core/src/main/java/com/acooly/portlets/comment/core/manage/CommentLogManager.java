@@ -11,6 +11,8 @@ import com.acooly.core.common.service.EntityService;
 import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
 import com.acooly.portlets.comment.core.entity.CommentLog;
 
+import java.util.List;
+
 /**
  * 评论日志 Service接口
  * <p>
@@ -21,5 +23,9 @@ import com.acooly.portlets.comment.core.entity.CommentLog;
 public interface CommentLogManager extends EntityService<CommentLog> {
 
     CommentLog getTopByUserAction(Long commnetId, String userNo, CommentLogActionTypeEnum actionType);
+
+    List<CommentLog> getUserActions(List<Long> commnetIds, String userNo, CommentLogActionTypeEnum actionType);
+
+    List<CommentLog> getUserActions(String userNo, CommentLogActionTypeEnum actionType);
 
 }

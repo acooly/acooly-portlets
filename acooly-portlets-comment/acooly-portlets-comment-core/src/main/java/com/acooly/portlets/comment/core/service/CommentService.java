@@ -55,6 +55,7 @@ public interface CommentService {
      * 4、预留其他查询参数和排序参数（都可为空）
      *
      * @param pageInfo   [必选] 分页参数
+     * @param userNo     [可选] 查询指定用户的标志（记录是否点赞）
      * @param busiKey    [必选] 被评论的业务对象ID
      * @param busiType   [可选] 业务类型（默认内置: DEFAULT）
      * @param map        [可选] 扩展条件（可覆盖内置）
@@ -62,10 +63,11 @@ public interface CommentService {
      * @param queryChild [可选] 是否查询子评论（默认为：true）
      * @return
      */
-    PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String busiKey, String busiType,
+    PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
                                 Map<String, Object> map, Map<String, Boolean> sortMap, Boolean queryChild);
 
-    default PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String busiKey, String busiType) {
-        return query(pageInfo, busiKey, busiType, null, null, null);
+
+    default PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType) {
+        return query(pageInfo, userNo, busiKey, busiType, null, null, null);
     }
 }

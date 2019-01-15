@@ -7,6 +7,7 @@
 package com.acooly.portlets.comment.client.dto;
 
 
+import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
 import lombok.Getter;
@@ -80,5 +81,8 @@ public class CommentLogInfo extends CommentBaseInfo {
     @OpenApiField(desc = "附加内容", constraint = "评论内容，支持剪短的多媒体内容评论", demo = "开启评论不要脸模式！这个<b>APP</b>写得非常棒！5分钟就配置好了！")
     private String actionContent;
 
+    @NotNull
+    @OpenApiField(desc = "状态", constraint = "操作的状态")
+    private AbleStatus status;
 
 }

@@ -50,7 +50,14 @@ public class CommentInfo extends CommentBaseInfo {
     @NotNull
     private WhetherStatus sticky;
 
+    @OpenApiField(desc = "操作用户标志", constraint = "操作用户编码", demo = "201111112121212")
+    private String actionUserNo;
+
+    @OpenApiField(desc = "是否被点赞", constraint = "是否被操作用户点赞", demo = "yes")
+    private WhetherStatus actionThumbsup;
+
     @OpenApiField(desc = "复评列表", constraint = "复评列表")
     private List<CommentInfo> children = Lists.newArrayList();
+
 
 }

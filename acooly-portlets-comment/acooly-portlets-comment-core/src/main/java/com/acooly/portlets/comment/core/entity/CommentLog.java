@@ -8,6 +8,7 @@ package com.acooly.portlets.comment.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;
+import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -79,5 +80,11 @@ public class CommentLog extends AbstractEntity {
      */
     @Size(max = 128)
     private String comments;
+
+    /**
+     * 状态
+     */
+    @NotNull
+    private AbleStatus status = AbleStatus.enable;
 
 }

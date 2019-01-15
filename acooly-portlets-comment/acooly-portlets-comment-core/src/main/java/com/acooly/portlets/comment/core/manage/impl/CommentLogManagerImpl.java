@@ -13,6 +13,8 @@ import com.acooly.portlets.comment.core.entity.CommentLog;
 import com.acooly.portlets.comment.core.manage.CommentLogManager;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 评论日志 Service实现
  * <p>
@@ -27,5 +29,16 @@ public class CommentLogManagerImpl extends EntityServiceImpl<CommentLog, Comment
     @Override
     public CommentLog getTopByUserAction(Long commnetId, String userNo, CommentLogActionTypeEnum actionType) {
         return getEntityDao().findByCommentIdAndUserNoAndActionTypeForTop(commnetId, userNo, actionType);
+    }
+
+
+    @Override
+    public List<CommentLog> getUserActions(List<Long> commnetIds, String userNo, CommentLogActionTypeEnum actionType) {
+        return getEntityDao().findByUserNoAndCommentIdsAndActionType(userNo, commnetIds, actionType);
+    }
+
+    @Override
+    public List<CommentLog> getUserActions(String userNo, CommentLogActionTypeEnum actionType) {
+        return getEntityDao().findByUserNoAndActionType(userNo, actionType);
     }
 }

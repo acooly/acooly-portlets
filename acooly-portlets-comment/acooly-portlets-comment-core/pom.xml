@@ -26,6 +26,11 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-component-ds</artifactId>
         </dependency>
         <dependency>

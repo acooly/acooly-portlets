@@ -7,6 +7,8 @@ import com.acooly.core.utils.Assert;
 import com.acooly.core.utils.Collections3;
 import com.acooly.core.utils.Ids;
 import com.acooly.core.utils.Strings;
+import com.acooly.core.utils.enums.AbleStatus;
+import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.core.utils.validate.Validators;
 import com.acooly.module.event.EventBus;
@@ -20,6 +22,7 @@ import com.acooly.portlets.comment.core.entity.CommentLog;
 import com.acooly.portlets.comment.core.manage.CommentLogManager;
 import com.acooly.portlets.comment.core.manage.CommentManager;
 import com.acooly.portlets.comment.core.service.CommentService;
+import com.acooly.portlets.comment.core.service.CommentThumbsupCacheManager;
 import com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent;
 import com.acooly.portlets.comment.core.service.event.CommentSuccessEvent;
 import com.google.common.collect.Lists;
@@ -52,6 +55,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private EventBus eventBus;
+
+    @Autowired
+    private CommentThumbsupCacheManager commentThumbsupCacheManager;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -105,6 +111,8 @@ public class CommentServiceImpl implements CommentService {
                 commentLogInfo = doReportAction(comment, commentActionInfo);
             } else if (commentActionInfo.getActionType() == CommentLogActionTypeEnum.thumbsup) {
                 commentLogInfo = doThumbsupAction(comment, commentActionInfo);
+            } else if (commentActionInfo.getActionType() == CommentLogActionTypeEnum.thumbsup_cancel) {
+                commentLogInfo = doThumbsupCancelAction(comment, commentActionInfo);
             }
             CommentActionResult result = new CommentActionResult(convert(comment), commentLogInfo);
 
@@ -141,7 +149,13 @@ public class CommentServiceImpl implements CommentService {
         return convert(commentLog);
     }
 
-
+    /**
+     * 点赞
+     *
+     * @param comment
+     * @param commentActionInfo
+     * @return
+     */
     protected CommentLogInfo doThumbsupAction(Comment comment, CommentActionInfo commentActionInfo) {
         // 如果不允许重复点赞
         if (!portletCommentProperties.isThumbsupAllowRepeat()) {
@@ -153,7 +167,7 @@ public class CommentServiceImpl implements CommentService {
             }
         }
         if (comment.getStatus() == CommentStatusEnum.disabled || comment.getStatus() == CommentStatusEnum.enable_report) {
-            log.warn("评论点赞 [失败] 状态冲突，{}不能进行举报操作", comment.getStatus());
+            log.warn("评论点赞 [失败] 状态冲突，{}不能进行评论点赞", comment.getStatus());
             throw new BusinessException(CommentErrorCodes.COMMENT_STATUS_CONFLICT);
         }
 
@@ -166,12 +180,40 @@ public class CommentServiceImpl implements CommentService {
         commentManager.update(comment);
         CommentLog commentLog = BeanCopier.copy(commentActionInfo, CommentLog.class);
         commentLogManager.save(commentLog);
+        commentThumbsupCacheManager.add(commentActionInfo.getUserNo(), comment.getId());
         return convert(commentLog);
+    }
+
+    /**
+     * 取消点赞
+     *
+     * @param comment
+     * @param commentActionInfo
+     * @return
+     */
+    protected CommentLogInfo doThumbsupCancelAction(Comment comment, CommentActionInfo commentActionInfo) {
+        // 如果不允许重复点赞
+        CommentLog originCommentLog = commentLogManager.getTopByUserAction(commentActionInfo.getCommentId(),
+                commentActionInfo.getUserNo(), CommentLogActionTypeEnum.thumbsup);
+        if (originCommentLog == null) {
+            log.warn("评论取消点赞 [失败] 找不到你的点赞记录, commentActionInfo:{}", commentActionInfo);
+            throw new BusinessException(CommonErrorCodes.OBJECT_NOT_EXIST, "找不到你的点赞记录");
+        }
+
+        comment.setThumbsup(comment.getThumbsup() - 1);
+        if (comment.getThumbsup() < 0) {
+            comment.setThumbsup(0);
+        }
+        commentManager.update(comment);
+        originCommentLog.setStatus(AbleStatus.disable);
+        commentLogManager.update(originCommentLog);
+        commentThumbsupCacheManager.sub(commentActionInfo.getUserNo(), comment.getId());
+        return convert(originCommentLog);
     }
 
 
     @Override
-    public PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String busiKey, String busiType,
+    public PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
                                        Map<String, Object> map, Map<String, Boolean> sortMap, Boolean queryChild) {
         Assert.notNull(busiKey);
         // 分页查询顶层有效数据
@@ -194,7 +236,6 @@ public class CommentServiceImpl implements CommentService {
         }
         PageInfo<Comment> pageInfoEntity = new PageInfo<>(pageInfo.getCountOfCurrentPage(), pageInfo.getCurrentPage());
         commentManager.query(pageInfoEntity, params, orderMap);
-
         pageInfo.setTotalPage(pageInfoEntity.getTotalPage());
         pageInfo.setTotalCount(pageInfoEntity.getTotalCount());
 
@@ -202,8 +243,8 @@ public class CommentServiceImpl implements CommentService {
             queryChild = true;
         }
 
+        List<CommentInfo> commentInfos = Lists.newArrayList();
         if (Collections3.isNotEmpty(pageInfoEntity.getPageResults())) {
-            List<CommentInfo> commentInfos = Lists.newArrayList();
             CommentInfo commentInfo = null;
             for (Comment comment : pageInfoEntity.getPageResults()) {
                 commentInfo = convert(comment);
@@ -212,14 +253,39 @@ public class CommentServiceImpl implements CommentService {
                 }
                 commentInfos.add(commentInfo);
             }
-//            commentInfos = QuickTree.quickTree(commentInfos, null);
-            pageInfo.setPageResults(commentInfos);
         }
+        doMarkThumbsup(userNo, commentInfos);
+        pageInfo.setPageResults(commentInfos);
         return pageInfo;
     }
 
+    protected void doMarkThumbsup(String actionUserNo, List<CommentInfo> commentInfos) {
+        if (Strings.isBlank(actionUserNo)) {
+            return;
+        }
+        List<Long> actionUserThumbsupCommentIds = commentThumbsupCacheManager.get(actionUserNo);
+        if (Collections3.isEmpty(actionUserThumbsupCommentIds)) {
+            return;
+        }
 
-    public List<CommentInfo> queryWithParentId(Long parentId, Map<String, Boolean> sortMap) {
+        for (CommentInfo commentInfo : commentInfos) {
+            if (actionUserThumbsupCommentIds.contains(commentInfo.getId())) {
+                commentInfo.setActionUserNo(actionUserNo);
+                commentInfo.setActionThumbsup(WhetherStatus.yes);
+            }
+            if (Collections3.isNotEmpty(commentInfo.getChildren())) {
+                for (CommentInfo subCommentInfo : commentInfo.getChildren()) {
+                    if (actionUserThumbsupCommentIds.contains(subCommentInfo.getId())) {
+                        subCommentInfo.setActionUserNo(actionUserNo);
+                        subCommentInfo.setActionThumbsup(WhetherStatus.yes);
+                    }
+                }
+            }
+        }
+    }
+
+
+    protected List<CommentInfo> queryWithParentId(Long parentId, Map<String, Boolean> sortMap) {
         Map<String, Object> params = Maps.newHashMap();
         params.put("EQ_parentId", parentId);
         params.put("RLIKE_status", "enable");
