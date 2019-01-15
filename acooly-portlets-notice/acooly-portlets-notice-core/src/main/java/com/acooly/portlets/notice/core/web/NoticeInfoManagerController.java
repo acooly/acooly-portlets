@@ -91,6 +91,7 @@ public class NoticeInfoManagerController extends AbstractJQueryEntityController<
             noticeMessage.setPush(true);
             noticeMessage.setContent(noticeInfo.getContent());
             noticeMessage.setTitle(noticeInfo.getTitle());
+            noticeMessage.setCustomGroup(noticeInfo.getCustomGroup());
 
             List<String> targets = null;
             if (StringUtils.isNotBlank(noticeInfo.getReceiver())) {

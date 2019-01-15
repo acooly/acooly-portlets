@@ -50,7 +50,22 @@
 			<tr>
 				<th>消息内容：</th>
 				<td><textarea rows="3" cols="40" placeholder="请输入消息内容..." style="width:300px;" name="content" class="easyui-validatebox" data-options="validType:['length[1,1024]'],required:true"></textarea></td>
-			</tr>					
+			</tr>
+			<tr>
+				<th>消息分组：</th>
+				<td>
+					<c:if test="${messageGroups == null}">
+						<input type="text" name="customGroup" size="48" placeholder="请输入消息分组..." class="easyui-validatebox text" data-options="validType:['length[1,64]']"/>
+					</c:if>
+					<c:if test="${messageGroups != null}">
+						<select name="customGroup" editable="false" panelHeight="auto" class="easyui-combobox" data-options="required:true">
+							<c:forEach items="${messageGroups}" var="e">
+								<option value="${e.key}">${e.value}</option>
+							</c:forEach>
+						</select>
+					</c:if>
+				</td>
+			</tr>
 			<tr>
 				<th>内容类型：</th>
 				<td><select name="contentType" editable="false" style="height:27px;" panelHeight="auto" class="easyui-combobox" data-options="required:true">
@@ -58,7 +73,8 @@
 						<option value="${e.key}">${e.value}</option>
 					</c:forEach>
 				</select></td>
-			</tr>					
+			</tr>
+
 			<tr>
 				<th>会话（附带的自定义结构体）json格式：</th>
 				<td><textarea rows="3" cols="40" placeholder="请输入会话（附带的自定义结构体）..." style="width:300px;" name="context" class="easyui-validatebox" data-options="validType:['length[1,255]']"></textarea></td>

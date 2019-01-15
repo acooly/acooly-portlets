@@ -53,9 +53,7 @@ public class CommentManagerController extends AbstractJQueryEntityController<Com
         Comment entity = loadEntity(request);
         String status = request.getParameter("status");
         String content = request.getParameter("content");
-        if (Strings.equalsIgnoreCase(entity.getStatus().code(), status)) {
-            entity.setStatus(CommentStatusEnum.enable_review);
-        }
+        entity.setStatus(CommentStatusEnum.find(status));
         String originContent = Dates.format(new Date()) + ": " + entity.getContent() + "<br/>" + Strings.trimToEmpty(entity.getOriginContent());
         originContent = Strings.substring(originContent, 0, 1024);
         entity.setOriginContent(originContent);
@@ -66,7 +64,7 @@ public class CommentManagerController extends AbstractJQueryEntityController<Com
 
     @Override
     protected List<String> getExportTitles() {
-        return Lists.newArrayList("Id","父Id","业务类型","业务标志","用户标志","用户名称","用户IP","内容","时间","状态");
+        return Lists.newArrayList("Id", "父Id", "业务类型", "业务标志", "用户标志", "用户名称", "用户IP", "内容", "时间", "状态");
     }
 
     @Override

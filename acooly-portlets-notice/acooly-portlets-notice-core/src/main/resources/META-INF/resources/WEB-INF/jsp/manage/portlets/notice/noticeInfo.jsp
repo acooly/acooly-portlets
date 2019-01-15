@@ -30,12 +30,13 @@ function formatBool(value){
                 发送时间: <input size="10" type="text" class="text" id="search_GTE_sendTime" name="search_GTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                 至 <input size="10" class="text" type="text" id="search_LTE_sendTime" name="search_LTE_sendTime" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd'})" />
                 接收人: <input type="text" class="text" size="15" name="search_LIKE_sender"/>
-				消息分类：
+				消息分组：
                 <c:if test="${messageGroups == null}">
                     <input type="text" class="text" size="15" name="search_RLIKE_customGroup"/>
                 </c:if>
                 <c:if test="${messageGroups != null}">
                     <select name="search_RLIKE_customGroup" editable="false" panelHeight="auto" class="easyui-combobox" data-options="required:true">
+                        <option value="">所有</option>
                         <c:forEach items="${messageGroups}" var="e">
                             <option value="${e.key}">${e.value}</option>
                         </c:forEach>
@@ -61,9 +62,10 @@ function formatBool(value){
 			<th field="id" sum="true">ID</th>
             <th field="sendTime" formatter="dateTimeFormatter">发送时间</th>
             <th field="title">标题</th>
-            <th field="content">内容</th>
-            <th field="context">会话参数</th>
-            <th field="type" formatter="mappingFormatter">发送类型</th>
+            <th field="content" formatter="contentFormatter">内容</th>
+            <th field="customGroup">分组</th>
+            <th field="context" formatter="jsonFormatter">会话参数</th>
+            <th field="type" formatter="mappingFormatter">类型</th>
             <th field="sender">发送人</th>
             <th field="receiver">接收人</th>
             <th field="readed" formatter="formatBool">已读</th>
@@ -78,12 +80,14 @@ function formatBool(value){
 
     <!-- 每行的Action动作模板 -->
     <div id="manage_noticeInfo_action" style="display: none;">
-      <a onclick="$.acooly.framework.show('/manage/portlets/notice/noticeInfo/show.html?id={0}',500,400);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
+      <a onclick="$.acooly.framework.show('/manage/portlets/notice/noticeInfo/show.html?id={0}',600,500);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
     </div>
 
     <!-- 表格的工具栏 -->
     <div id="manage_noticeInfo_toolbar">
-      <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/portlets/notice/noticeInfo/create.html',entity:'noticeInfo',width:500,height:450,title:'推送消息',addButton:'推送',reload:true})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>推送消息</a>
+      <a href="#" class="easyui-linkbutton" plain="true"
+         onclick="$.acooly.framework.create({url:'/manage/portlets/notice/noticeInfo/create.html',entity:'noticeInfo',width:600,height:550,title:'推送消息',addButton:'推送',reload:true})"><i
+              class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>推送消息</a>
     </div>
   </div>
 

@@ -13,7 +13,11 @@
 	<tr>
 		<th>消息内容:</th>
 		<td>${noticeInfo.content}</td>
-	</tr>					
+	</tr>
+	<tr>
+		<th>消息分组：</th>
+		<td>${noticeInfo.customGroup}</td>
+	</tr>
 	<tr>
 		<th>内容类型:</th>
 		<td>${noticeInfo.contentType.message}</td>
