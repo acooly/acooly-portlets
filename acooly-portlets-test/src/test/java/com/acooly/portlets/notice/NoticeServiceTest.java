@@ -40,6 +40,7 @@ public class NoticeServiceTest extends NoWebTestBase {
         noticeMessage.setTitle("测试广播");
         noticeMessage.setContent("这是广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播、广播。");
         noticeMessage.setPush(false);
+        noticeMessage.setCustomGroup(CustomNoticeGroupEnum.BUSINESS.code());
 
         Map<String, Object> context = new HashMap<>();
         context.put("customerId", "12312312312");
@@ -58,6 +59,7 @@ public class NoticeServiceTest extends NoWebTestBase {
         noticeMessage.setTitle("测试群发消息");
         noticeMessage.setContent("这是消息、消息、消息。");
         noticeMessage.setPush(false);
+        noticeMessage.setCustomGroup(CustomNoticeGroupEnum.BUSINESS_BUY.code());
 
         Map<String, Object> context = new HashMap<>();
         context.put("customerId", "12312312312");

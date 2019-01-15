@@ -49,15 +49,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
                                                   Map<String, Boolean> orderBy) {
         Assert.hasText(receiver, "消息接收人不能为空");
 
-        if (orderBy == null || orderBy.isEmpty()) {
-            orderBy = new HashMap<>();
-            orderBy.put("createTime", false);
-        }
-        params.remove("EQ_receiver");
-        params.put("IN_receiver", new String[]{receiver, NoticeComponentConstants.BROADCAST_RECEIVER});
-
-        PageInfo<NoticeInfo> pageResult = noticeInfoService.query(pager, params, orderBy);
-
+        // 获取广播已读ID
         NoticeRead noticeRead = noticeReadService.findByReceiver(receiver);
         if (noticeRead == null) {
             noticeRead = new NoticeRead();
@@ -65,11 +57,26 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
             noticeRead.setReceiver(receiver);
             noticeReadService.save(noticeRead);
         }
-
         List<String> readList = Lists.newArrayList();
         if (StringUtils.isNoneBlank(noticeRead.getBroadcastRead())) {
             readList = Lists.newArrayList(noticeRead.getBroadcastRead().split(","));
         }
+
+        if (orderBy == null || orderBy.isEmpty()) {
+            orderBy = new HashMap<>();
+            orderBy.put("createTime", false);
+        }
+        params.remove("EQ_receiver");
+        params.put("IN_receiver", new String[]{receiver, NoticeComponentConstants.BROADCAST_RECEIVER});
+
+        // 如果需要查询未读，则特殊处理
+        if (params.get("EQ_readed") != null && params.get("EQ_readed").equals(false)) {
+            params.put("NOTIN_id", readList);
+        }
+
+
+        PageInfo<NoticeInfo> pageResult = noticeInfoService.query(pager, params, orderBy);
+
 
         PageInfo<PageableNoticeInfo> pageInfo = new PageInfo<>();
         BeanCopier.copy(pageResult, pageInfo, "pageResults");
@@ -134,8 +141,4 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
         return noticeInfoService.countUnreadByGroup(receiver, customGroup);
     }
 
-    @Override
-    public void deleteNotice(String receiver, Long noticeId) {
-        noticeInfoService.removeById(noticeId);
-    }
 }

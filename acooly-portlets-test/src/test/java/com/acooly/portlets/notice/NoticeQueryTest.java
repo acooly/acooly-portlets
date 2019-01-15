@@ -39,7 +39,7 @@ public class NoticeQueryTest extends NoWebTestBase {
     @Test
     public void testNoticePageQuery() {
         Map<String, Object> params = new HashMap<>();
-
+        params.put("EQ_readed", false);
         PageInfo pager = new PageInfo();
 
         PageInfo<PageableNoticeInfo> pageInfo = noticeQueryService.pageQuery("zhangpu1", pager, params, null);
