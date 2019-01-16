@@ -8,6 +8,7 @@ package com.acooly.portlets.notice.core;
 
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.common.exception.BusinessException;
+import com.acooly.core.utils.Collections3;
 import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.portlets.notice.core.dto.NoticeComponentConstants;
@@ -70,7 +71,7 @@ public class NoticeQueryServiceImpl implements NoticeQueryService {
         params.put("IN_receiver", new String[]{receiver, NoticeComponentConstants.BROADCAST_RECEIVER});
 
         // 如果需要查询未读，则特殊处理
-        if (params.get("EQ_readed") != null && params.get("EQ_readed").equals(false)) {
+        if (params.get("EQ_readed") != null && params.get("EQ_readed").equals(false) && Collections3.isNotEmpty(readList)) {
             params.put("NOTIN_id", readList);
         }
 

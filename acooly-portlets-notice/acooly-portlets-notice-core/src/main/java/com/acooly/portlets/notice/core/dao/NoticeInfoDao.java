@@ -33,7 +33,7 @@ public interface NoticeInfoDao extends EntityMybatisDao<NoticeInfo> {
  @Select ("select count(id) from p_notice_info where (receiver='ALL' or receiver=#{receiver}) and readed=false")
  long countUnread(@Param("receiver") String receiver);
  
- @Update ("update p_notice_info set readed = true where receiver=#{receiver} and custom_group like '#{customGroup}%'")
+ @Update ("update p_notice_info set readed = true where receiver=#{receiver} and custom_group like '${customGroup}%'")
  void updateAllNoticeReadedByGroup (@Param ("receiver") String receiver, @Param ("customGroup") String customGroup);
  
  @Update ("update p_notice_info set readed = true where receiver=#{receiver}")
