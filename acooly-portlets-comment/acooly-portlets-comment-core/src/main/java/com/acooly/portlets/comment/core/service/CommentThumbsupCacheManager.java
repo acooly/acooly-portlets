@@ -67,7 +67,7 @@ public class CommentThumbsupCacheManager {
      */
     public void sub(String actionUserNo, Long commentId) {
         List<Long> ids = get(actionUserNo);
-        if (Collections3.isNotEmpty(ids) && !ids.contains(commentId)) {
+        if (Collections3.isNotEmpty(ids) && ids.contains(commentId)) {
             ids.remove(commentId);
         }
         set(actionUserNo, ids);
