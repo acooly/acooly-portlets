@@ -9,33 +9,30 @@
  */
 package com.acooly.portlets.feedback.openapi.remote;
 
-import com.acooly.module.appservice.AppService;
 import com.acooly.portlets.feedback.client.facade.api.FeedbackFacade;
 import com.acooly.portlets.feedback.client.facade.order.FeedbackApplyOrder;
 import com.acooly.portlets.feedback.client.facade.order.FeedbackHandleOrder;
 import com.acooly.portlets.feedback.client.facade.result.FeedbackApplyResult;
 import com.acooly.portlets.feedback.client.facade.result.FeedbackHandleResult;
 import com.acooly.portlets.feedback.openapi.service.FeedbackService;
-import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author zhangpu 2019-01-15 01:06
  */
-@Service(version = "1.0")
+@Service("feedbackFacade")
 public class FeedbackFacadeImpl implements FeedbackFacade {
 
     @Autowired
     private FeedbackService feedbackService;
 
     @Override
-    @AppService
     public FeedbackApplyResult apply(FeedbackApplyOrder order) {
         return new FeedbackApplyResult(feedbackService.apply(order.getFeedbackApplyInfo()));
     }
 
     @Override
-    @AppService
     public FeedbackHandleResult handle(FeedbackHandleOrder order) {
         return new FeedbackHandleResult(feedbackService.handle(order.getFeedbackHandleInfo()));
     }

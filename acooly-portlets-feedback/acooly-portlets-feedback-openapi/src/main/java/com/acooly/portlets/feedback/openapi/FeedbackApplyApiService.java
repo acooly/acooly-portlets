@@ -15,8 +15,9 @@ import com.acooly.openapi.framework.common.annotation.OpenApiService;
 import com.acooly.openapi.framework.core.service.base.BaseApiService;
 import com.acooly.portlets.common.PortletsContants;
 import com.acooly.portlets.feedback.client.facade.api.FeedbackFacade;
-import com.acooly.portlets.feedback.client.openapi.FeedbackApplyApiRequest;
-import com.acooly.portlets.feedback.client.openapi.FeedbackApplyApiResponse;
+import com.acooly.portlets.feedback.client.facade.order.FeedbackApplyOrder;
+import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiRequest;
+import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiResponse;
 import com.acooly.portlets.feedback.openapi.service.FeedbackService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class FeedbackApplyApiService extends BaseApiService<FeedbackApplyApiRequ
     /**
      * 本地服务
      */
-    @Autowired
+    @Autowired(required = false)
     private FeedbackService feedbackService;
 
     @Reference(version = "1.0")
@@ -44,6 +45,11 @@ public class FeedbackApplyApiService extends BaseApiService<FeedbackApplyApiRequ
 
     @Override
     protected void doService(FeedbackApplyApiRequest request, FeedbackApplyApiResponse response) {
-        log.info("ApiRequest: {}", request);
+        if (feedbackService != null) {
+            feedbackService.apply(request.getFeedbackApplyInfo());
+        } else {
+            FeedbackApplyOrder order = new FeedbackApplyOrder(request.getFeedbackApplyInfo());
+            feedbackFacade.apply(order);
+        }
     }
 }

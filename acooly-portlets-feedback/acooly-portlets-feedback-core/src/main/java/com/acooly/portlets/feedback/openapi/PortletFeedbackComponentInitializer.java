@@ -14,9 +14,16 @@ import com.acooly.core.common.boot.component.ComponentInitializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ConfigurableApplicationContext;
 
-/** @author kuli@yiji.com */
+/**
+ * @author kuli@yiji.com
+ */
 @Slf4j
 public class PortletFeedbackComponentInitializer implements ComponentInitializer {
-  @Override
-  public void initialize(ConfigurableApplicationContext applicationContext) {}
+
+
+    @Override
+    public void initialize(ConfigurableApplicationContext applicationContext) {
+
+
+    }
 }

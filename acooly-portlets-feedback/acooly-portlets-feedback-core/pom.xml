@@ -20,6 +20,11 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-component-event</artifactId>
         </dependency>
 
@@ -46,12 +51,6 @@
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-dubbo</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-component-appservice</artifactId>
-        </dependency>
-
 
     </dependencies>
 

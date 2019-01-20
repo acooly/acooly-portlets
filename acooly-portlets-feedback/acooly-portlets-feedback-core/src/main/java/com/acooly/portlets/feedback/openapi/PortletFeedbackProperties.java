@@ -31,5 +31,7 @@ public class PortletFeedbackProperties {
      */
     private boolean eventPublishEnable = false;
 
+    private boolean facadeEnable = false;
+
 
 }
