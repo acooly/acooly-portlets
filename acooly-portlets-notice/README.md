@@ -1,3 +1,10 @@
+<!-- title: 消息推送组件 -->
+<!-- type: portlets -->
+<!-- author: zhangpu -->
+消息组件
+====
+acooly-portlets-notice
+----
 ## 1.组件介绍
 该组件用来向app推送消息使用，支持多种推送渠道：极光、友盟。可结构性扩展。
 

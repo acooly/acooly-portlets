@@ -1,3 +1,6 @@
+<!-- title: 评论组件 -->
+<!-- type: portlets -->
+<!-- author: zhangpu -->
 评论组件
 ====
  

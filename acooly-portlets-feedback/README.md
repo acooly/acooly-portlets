@@ -1,4 +1,7 @@
-评论组件
+<!-- title: 反馈组件 -->
+<!-- type: portlets -->
+<!-- author: zhangpu -->
+反馈组件
 ====
  
 acooly-portlets-feedback
