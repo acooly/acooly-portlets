@@ -14,6 +14,10 @@
     <name>acooly-portlets Group</name>
     <packaging>pom</packaging>
 
+    <properties>
+        <acooly.version>4.2.0-SNAPSHOT</acooly.version>
+    </properties>
+
 
     <dependencyManagement>
 
