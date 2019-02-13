@@ -23,12 +23,14 @@
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-common</artifactId>
             <version>${acooly.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-client</artifactId>
             <version>${acooly.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
