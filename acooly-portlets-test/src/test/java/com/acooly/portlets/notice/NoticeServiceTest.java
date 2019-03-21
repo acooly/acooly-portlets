@@ -11,6 +11,7 @@ import com.acooly.portlets.notice.core.NoticeService;
 import com.acooly.portlets.notice.core.dto.NoticeMessage;
 import com.acooly.portlets.notice.core.service.NoticeInfoService;
 import com.acooly.portlets.notice.facade.enums.DeviceTypeEnum;
+import com.acooly.portlets.test.notice.CustomNoticeGroupEnum;
 import com.acooly.test.NoWebTestBase;
 import com.google.common.collect.Lists;
 import org.junit.Test;

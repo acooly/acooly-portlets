@@ -1,4 +1,4 @@
-package com.acooly.portlets;
+package com.acooly.portlets.test;
 
 import com.acooly.core.common.BootApp;
 import com.acooly.core.common.boot.Apps;
@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 /**
  * @author qiubo
  */
-@BootApp(sysName = "acooly-component-portlets", httpPort = 8080)
+@BootApp(sysName = "acooly-portlets-test", httpPort = 8080)
 public class Main {
     public static void main(String[] args) {
         Apps.setProfileIfNotExists("dev");

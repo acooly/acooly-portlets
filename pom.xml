@@ -34,7 +34,6 @@
     </dependencyManagement>
 
     <modules>
-        <module>acooly-portlets-assemble</module>
         <module>acooly-portlets-test</module>
         <module>acooly-portlets-notice</module>
         <module>acooly-portlets-alog</module>

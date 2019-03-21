@@ -1,4 +1,4 @@
-package com.acooly.portlets.notice;
+package com.acooly.portlets.test.notice;
 
 /**
  * 通知消息分组

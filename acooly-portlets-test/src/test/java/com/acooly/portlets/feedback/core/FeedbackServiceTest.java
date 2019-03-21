@@ -4,23 +4,26 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.feedback;
+package com.acooly.portlets.feedback.core;
 
-import com.acooly.openapi.framework.core.test.AbstractApiServieTests;
 import com.acooly.portlets.feedback.client.dto.FeedbackApplyInfo;
+import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
-import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiRequest;
-import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiResponse;
+import com.acooly.portlets.feedback.core.service.FeedbackService;
+import com.acooly.test.NoWebTestBase;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
-public class FeedbackOpenApiTest extends AbstractApiServieTests {
+public class FeedbackServiceTest extends NoWebTestBase {
 
-    {
-        this.gatewayUrl = "http://127.0.0.1:8080/gateway.do";
-    }
+
+    @Autowired
+    private FeedbackService feedbackService;
+
+    String busiType = "hunlizhe-case";
 
 
     @Test
@@ -34,10 +37,9 @@ public class FeedbackOpenApiTest extends AbstractApiServieTests {
         applyInfo.setPhoneNo("13896177630");
         applyInfo.setMail("zhangpu@acooly.cn");
         applyInfo.setAddress("asdfasdfasdf地址弟弟");
-        FeedbackApplyApiRequest request = new FeedbackApplyApiRequest();
-        request.setFeedbackApplyInfo(applyInfo);
-        FeedbackApplyApiResponse response = request(request, FeedbackApplyApiResponse.class);
-        log.info("Feedback Apply result: {}", JSON.toJSONString(response, true));
+        applyInfo.setContactInfo("");
+        FeedbackInfo feedbackInfo = feedbackService.apply(applyInfo);
+        log.info("Feedback Apply result: {}", JSON.toJSONString(feedbackInfo, true));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.acooly.portlets.notice;
+package com.acooly.portlets.test.notice;
 
 import com.acooly.portlets.notice.core.service.MessageGroup;
 import lombok.extern.slf4j.Slf4j;
