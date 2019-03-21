@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.alog.core.dao.ActionLogDao">
+
+    <resultMap id="actionLogResultMap" type="com.acooly.portlets.alog.core.entity.ActionLog">
+        <id property="id" column="actionLog_id"/>
+        <result property="actionKey" column="actionLog_action_key"/>
+        <result property="actionName" column="actionLog_action_name"/>
+        <result property="actionUrl" column="actionLog_action_url"/>
+        <result property="userKey" column="actionLog_user_key"/>
+        <result property="channel" column="actionLog_channel"/>
+        <result property="channelInfo" column="actionLog_channel_info"/>
+        <result property="channelVersion" column="actionLog_channel_version"/>
+        <result property="userIp" column="actionLog_user_ip"/>
+        <result property="isp" column="actionLog_isp"/>
+        <result property="country" column="actionLog_country"/>
+        <result property="region" column="actionLog_region"/>
+        <result property="city" column="actionLog_city"/>
+        <result property="lntLat" column="actionLog_lnt_lat"/>
+        <result property="pv" column="actionLog_pv"/>
+        <result property="createTime" column="actionLog_create_time"/>
+        <result property="updateTime" column="actionLog_update_time"/>
+        <result property="comments" column="actionLog_comments"/>
+    </resultMap>
+
+    <sql id="actionLogSqlSelect">
+            actionLog.id as actionLog_id,
+            actionLog.action_key as actionLog_action_key,
+            actionLog.action_name as actionLog_action_name,
+            actionLog.action_url as actionLog_action_url,
+            actionLog.user_key as actionLog_user_key,
+            actionLog.channel as actionLog_channel,
+            actionLog.channel_info as actionLog_channel_info,
+            actionLog.channel_version as actionLog_channel_version,
+            actionLog.user_ip as actionLog_user_ip,
+            actionLog.isp as actionLog_isp,
+            actionLog.country as actionLog_country,
+            actionLog.region as actionLog_region,
+            actionLog.city as actionLog_city,
+            actionLog.lnt_lat as actionLog_lnt_lat,
+            actionLog.pv as actionLog_pv,
+            actionLog.create_time as actionLog_create_time,
+            actionLog.update_time as actionLog_update_time,
+            actionLog.comments as actionLog_comments
+    </sql>
+
+</mapper>

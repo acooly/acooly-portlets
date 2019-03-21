@@ -4,6 +4,7 @@ CREATE TABLE `p_action_log` (
   `action_name` varchar(32) DEFAULT NULL COMMENT '操作名称',
   `action_url` varchar(512) DEFAULT NULL COMMENT 'URL连接',
   `user_key` varchar(64) DEFAULT NULL COMMENT '用户名',
+  `os` varchar(16) NOT NULL COMMENT '平台',
   `channel` varchar(16) NOT NULL COMMENT '渠道 {wechar:微信,web:网站,android:安卓APP,ios:苹果APP,other:其他}',
   `channel_info` varchar(255) DEFAULT NULL COMMENT '渠道信息',
   `channel_version` varchar(16) DEFAULT NULL COMMENT '渠道版本',

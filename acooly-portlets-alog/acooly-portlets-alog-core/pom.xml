@@ -13,10 +13,20 @@
 
 
     <dependencies>
-        
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-event</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-cache</artifactId>
         </dependency>
 
         <dependency>
@@ -36,6 +46,23 @@
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-appservice</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <!---->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+        </dependency>
+
 
     </dependencies>
 
