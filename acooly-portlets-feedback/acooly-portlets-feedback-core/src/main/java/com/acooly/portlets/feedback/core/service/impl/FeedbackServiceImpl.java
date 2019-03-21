@@ -4,7 +4,7 @@
  * create by zhangpu@acooly.cn
  * date:2019-01-14
  */
-package com.acooly.portlets.feedback.openapi.service.impl;
+package com.acooly.portlets.feedback.core.service.impl;
 
 import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
@@ -16,12 +16,12 @@ import com.acooly.module.event.EventBus;
 import com.acooly.portlets.feedback.client.dto.FeedbackApplyInfo;
 import com.acooly.portlets.feedback.client.dto.FeedbackHandleInfo;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
-import com.acooly.portlets.feedback.openapi.PortletFeedbackProperties;
-import com.acooly.portlets.feedback.openapi.entity.Feedback;
-import com.acooly.portlets.feedback.openapi.event.FeedbackApplySuccessEvent;
-import com.acooly.portlets.feedback.openapi.event.FeedbackHandleSuccessEvent;
-import com.acooly.portlets.feedback.openapi.manage.FeedbackManager;
-import com.acooly.portlets.feedback.openapi.service.FeedbackService;
+import com.acooly.portlets.feedback.core.PortletFeedbackProperties;
+import com.acooly.portlets.feedback.core.service.FeedbackService;
+import com.acooly.portlets.feedback.core.entity.Feedback;
+import com.acooly.portlets.feedback.core.event.FeedbackApplySuccessEvent;
+import com.acooly.portlets.feedback.core.event.FeedbackHandleSuccessEvent;
+import com.acooly.portlets.feedback.core.manage.FeedbackManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

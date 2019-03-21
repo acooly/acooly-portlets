@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.acooly.portlets.feedback.openapi.dao.FeedbackDao">
+<mapper namespace="com.acooly.portlets.feedback.core.dao.FeedbackDao">
 
-    <resultMap id="feedbackResultMap" type="com.acooly.portlets.feedback.openapi.entity.Feedback">
+    <resultMap id="feedbackResultMap" type="com.acooly.portlets.feedback.core.entity.Feedback">
         <id property="id" column="feedback_id"/>
         <result property="type" column="feedback_type"/>
         <result property="title" column="feedback_title"/>

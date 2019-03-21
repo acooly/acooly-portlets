@@ -4,7 +4,7 @@
  * create by zhangpu@acooly.cn
  * date:2019-01-14
  */
-package com.acooly.portlets.feedback.openapi.entity;
+package com.acooly.portlets.feedback.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;

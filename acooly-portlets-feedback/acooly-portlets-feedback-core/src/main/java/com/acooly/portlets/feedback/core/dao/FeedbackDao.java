@@ -4,10 +4,10 @@
  * create by zhangpu@acooly.cn
  * date:2019-01-14
  */
- package com.acooly.portlets.feedback.openapi.dao;
+ package com.acooly.portlets.feedback.core.dao;
 
 import com.acooly.module.mybatis.EntityMybatisDao;
-import com.acooly.portlets.feedback.openapi.entity.Feedback;
+import com.acooly.portlets.feedback.core.entity.Feedback;
 
 /**
  * 客户反馈 Mybatis Dao

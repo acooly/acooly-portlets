@@ -7,7 +7,7 @@
  * 修订记录:
  * zhangpu@acooly.cn 2019-01-14 21:54 创建
  */
-package com.acooly.portlets.feedback.openapi.event;
+package com.acooly.portlets.feedback.core.event;
 
 import com.acooly.core.common.facade.InfoBase;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;

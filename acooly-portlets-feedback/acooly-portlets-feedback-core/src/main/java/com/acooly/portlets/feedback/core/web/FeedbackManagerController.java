@@ -4,7 +4,7 @@
  * create by zhangpu@acooly.cn
  * date:2019-01-14
  */
-package com.acooly.portlets.feedback.openapi.web;
+package com.acooly.portlets.feedback.core.web;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
 import com.acooly.core.common.web.support.JsonEntityResult;
@@ -14,9 +14,9 @@ import com.acooly.portlets.feedback.client.dto.FeedbackHandleInfo;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
 import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
-import com.acooly.portlets.feedback.openapi.entity.Feedback;
-import com.acooly.portlets.feedback.openapi.manage.FeedbackManager;
-import com.acooly.portlets.feedback.openapi.service.FeedbackService;
+import com.acooly.portlets.feedback.core.entity.Feedback;
+import com.acooly.portlets.feedback.core.manage.FeedbackManager;
+import com.acooly.portlets.feedback.core.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

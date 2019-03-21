@@ -4,7 +4,7 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.feedback.openapi;
+package com.acooly.portlets.feedback.core;
 
 import lombok.Getter;
 import lombok.Setter;

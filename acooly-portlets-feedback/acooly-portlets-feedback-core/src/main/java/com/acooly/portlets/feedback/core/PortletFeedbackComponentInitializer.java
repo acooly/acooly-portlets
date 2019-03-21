@@ -8,7 +8,7 @@
  * 修订记录:
  * kuli@yiji.com 2017-02-16 17:04 创建
  */
-package com.acooly.portlets.feedback.openapi;
+package com.acooly.portlets.feedback.core;
 
 import com.acooly.core.common.boot.component.ComponentInitializer;
 import lombok.extern.slf4j.Slf4j;

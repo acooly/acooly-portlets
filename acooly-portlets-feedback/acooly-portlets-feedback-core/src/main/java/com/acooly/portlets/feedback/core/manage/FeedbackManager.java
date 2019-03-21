@@ -5,10 +5,10 @@
  * date:2019-01-14
  *
  */
-package com.acooly.portlets.feedback.openapi.manage;
+package com.acooly.portlets.feedback.core.manage;
 
 import com.acooly.core.common.service.EntityService;
-import com.acooly.portlets.feedback.openapi.entity.Feedback;
+import com.acooly.portlets.feedback.core.entity.Feedback;
 
 /**
  * 客户反馈 Service接口

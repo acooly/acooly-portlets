@@ -4,12 +4,12 @@
  * create by zhangpu@acooly.cn
  * date:2019-01-14
  */
-package com.acooly.portlets.feedback.openapi.manage.impl;
+package com.acooly.portlets.feedback.core.manage.impl;
 
 import com.acooly.core.common.service.EntityServiceImpl;
-import com.acooly.portlets.feedback.openapi.dao.FeedbackDao;
-import com.acooly.portlets.feedback.openapi.entity.Feedback;
-import com.acooly.portlets.feedback.openapi.manage.FeedbackManager;
+import com.acooly.portlets.feedback.core.dao.FeedbackDao;
+import com.acooly.portlets.feedback.core.entity.Feedback;
+import com.acooly.portlets.feedback.core.manage.FeedbackManager;
 import org.springframework.stereotype.Service;
 
 /**

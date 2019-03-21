@@ -5,7 +5,7 @@
  * date:2019-01-14
  *
  */
-package com.acooly.portlets.feedback.openapi.service;
+package com.acooly.portlets.feedback.core.service;
 
 import com.acooly.portlets.feedback.client.dto.FeedbackApplyInfo;
 import com.acooly.portlets.feedback.client.dto.FeedbackHandleInfo;

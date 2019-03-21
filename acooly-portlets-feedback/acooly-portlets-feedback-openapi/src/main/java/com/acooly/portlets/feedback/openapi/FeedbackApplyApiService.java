@@ -18,7 +18,7 @@ import com.acooly.portlets.feedback.client.facade.api.FeedbackFacade;
 import com.acooly.portlets.feedback.client.facade.order.FeedbackApplyOrder;
 import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiRequest;
 import com.acooly.portlets.feedback.client.openapi.message.FeedbackApplyApiResponse;
-import com.acooly.portlets.feedback.openapi.service.FeedbackService;
+import com.acooly.portlets.feedback.core.service.FeedbackService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

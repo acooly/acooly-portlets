@@ -8,7 +8,7 @@
  * 修订记录:
  * kuli@yiji.com 2017-02-14 17:04 创建
  */
-package com.acooly.portlets.feedback.openapi;
+package com.acooly.portlets.feedback.core;
 
 import com.acooly.core.common.dao.support.StandardDatabaseScriptIniter;
 import com.acooly.portlets.feedback.client.facade.api.FeedbackFacade;
@@ -24,13 +24,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import java.util.List;
 
-import static com.acooly.portlets.feedback.openapi.PortletFeedbackProperties.PREFIX;
+import static com.acooly.portlets.feedback.core.PortletFeedbackProperties.PREFIX;
+
 
 /**
  * @author kuli@yiji.com
@@ -39,7 +39,6 @@ import static com.acooly.portlets.feedback.openapi.PortletFeedbackProperties.PRE
 @Configuration
 @EnableConfigurationProperties({PortletFeedbackProperties.class})
 @ConditionalOnProperty(value = PREFIX + ".enable", matchIfMissing = true)
-@ComponentScan(basePackages = {"com.acooly.portlets.feedback"})
 @MapperScan("com.acooly.portlets.feedback.core.dao")
 public class PortletFeedbackAutoConfig {
     @Autowired
