@@ -14,13 +14,21 @@
 				</select></td>
 			</tr>					
 			<tr>
-				<th>操作Key：</th>
-				<td><input type="text" name="actionKey" size="48" placeholder="请输入操作Key..." class="easyui-validatebox text" data-options="validType:['length[1,128]'],required:true"/></td>
+				<th>行为Key：</th>
+				<td><input type="text" name="actionKey" size="48" placeholder="请输入行为Key..." class="easyui-validatebox text" data-options="validType:['length[1,128]'],required:true"/></td>
 			</tr>					
 			<tr>
-				<th>操作名称：</th>
-				<td><input type="text" name="actionName" size="48" placeholder="请输入操作名称..." class="easyui-validatebox text" data-options="validType:['length[1,32]'],required:true"/></td>
-			</tr>					
+				<th>行为名称：</th>
+				<td><input type="text" name="actionName" size="48" placeholder="请输入行为名称..." class="easyui-validatebox text" data-options="validType:['length[1,32]'],required:true"/></td>
+			</tr>
+			<tr>
+				<th>行为分组：</th>
+				<td><input type="text" name="actionGroup" size="48" placeholder="请输入行为分组..." class="easyui-validatebox text" data-options="validType:['length[1,32]']"/></td>
+			</tr>
+			<tr>
+				<th>参数：</th>
+				<td><input type="text" name="params" size="48" placeholder="需要收集的参数，多个使用逗号分隔..." class="easyui-validatebox text" data-options="validType:['length[1,128]']"/></td>
+			</tr>
 			<tr>
 				<th>备注：</th>
 				<td><input type="text" name="comments" size="48" placeholder="请输入备注..." class="easyui-validatebox text" data-options="validType:['length[1,128]']"/></td>

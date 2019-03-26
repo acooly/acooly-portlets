@@ -26,6 +26,8 @@ public enum ActionMappingTypeEnum implements Messageable {
 
 	openapi("openapi", "API服务"),
 
+	action("action", "埋点"),
+
 	other("other", "其他"),
 
 	;

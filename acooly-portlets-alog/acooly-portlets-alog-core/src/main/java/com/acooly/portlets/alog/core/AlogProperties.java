@@ -27,6 +27,16 @@ public class AlogProperties {
      * 是否启用该组件
      */
     private Boolean enable = true;
+
+    /**
+     * 打开openApi的执行完成事件监听收集日志
+     */
+    private Boolean openApiEnable = true;
+    /**
+     * OpenApi后置事件只收集来自移动App的访问
+     */
+    private Boolean openApiOnlyApp = true;
+
     /**
      * 前端portal：访问收集（JS）模式
      */
