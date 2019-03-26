@@ -42,7 +42,7 @@ public class AlogAnalysisAutoConfig {
     private AlogProperties alogProperties;
 
     @Bean
-    public StandardDatabaseScriptIniter portletAlogScriptIniter() {
+    public StandardDatabaseScriptIniter portletAlogAnalysisScriptIniter() {
         return new StandardDatabaseScriptIniter() {
             @Override
             public String getEvaluateTable() {
@@ -56,7 +56,7 @@ public class AlogAnalysisAutoConfig {
 
             @Override
             public List<String> getInitSqlFile() {
-                return Lists.newArrayList("alog_analysis_init.sql", "alog_analysis_resource");
+                return Lists.newArrayList("alog_analysis_init", "alog_analysis_resource");
             }
         };
     }

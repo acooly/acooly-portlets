@@ -6,7 +6,7 @@
  * @author zhangpu
  * @date 2019-03-26 16:27
  */
-package com.acooly.portlets.alog.openapi;
+package com.acooly.portlets.alog.openapi.api;
 
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.openapi.framework.common.ApiConstants;

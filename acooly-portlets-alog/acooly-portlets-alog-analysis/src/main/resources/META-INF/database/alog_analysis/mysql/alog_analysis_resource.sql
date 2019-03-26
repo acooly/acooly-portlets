@@ -6,4 +6,4 @@ VALUES
 INSERT INTO `sys_role_resc` (`ROLE_ID`, `RESC_ID`)
 VALUES
 	(1, 20190325),
-	(1, 20190325);
+	(1, 201903251);
