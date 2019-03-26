@@ -4,7 +4,7 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.feedback.core;
+package com.acooly.portlets.test.feedback.core;
 
 import com.acooly.openapi.framework.core.test.AbstractApiServieTests;
 import com.acooly.portlets.feedback.client.dto.FeedbackApplyInfo;

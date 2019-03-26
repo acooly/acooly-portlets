@@ -44,7 +44,7 @@ $(function() {
 			<th field="actionName">访问名</th>
 			<th field="actionGroup">访问组</th>
 			<th field="actionUrl">URL</th>
-			<th field="userKey">用户名</th>
+			<th field="userKey">用户</th>
 			<th field="os" formatter="mappingFormatter">平台</th>
 			<th field="channel" formatter="mappingFormatter">渠道</th>
 			<th field="channelInfo">渠道信息</th>
@@ -58,7 +58,7 @@ $(function() {
 
     <!-- 每行的Action动作模板 -->
     <div id="manage_actionLog_action" style="display: none;">
-      <a onclick="$.acooly.framework.show('/manage/portlets/alog/actionLog/show.html?id={0}',500,400);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
+      <a onclick="$.acooly.framework.show('/manage/portlets/alog/actionLog/show.html?id={0}',600,600);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
     </div>
 
     <!-- 表格的工具栏 -->

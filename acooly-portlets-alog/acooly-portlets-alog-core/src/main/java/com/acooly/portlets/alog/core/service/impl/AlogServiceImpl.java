@@ -16,11 +16,11 @@ import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.core.utils.mapper.JsonMapper;
 import com.acooly.core.utils.system.IPUtil;
+import com.acooly.portlets.alog.client.enums.ActionChannel;
+import com.acooly.portlets.alog.client.enums.ActionOS;
 import com.acooly.portlets.alog.core.dto.ActionLogInfo;
 import com.acooly.portlets.alog.core.entity.ActionLog;
 import com.acooly.portlets.alog.core.entity.ActionMapping;
-import com.acooly.portlets.alog.core.enums.ActionChannel;
-import com.acooly.portlets.alog.core.enums.ActionOS;
 import com.acooly.portlets.alog.core.service.ActionLogUserKeyParser;
 import com.acooly.portlets.alog.core.service.ActionMappingService;
 import com.acooly.portlets.alog.core.service.AlogCacheService;
@@ -35,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -116,6 +117,7 @@ public class AlogServiceImpl implements AlogService {
         parseUserKey(actionLog, request);
     }
 
+
     /**
      * 日志mapping
      *
@@ -180,7 +182,17 @@ public class AlogServiceImpl implements AlogService {
      * @param request
      */
     protected void parseUserKey(ActionLog actionLog, HttpServletRequest request) {
-        actionLog.setUserKey(actionLogUserKeyParser.parseUserKey(request));
+        if (Strings.isBlank(actionLog.getUserKey())) {
+            actionLog.setUserKey(actionLogUserKeyParser.parseUserKey(request));
+        }
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null && cookies.length > 0) {
+            actionLog.setCookies(cookies[0].getValue());
+        }
+        if (Strings.isBlank(actionLog.getCookies())) {
+            actionLog.setCookies(actionLog.getUserKey());
+        }
     }
 
 
@@ -214,7 +226,7 @@ public class AlogServiceImpl implements AlogService {
             actionLog.setChannelVersion(userAgent.getBrowserVersion().getVersion());
         }
         // 请求IP
-        if (actionLog.getUserIp() == null) {
+        if (Strings.isBlank(actionLog.getUserIp())) {
             actionLog.setUserIp(IPUtil.getIpAddr(request));
         }
 

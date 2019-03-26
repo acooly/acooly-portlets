@@ -4,7 +4,7 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.notice;
+package com.acooly.portlets.test.notice;
 
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.portlets.notice.core.NoticeQueryService;

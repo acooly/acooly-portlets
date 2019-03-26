@@ -8,8 +8,8 @@ package com.acooly.portlets.alog.core.entity;
 
 
 import com.acooly.core.common.domain.AbstractEntity;
-import com.acooly.portlets.alog.core.enums.ActionChannel;
-import com.acooly.portlets.alog.core.enums.ActionOS;
+import com.acooly.portlets.alog.client.enums.ActionChannel;
+import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -61,6 +61,11 @@ public class ActionLog extends AbstractEntity {
      */
     @Size(max = 64)
     private String userKey;
+
+    /**
+     * 浏览器客户端cookies
+     */
+    private String cookies;
 
     /**
      * 数据

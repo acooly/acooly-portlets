@@ -4,7 +4,7 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.notice;
+package com.acooly.portlets.test.notice;
 
 import com.acooly.core.utils.Ids;
 import com.acooly.portlets.notice.core.NoticeService;

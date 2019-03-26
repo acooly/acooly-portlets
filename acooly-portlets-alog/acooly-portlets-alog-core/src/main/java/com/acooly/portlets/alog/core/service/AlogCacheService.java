@@ -46,7 +46,6 @@ public class AlogCacheService implements InitializingBean {
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
         executor.scheduleAtFixedRate(() -> {
-            log.debug("alog 消费线程 定时执行...");
             consume();
         }, 1, alogProperties.getSavePeriodSeconds(), TimeUnit.SECONDS);
         ShutdownHooks.addShutdownHook(() -> {

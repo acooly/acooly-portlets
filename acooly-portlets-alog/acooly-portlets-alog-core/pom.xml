@@ -16,6 +16,12 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-alog-client</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-portlets-common</artifactId>
         </dependency>
 

@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.acooly.portlets.alog.analysis.AlogAnalysisAutoConfig
+com.acooly.core.common.boot.component.ComponentInitializer=\
+com.acooly.portlets.alog.analysis.AlogAnalysisComponentInitializer

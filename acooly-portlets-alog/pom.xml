@@ -11,10 +11,30 @@
 
     <artifactId>acooly-portlets-alog</artifactId>
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>acooly-portlets-alog-core</module>
+        <module>acooly-portlets-alog-analysis</module>
+        <module>acooly-portlets-alog-openapi</module>
+        <module>acooly-portlets-alog-client</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-alog-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-alog-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 
 </project>

@@ -28,9 +28,14 @@ public class AlogProperties {
      */
     private Boolean enable = true;
     /**
-     * 前端portal访问收集（JS）模式
+     * 前端portal：访问收集（JS）模式
      */
     private Boolean enablePortal = true;
+
+    /**
+     * 前端portal：允许被收集的网站的域名注册，多个逗号分隔。例如：http://acooly.cn,https://www.acooly.cn
+     */
+    private String allowOrigins;
 
     /**
      * session的userKey，可多个，直到找到不为空的值

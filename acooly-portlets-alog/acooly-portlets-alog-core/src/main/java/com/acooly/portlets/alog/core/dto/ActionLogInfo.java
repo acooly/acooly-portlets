@@ -8,8 +8,8 @@
  */
 package com.acooly.portlets.alog.core.dto;
 
-import com.acooly.portlets.alog.core.enums.ActionChannel;
-import com.acooly.portlets.alog.core.enums.ActionOS;
+import com.acooly.portlets.alog.client.enums.ActionChannel;
+import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -57,6 +57,7 @@ public class ActionLogInfo {
      */
     @Enumerated(EnumType.STRING)
     private ActionOS os;
+
 
     /**
      * 渠道

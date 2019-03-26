@@ -7,21 +7,41 @@
 		<td>${actionLog.id}</td>
 	</tr>					
 	<tr>
-		<th width="25%">操作:</th>
+		<th width="25%">行为Key:</th>
 		<td>${actionLog.actionKey}</td>
 	</tr>					
 	<tr>
-		<th>操作名称:</th>
+		<th>行为名称:</th>
 		<td>${actionLog.actionName}</td>
-	</tr>					
+	</tr>
 	<tr>
-		<th>URL连接:</th>
+		<th>行为分组:</th>
+		<td>${actionLog.actionGroup}</td>
+	</tr>
+	<tr>
+		<th>URL:</th>
 		<td>${actionLog.actionUrl}</td>
 	</tr>					
 	<tr>
-		<th>用户名:</th>
+		<th>用户:</th>
 		<td>${actionLog.userKey}</td>
-	</tr>					
+	</tr>
+	<tr>
+		<th>cookies:</th>
+		<td>${actionLog.cookies}</td>
+	</tr>
+	<tr>
+		<th>访问时间:</th>
+		<td><fmt:formatDate value="${actionLog.actionTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	</tr>
+	<tr>
+		<th>访问数据:</th>
+		<td>${actionLog.data}</td>
+	</tr>
+	<tr>
+		<th>平台:</th>
+		<td>${actionLog.os.message}</td>
+	</tr>
 	<tr>
 		<th>渠道:</th>
 		<td>${actionLog.channel.message}</td>
@@ -57,22 +77,7 @@
 	<tr>
 		<th>经纬度:</th>
 		<td>${actionLog.lntLat}</td>
-	</tr>					
-	<tr>
-		<th>点击量:</th>
-		<td>${actionLog.pv}</td>
-	</tr>					
-	<tr>
-		<th>创建时间:</th>
-		<td><fmt:formatDate value="${actionLog.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	</tr>					
-	<tr>
-		<th>更新时间:</th>
-		<td><fmt:formatDate value="${actionLog.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	</tr>					
-	<tr>
-		<th>备注:</th>
-		<td>${actionLog.comments}</td>
-	</tr>					
+	</tr>
+
 </table>
 </div>

@@ -4,7 +4,7 @@
  * Copyright (c) 2017  All Rights Reserved
  */
 
-package com.acooly.portlets.comment;
+package com.acooly.portlets.test.comment;
 
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.portlets.comment.client.dto.CommentActionInfo;

@@ -7,9 +7,9 @@
 package com.acooly.portlets.alog.core.web;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.portlets.alog.client.enums.ActionChannel;
+import com.acooly.portlets.alog.client.enums.ActionOS;
 import com.acooly.portlets.alog.core.entity.ActionLog;
-import com.acooly.portlets.alog.core.enums.ActionChannel;
-import com.acooly.portlets.alog.core.enums.ActionOS;
 import com.acooly.portlets.alog.core.service.ActionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

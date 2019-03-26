@@ -1,11 +1,16 @@
-/*
- * acooly.cn Inc.
- * Copyright (c) 2019 All Rights Reserved.
- * create by zhangpu@acooly.cn
- * date:2019-01-10
+/**
+ * acooly-portlets
+ * <p>
+ * Copyright 2014 Acooly.cn, Inc. All rights reserved.
  *
+ * @author zhangpu
+ * @date 2019-03-05 23:17
  */
-package com.acooly.portlets.alog.core.enums;
+package com.acooly.portlets.alog.client.enums;
+/**
+ * @author zhangpu
+ * @date 2019-03-05 23:17
+ */
 
 import com.acooly.core.utils.enums.Messageable;
 
@@ -14,30 +19,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 访问日志 ActionChannel 枚举定义
- *
- * @author zhangpu@acooly.cn
- * Date: 2019-01-10 18:10:55
- */
-public enum ActionChannel implements Messageable {
+public enum ActionOS implements Messageable {
 
-    MicroMessenger("MicroMessenger", "微信"),
+    WINDOWS("WINDOWS", "WINDOWS"),
 
-    MiniProgram("MiniProgram", "微信小程序"),
+    MAC("MAC", "MAC"),
 
-    H5("H5", "手机网页"),
+    IOS("IOS", "IOS"),
 
-    Web("Web", "电脑网站"),
+    IPAD("IPAD", "IPAD"),
 
-    App("App", "手机App"),
+    ANDROID("ANDROID", "ANDROID"),
 
-    Other("Other", "其他"),;
+    OTHER("OTHER", "其他");
 
     private final String code;
     private final String message;
 
-    private ActionChannel(String code, String message) {
+    ActionOS(String code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -60,10 +59,9 @@ public enum ActionChannel implements Messageable {
         return message;
     }
 
-
     public static Map<String, String> mapping() {
         Map<String, String> map = new LinkedHashMap<String, String>();
-        for (ActionChannel type : values()) {
+        for (ActionOS type : values()) {
             map.put(type.getCode(), type.getMessage());
         }
         return map;
@@ -76,8 +74,8 @@ public enum ActionChannel implements Messageable {
      * @return 枚举值码对应的枚举值。
      * @throws IllegalArgumentException 如果 code 没有对应的 Status 。
      */
-    public static ActionChannel find(String code) {
-        for (ActionChannel status : values()) {
+    public static ActionOS find(String code) {
+        for (ActionOS status : values()) {
             if (status.getCode().equals(code)) {
                 return status;
             }
@@ -90,9 +88,9 @@ public enum ActionChannel implements Messageable {
      *
      * @return 全部枚举值。
      */
-    public static List<ActionChannel> getAll() {
-        List<ActionChannel> list = new ArrayList<ActionChannel>();
-        for (ActionChannel status : values()) {
+    public static List<ActionOS> getAll() {
+        List<ActionOS> list = new ArrayList<ActionOS>();
+        for (ActionOS status : values()) {
             list.add(status);
         }
         return list;
@@ -105,7 +103,7 @@ public enum ActionChannel implements Messageable {
      */
     public static List<String> getAllCode() {
         List<String> list = new ArrayList<String>();
-        for (ActionChannel status : values()) {
+        for (ActionOS status : values()) {
             list.add(status.code());
         }
         return list;
