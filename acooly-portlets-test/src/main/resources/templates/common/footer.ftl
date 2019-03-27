@@ -2,10 +2,7 @@
 <script src="/acooly/alog/acooly.alog.js"></script>
 <script>
     $(function () {
-        var path = window.location.pathname;
-        $.acooly.alog.log({
-            actionKey: path,
-            actionUrl: path
-        });
+        $.acooly.alog.host = "http://127.0.0.1:8080";
+        $.acooly.alog.log();
     });
 </script>

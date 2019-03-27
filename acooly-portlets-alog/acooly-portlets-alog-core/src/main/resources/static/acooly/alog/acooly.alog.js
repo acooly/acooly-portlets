@@ -30,7 +30,7 @@ var acoolyAlogClass = {
         if (!url) {
             url = '/acooly/alog/log.html';
         }
-        if (!url.startsWith("http")) {
+        if (url.indexOf("http") != 0) {
             url = this.host + url;
         }
         var path = window.location.pathname;
