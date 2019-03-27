@@ -60,7 +60,7 @@ public class AlogController extends AbstractJQueryEntityController {
         if (Strings.isBlank(alogProperties.getAllowOrigins())) {
             log.debug("alog [禁用] 跨站收集行为日志，未配置扩展收集行为日志的源域名.");
         } else {
-            response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, response.getHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN) + "," + alogProperties.getAllowOrigins());
+            response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, alogProperties.getAllowOrigins());
             response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "POST, GET");
             response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
             log.debug("alog [启用] 跨站收集行为日志，支持域名：{}", alogProperties.getAllowOrigins());
