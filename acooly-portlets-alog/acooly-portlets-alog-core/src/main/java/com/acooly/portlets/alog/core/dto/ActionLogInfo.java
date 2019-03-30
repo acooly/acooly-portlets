@@ -89,4 +89,6 @@ public class ActionLogInfo {
     @Size(max = 16)
     private String userIp;
 
+    private String referer;
+
 }

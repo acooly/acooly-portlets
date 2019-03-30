@@ -151,4 +151,7 @@ public class ActionLog extends AbstractEntity {
      */
     private Date actionTime = new Date();
 
+
+    private String referer;
+
 }

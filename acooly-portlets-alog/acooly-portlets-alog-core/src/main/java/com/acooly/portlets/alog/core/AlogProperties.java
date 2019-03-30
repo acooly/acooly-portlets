@@ -6,6 +6,7 @@
 
 package com.acooly.portlets.alog.core;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -50,7 +51,12 @@ public class AlogProperties {
     /**
      * session的userKey，可多个，直到找到不为空的值
      */
-    private List<String> sessionUserKeys;
+    private List<String> sessionUserKeys = Lists.newArrayList("USER_IN_SESSION", "SESSION_USER");
+
+    /**
+     * sessionId的key定义，被收集网站可能存在不同的sessionIdKey，比如：acooly框架的Web的sessionIdKey为：SESSION
+     */
+    private List<String> sessionIdKeys = Lists.newArrayList("SESSION", "JSESSIONID");
 
     /**
      * 本地缓存队列大小，满则丢弃，通过日志调整该值

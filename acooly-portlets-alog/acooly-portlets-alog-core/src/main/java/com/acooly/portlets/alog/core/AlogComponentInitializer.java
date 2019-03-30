@@ -21,5 +21,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class AlogComponentInitializer implements ComponentInitializer {
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
+
+        /** 升级支持来源 referer */
+        setPropertyIfMissing("acooly.ds.dbPatchs.p_action_log[0].columnName", "referer");
+        setPropertyIfMissing("acooly.ds.dbPatchs.p_action_log[0].patchSql", "ALTER TABLE `p_action_log` ADD COLUMN `referer` VARCHAR(128) NULL COMMENT '来源';");
     }
 }

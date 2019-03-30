@@ -52,22 +52,23 @@ public class AlogController extends AbstractJQueryEntityController {
     public JsonResult log(ActionLogInfo actionLogInfo, HttpServletRequest request, HttpServletResponse response) {
         JsonResult result = new JsonResult();
         try {
+            // 支持有限跨域访问
+            if (Strings.isBlank(alogProperties.getAllowOrigins())) {
+                log.debug("alog [禁用] 跨站收集行为日志，未配置扩展收集行为日志的源域名.");
+            } else {
+                String originHeader = request.getHeader("Origin");
+                if(Strings.contains(alogProperties.getAllowOrigins(),originHeader)){
+                    response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, originHeader);
+                    response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "POST, GET");
+                    response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+                    log.debug("alog [启用] 跨站收集行为日志，支持域名：{}", alogProperties.getAllowOrigins());
+                }
+            }
             alogService.log(actionLogInfo, request);
         } catch (Exception e) {
             handleException(result, "alog", e);
         }
-        // 支持有限跨域访问
-        if (Strings.isBlank(alogProperties.getAllowOrigins())) {
-            log.debug("alog [禁用] 跨站收集行为日志，未配置扩展收集行为日志的源域名.");
-        } else {
-            String originHeader = request.getHeader("Origin");
-            if(Strings.contains(alogProperties.getAllowOrigins(),originHeader)){
-                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, originHeader);
-                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "POST, GET");
-                response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-                log.debug("alog [启用] 跨站收集行为日志，支持域名：{}", alogProperties.getAllowOrigins());
-            }
-        }
+
         return result;
     }
 

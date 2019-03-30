@@ -42,13 +42,11 @@ $(function() {
 			<th field="id" sum="true">ID</th>
 			<th field="actionKey">访问Key</th>
 			<th field="actionName">访问名</th>
-			<th field="actionGroup">访问组</th>
-			<th field="actionUrl">URL</th>
 			<th field="userKey">用户</th>
+            <th field="cookies">会话</th>
 			<th field="os" formatter="mappingFormatter">平台</th>
 			<th field="channel" formatter="mappingFormatter">渠道</th>
-			<th field="channelInfo">渠道信息</th>
-			<th field="channelVersion">渠道版本</th>
+			<th field="referer">来源</th>
 			<th field="userIp">访问IP</th>
 		    <th field="actionTime" formatter="dateTimeFormatter">时间</th>
           	<th field="rowActions" data-options="formatter:function(value, row, index){return formatAction('manage_actionLog_action',value,row)}">动作</th>

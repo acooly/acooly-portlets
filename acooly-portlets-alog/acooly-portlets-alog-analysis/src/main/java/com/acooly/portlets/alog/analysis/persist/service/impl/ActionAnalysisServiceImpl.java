@@ -36,7 +36,7 @@ public class ActionAnalysisServiceImpl implements ActionAnalysisService {
 
     @Override
     public void analysisVisitsByDay(Date day) {
-        String period = Dates.format(day);
+        String period = Dates.format(day,Dates.CHINESE_DATE_FORMAT_LINE);
         try {
             ActionAnalysisVisits aav = actionAnalysisVisitsService.getUnique(period);
             if (aav != null) {

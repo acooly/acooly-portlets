@@ -18,6 +18,7 @@ import com.acooly.core.utils.mapper.JsonMapper;
 import com.acooly.core.utils.system.IPUtil;
 import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
+import com.acooly.portlets.alog.core.AlogProperties;
 import com.acooly.portlets.alog.core.dto.ActionLogInfo;
 import com.acooly.portlets.alog.core.entity.ActionLog;
 import com.acooly.portlets.alog.core.entity.ActionMapping;
@@ -27,6 +28,7 @@ import com.acooly.portlets.alog.core.service.AlogCacheService;
 import com.acooly.portlets.alog.core.service.AlogService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.net.HttpHeaders;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.BrowserType;
 import eu.bitwalker.useragentutils.OperatingSystem;
@@ -37,6 +39,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +59,8 @@ public class AlogServiceImpl implements AlogService {
     private ActionLogUserKeyParser actionLogUserKeyParser;
     @Autowired
     private AlogCacheService alogCacheService;
+    @Autowired
+    private AlogProperties alogProperties;
 
 
     @Override
@@ -115,6 +120,7 @@ public class AlogServiceImpl implements AlogService {
         actionLog.setActionUrl(Strings.isBlankDefault(actionLog.getActionUrl(), requestUrl));
         parseChannelInfo(actionLog, request);
         parseUserKey(actionLog, request);
+        parseReferer(actionLog, request);
     }
 
 
@@ -188,13 +194,28 @@ public class AlogServiceImpl implements AlogService {
 
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length > 0) {
-            actionLog.setCookies(cookies[0].getValue());
+            for (Cookie cookie : cookies) {
+                if (alogProperties.getSessionIdKeys().contains(cookie.getName())) {
+                    actionLog.setCookies(cookie.getValue());
+                }
+            }
         }
         if (Strings.isBlank(actionLog.getCookies())) {
             actionLog.setCookies(actionLog.getUserKey());
         }
     }
 
+    protected void parseReferer(ActionLog actionLog, HttpServletRequest request) {
+        String referer = request.getHeader(HttpHeaders.REFERER);
+        if (Strings.isNotBlank(referer)) {
+            try {
+                URL url = new URL(referer);
+                actionLog.setReferer(url.getHost());
+            } catch (Exception e) {
+                //ig
+            }
+        }
+    }
 
     /**
      * 解析渠道信息

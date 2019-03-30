@@ -53,7 +53,11 @@
 	<tr>
 		<th>渠道版本:</th>
 		<td>${actionLog.channelVersion}</td>
-	</tr>					
+	</tr>
+	<tr>
+		<th>来源:</th>
+		<td>${actionLog.referer}</td>
+	</tr>
 	<tr>
 		<th>访问IP:</th>
 		<td>${actionLog.userIp}</td>

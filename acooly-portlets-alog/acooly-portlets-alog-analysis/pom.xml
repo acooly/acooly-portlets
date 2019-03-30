@@ -27,6 +27,7 @@
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>acooly-component-scheduler</artifactId>
+            <scope>provided</scope>
         </dependency>
 
 

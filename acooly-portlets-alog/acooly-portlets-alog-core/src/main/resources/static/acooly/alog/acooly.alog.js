@@ -18,8 +18,14 @@
  *
  */
 var acoolyAlogClass = {
-
+    /**
+     * 日志手机服务器域名
+     */
     host: '',
+    /**
+     * 被收集网站的sessionId的key值扩展配置
+     */
+    sessionIdKeys: '',
 
     /**
      * 收集行为日志
@@ -35,20 +41,27 @@ var acoolyAlogClass = {
         }
         var path = window.location.pathname;
         var options = $.extend({
-            actionGroup: null,
-            actionKey: path,
-            actionUrl: path
-            // ... 请参考：ActionLogInfo对象属性 ...
-        }, opts);
+                actionGroup: null,
+                actionKey: path,
+                actionUrl: path
+                // ... 请参考：ActionLogInfo对象属性 ...
+            },
+            opts
+            )
+        ;
         $.ajax({
             url: url,
             data: options,
+            // type : 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
             error: function () {
                 //ig;
             }
         });
     },
-
 
     /**
      * 自动收集（本服务内）
