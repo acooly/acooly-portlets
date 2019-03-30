@@ -180,6 +180,24 @@ public interface AlogService {
 * App都是通过OpenApi访问的，在OpenApi服务（platform）上扩展OpenApi，监听：AfterServiceExecuteEvent事件，判断USER_AGENT为移动App，则收集日志，原始请求可以通过ApiContext获得。`com.acooly.portlets.alog.openapi.listener.AlogApiListener`
 * 三端都可以定义埋点，通过actionGroup分组来隔离不同的收集场景，然后通过openApi服务：alog定向收集行为日志。
 
+## 数据分析
+
+alog的数据分析需要依赖：`acooly-portlets-alog-analysis`模块，该模块的设计原则为提供部分公共的访问分析能力，然后可根据具体的需要进行定制开发。
+
+### 访问量分析
+提供基于alog的全站访问量分析。支持按小时（实时），天，周，月，季分析时间段内全站的访问K线图和柱状图分析。
+
+在依赖`acooly-portlets-alog-analysis`模块后，需要引入`acooly-component-scheduler`的依赖，然后配置访问量分析的每日统计定时任务。在acooly-component-scheduler后台的管理功能添加任务：
+
+* 任务名称: log访问量日归档
+* 任务类型: LOCAL（本地）
+* 执行类名: com.acooly.portlets.alog.analysis.persist.service.ActionAnalysisService
+* 执行方法: analysisVisitsByDay
+* 任务定时: 0 10 0 * * ?   (每天凌晨00:10，可自行调整)
+
+>PS: 必须添加定时任务，后台的：行为日志->行为分析->访问量分析功能才可用
+
+
 ## 5.demo
 
 * acooly-portlets-alog-core模块下：`resource/static/acooly/alog/alog_test.html`
