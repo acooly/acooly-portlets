@@ -73,4 +73,9 @@ public class AlogProperties {
      */
     private int savePeriodSeconds = 5;
 
+    /**
+     * 实时分析查询访问量缓存有效期（分钟 ）
+     */
+    private int realTimeVisitsCacheTimeoutMinutes = 10;
+
 }

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 public enum AnalysisPeriod implements Messageable {
-
+    HOUR("HOUR", "小时"),
     DAY("DAY", "天"),
     WEEK("WEEK", "周"),
     MONTH("MONTH", "月"),

@@ -7,6 +7,8 @@
 package com.acooly.portlets.alog.analysis.persist.web;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.utils.Servlets;
+import com.acooly.core.utils.Strings;
 import com.acooly.portlets.alog.analysis.persist.dto.ActionVisitsInfo;
 import com.acooly.portlets.alog.analysis.persist.dto.AnalysisResult;
 import com.acooly.portlets.alog.analysis.persist.entity.ActionAnalysisVisits;
@@ -43,12 +45,18 @@ public class ActionAnalysisManagerController extends AbstractJQueryEntityControl
     @Autowired
     private ActionAnalysisVisitsService actionAnalysisVisitsService;
 
+    /**
+     * 访问量统计分析
+     */
     @RequestMapping(path = "visits", method = RequestMethod.GET)
     public String visitsView(HttpServletRequest request, HttpServletResponse response, Model model) {
         model.addAllAttributes(referenceData(request));
+        String realTime = Servlets.getParameter(request, "realTime");
+        if (Strings.isNotBlank(realTime)) {
+            model.addAttribute("realTime", realTime);
+        }
         return "/manage/alog/analysis/visits";
     }
-
 
     @RequestMapping(path = "visits", method = RequestMethod.POST)
     @ResponseBody
@@ -56,7 +64,15 @@ public class ActionAnalysisManagerController extends AbstractJQueryEntityControl
         AnalysisResult<ActionVisitsInfo> result = new AnalysisResult();
         try {
             result.appendData(this.referenceData(request));
+            Map<String, Object> searchParams = getSearchParams(request);
             List<ActionVisitsInfo> entities = actionAnalysisVisitsService.list(getSearchParams(request));
+            ActionVisitsInfo visits = new ActionVisitsInfo(getPeriodLable(searchParams));
+            entities.forEach(e -> {
+                visits.setPv(visits.getPv() + e.getPv());
+                visits.setUv(visits.getUv() + e.getUv());
+                visits.setIp(visits.getIp() + e.getIp());
+            });
+            result.appendData("visitsTotal", visits);
             result.setTotal((long) entities.size());
             result.setRows(entities);
         } catch (Exception var5) {
@@ -64,6 +80,23 @@ public class ActionAnalysisManagerController extends AbstractJQueryEntityControl
         }
         return result;
     }
+
+    private String getPeriodLable(Map<String, Object> searchParams) {
+        String start = (String) searchParams.get("GTE_period");
+        String end = (String) searchParams.get("LTE_period");
+        if (Strings.equals(start, end)) {
+            return start;
+        } else {
+            return start + " ~ " + end;
+        }
+    }
+
+    @RequestMapping(path = "/widget/visits")
+    public String widgetPv(HttpServletRequest request, HttpServletResponse response, Model model) {
+        model.addAllAttributes(referenceData(request));
+        return "/manage/alog/analysis/widget/visits";
+    }
+
 
     @Override
     protected void referenceData(HttpServletRequest request, Map<String, Object> model) {

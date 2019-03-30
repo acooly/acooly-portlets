@@ -12,12 +12,16 @@ import com.acooly.core.common.dao.DynamicListQueryDao;
 import com.acooly.portlets.alog.analysis.persist.dto.ActionVisitsInfo;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author zhangpu
  * @date 2019-03-23 17:30
  */
 public interface ActionVisitsDao extends DynamicListQueryDao<ActionVisitsInfo> {
+
+    List<ActionVisitsInfo> listRealTime(Map<String, Object> map, Map<String, Boolean> orderMap);
 
     int pv(Date date);
 

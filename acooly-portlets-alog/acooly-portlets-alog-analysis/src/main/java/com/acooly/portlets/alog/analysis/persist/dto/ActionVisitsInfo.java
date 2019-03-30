@@ -32,6 +32,10 @@ public class ActionVisitsInfo extends InfoBase {
     public ActionVisitsInfo() {
     }
 
+    public ActionVisitsInfo(String period) {
+        this.period = period;
+    }
+
     public ActionVisitsInfo(String period, int pv, int uv, int ip) {
         this.period = period;
         this.pv = pv;
