@@ -47,12 +47,14 @@ var acoolyAlogClass = {
                 // ... 请参考：ActionLogInfo对象属性 ...
             },
             opts
-            )
-        ;
+        );
+
+        // var token = $("meta[name='X-CSRF-TOKEN']").attr("content");
+        // options['_csrf']=token;
         $.ajax({
             url: url,
             data: options,
-            // type : 'POST',
+            type: 'POST',
             xhrFields: {
                 withCredentials: true
             },
