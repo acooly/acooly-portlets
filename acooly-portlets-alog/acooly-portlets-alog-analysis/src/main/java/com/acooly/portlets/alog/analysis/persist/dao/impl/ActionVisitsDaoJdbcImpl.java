@@ -63,7 +63,7 @@ public class ActionVisitsDaoJdbcImpl extends AbstractJdbcTemplateDao implements 
         String sql = null;
         if (analysisPeriod == AnalysisPeriod.DAY) {
             sql = "select period,pv,uv,ip from p_action_analysis_visits where period >= '" + startPeriod + "' and period <= '" + endPeriod + "'";
-        }else if (analysisPeriod == AnalysisPeriod.WEEK) {
+        } else if (analysisPeriod == AnalysisPeriod.WEEK) {
             sql = "select DATE_FORMAT(period,'%Y-第%U周') as weeks ,sum(pv) as pv,sum(uv) as uv,sum(ip) as ip " +
                     "from p_action_analysis_visits " +
                     "where period >= '" + startPeriod + "' and period < '" + endPeriod + "' " +
@@ -124,18 +124,14 @@ public class ActionVisitsDaoJdbcImpl extends AbstractJdbcTemplateDao implements 
         jdbcTemplate.query(sqlForPvByHour, args.toArray(), new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet rs) throws SQLException {
-                while (rs.next()) {
-                    resultMap.get(rs.getString(1)).setPv(rs.getInt(2));
-                }
+                resultMap.get(rs.getString(1)).setPv(rs.getInt(2));
             }
         });
         // 查询UV
         jdbcTemplate.query(sqlForUvByHour, args.toArray(), new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet rs) throws SQLException {
-                while (rs.next()) {
-                    resultMap.get(rs.getString(1)).setUv(rs.getInt(2));
-                }
+                resultMap.get(rs.getString(1)).setUv(rs.getInt(2));
             }
         });
 
@@ -143,9 +139,7 @@ public class ActionVisitsDaoJdbcImpl extends AbstractJdbcTemplateDao implements 
         jdbcTemplate.query(sqlForIpByHour, args.toArray(), new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet rs) throws SQLException {
-                while (rs.next()) {
-                    resultMap.get(rs.getString(1)).setIp(rs.getInt(2));
-                }
+                resultMap.get(rs.getString(1)).setIp(rs.getInt(2));
             }
         });
         return Lists.newArrayList(resultMap.values());

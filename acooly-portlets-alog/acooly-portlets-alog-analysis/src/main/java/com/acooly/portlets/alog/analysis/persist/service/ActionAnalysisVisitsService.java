@@ -27,5 +27,7 @@ public interface ActionAnalysisVisitsService extends EntityService<ActionAnalysi
 
     List<ActionVisitsInfo> list(Map<String, Object> map);
 
+    void cacheClear(String period);
+
 
 }

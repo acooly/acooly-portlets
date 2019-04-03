@@ -7,6 +7,7 @@
 package com.acooly.portlets.alog.analysis.persist.web;
 
 import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.utils.Dates;
 import com.acooly.core.utils.Servlets;
 import com.acooly.core.utils.Strings;
 import com.acooly.portlets.alog.analysis.persist.dto.ActionVisitsInfo;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +97,22 @@ public class ActionAnalysisManagerController extends AbstractJQueryEntityControl
     public String widgetPv(HttpServletRequest request, HttpServletResponse response, Model model) {
         model.addAllAttributes(referenceData(request));
         return "/manage/alog/analysis/widget/visits";
+    }
+
+    @RequestMapping(path = "/widget/visits/cacheClear", method = RequestMethod.POST)
+    @ResponseBody
+    public AnalysisResult<ActionVisitsInfo> visitsCacheClear(HttpServletRequest request, HttpServletResponse response) {
+        AnalysisResult<ActionVisitsInfo> result = new AnalysisResult();
+        try {
+            String period = Servlets.getParameter(request, "period");
+            if (Strings.isBlank(period)) {
+                period = Dates.format(new Date(), Dates.CHINESE_DATE_FORMAT_LINE);
+            }
+            actionAnalysisVisitsService.cacheClear(period);
+        } catch (Exception var5) {
+            this.handleException(result, "清理实时分析缓存", var5);
+        }
+        return result;
     }
 
 

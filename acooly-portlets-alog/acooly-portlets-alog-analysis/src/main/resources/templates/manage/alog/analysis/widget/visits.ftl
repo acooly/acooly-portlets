@@ -1,9 +1,12 @@
 <div class="easyui-layout" style="background-color: #ecf0f5;" data-options="fit:true,border:false" xmlns:c="http://www.w3.org/1999/html">
     <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;background-color: #ecf0f5;"" align="left">
-        <section class="content-header" style="padding-top: 5px;">
-            <h1>
+        <section class="content-header" style="padding-top: 5px;display: flex">
+            <h1 style="flex:1">
                 <small id="manage_analysis_widget_visits_total_period"></small>
             </h1>
+            <div>
+                <a href="javascript:;" title="清理缓存(1小时)"><i class="fa fa-eraser" onclick="manage_actionAnalysisVisits_cacheClear()"></i></a>
+            </div>
         </section>
         <section class="content" style="min-height: 10px; padding-top: 5px">
             <div class="row">
@@ -150,6 +153,17 @@
             // 使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
         }
+
+        function manage_actionAnalysisVisits_cacheClear(){
+            $.ajax({
+                url: "/manage/alog/analysis/widget/visits/cacheClear.html",
+                success:function(){
+                    manage_actionAnalysisVisits_today();
+                    $.acooly.alert("清理成功");
+                }
+            });
+        }
+
 
         $(function(){ manage_actionAnalysisVisits_today();});
 
