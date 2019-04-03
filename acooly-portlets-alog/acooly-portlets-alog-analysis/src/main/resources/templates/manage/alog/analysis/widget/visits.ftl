@@ -159,7 +159,7 @@
                 url: "/manage/alog/analysis/widget/visits/cacheClear.html",
                 success:function(){
                     manage_actionAnalysisVisits_today();
-                    $.acooly.alert("清理成功");
+                    $.acooly.msgrb("缓存清理成功",true);
                 }
             });
         }
