@@ -60,14 +60,14 @@ public class ActionAnalysisVisitsServiceImpl extends EntityServiceImpl<ActionAna
         Assert.hasLength((String) map.get("GTE_period"), "开始时间");
         Assert.hasLength((String) map.get("LTE_period"), "结束时间");
         if (analysisPeriod == AnalysisPeriod.HOUR) {
-//            String cacheKey = getCacheKey(map);
-//            ValueOperations<String, List<ActionVisitsInfo>> vo = redisTemplate.opsForValue();
-//            List<ActionVisitsInfo> actionVisitsInfos = vo.get(cacheKey);
-//            if (actionVisitsInfos == null) {
-            List<ActionVisitsInfo>  actionVisitsInfos = actionVisitsDao.listRealTime(map, null);
-//                vo.set(cacheKey, actionVisitsInfos, alogProperties.getRealTimeVisitsCacheTimeoutMinutes(), TimeUnit.MINUTES);
-//                log.info("alog Real-time-visits analysis by hour from database,cacheMinutes:{}", alogProperties.getRealTimeVisitsCacheTimeoutMinutes());
-//            }
+            String cacheKey = getCacheKey(map);
+            ValueOperations<String, List<ActionVisitsInfo>> vo = redisTemplate.opsForValue();
+            List<ActionVisitsInfo> actionVisitsInfos = vo.get(cacheKey);
+            if (actionVisitsInfos == null) {
+                actionVisitsInfos = actionVisitsDao.listRealTime(map, null);
+                vo.set(cacheKey, actionVisitsInfos, alogProperties.getRealTimeVisitsCacheTimeoutMinutes(), TimeUnit.MINUTES);
+                log.info("alog Real-time-visits analysis by hour from database,cacheMinutes:{}", alogProperties.getRealTimeVisitsCacheTimeoutMinutes());
+            }
             return actionVisitsInfos;
         } else {
             return actionVisitsDao.list(map, null);
