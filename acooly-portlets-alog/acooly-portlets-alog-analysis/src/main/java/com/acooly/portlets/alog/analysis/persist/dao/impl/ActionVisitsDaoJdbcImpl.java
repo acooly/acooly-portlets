@@ -115,7 +115,7 @@ public class ActionVisitsDaoJdbcImpl extends AbstractJdbcTemplateDao implements 
 
         Map<String, ActionVisitsInfo> resultMap = Maps.newLinkedHashMap();
         String period = null;
-        for (int i = 1; i < 24; i++) {
+        for (int i = 0; i < 24; i++) {
             period = (i < 10 ? "0" + i : String.valueOf(i));
             resultMap.put(period, new ActionVisitsInfo(period));
         }
