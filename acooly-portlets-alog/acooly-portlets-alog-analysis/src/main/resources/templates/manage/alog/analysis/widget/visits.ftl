@@ -1,12 +1,11 @@
 <div class="easyui-layout" style="background-color: #ecf0f5;" data-options="fit:true,border:false" xmlns:c="http://www.w3.org/1999/html">
     <div data-options="region:'north',border:false" style="padding:5px; overflow: hidden;background-color: #ecf0f5;"" align="left">
-        <section class="content-header">
+        <section class="content-header" style="padding-top: 5px;">
             <h1>
-                访问量情况
                 <small id="manage_analysis_widget_visits_total_period"></small>
             </h1>
         </section>
-        <section class="content" style="min-height: 10px;">
+        <section class="content" style="min-height: 10px; padding-top: 5px">
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="info-box">
@@ -57,7 +56,7 @@
 
     <div data-options="region:'center',fit:true,border:false" style="background-color: #ecf0f5;">
         <div style="height: 100%; width: 100%;padding: 0 20px;">
-        <div class="box box-info" style="height: 100%; width: 100%;">
+        <div class="box box-info" style="height: 90%; width: 100%;">
             <div class="box-header with-border">
                 <h3 class="box-title">访问量实时分</h3>
 
@@ -67,7 +66,7 @@
                 </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body" style="height: 75%; width: 100%; padding: 0 20px;">
+            <div class="box-body" style="height: 80%; width: 100%; padding: 0 20px;">
                     <div id="manage_analysis_widget_visits_echart"
                          style="height: 100%; width: 100%;background-color: #fff;padding:30px 15px;"></div>
             </div>

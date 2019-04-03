@@ -30,7 +30,7 @@ var acoolyAlogClass = {
     /**
      * 收集行为日志
      * @param url
-     * @param opts
+     * @param opts {userKey:''}
      */
     log: function (url, opts) {
         if (!url) {
