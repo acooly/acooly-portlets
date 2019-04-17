@@ -40,6 +40,7 @@ var acoolyAlogClass = {
             url = this.host + url;
         }
         var path = window.location.pathname;
+        var queryString = window.location.search;
         var options = $.extend({
                 actionGroup: null,
                 actionKey: path,
@@ -49,8 +50,8 @@ var acoolyAlogClass = {
             opts
         );
 
-        // var token = $("meta[name='X-CSRF-TOKEN']").attr("content");
-        // options['_csrf']=token;
+        url = url + queryString;
+        // console.info("url", url);
         $.ajax({
             url: url,
             data: options,

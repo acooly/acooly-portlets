@@ -11,7 +11,6 @@ package com.acooly.portlets.alog.core.service.impl;
 import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
 import com.acooly.core.utils.Collections3;
-import com.acooly.core.utils.Servlets;
 import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.core.utils.mapper.JsonMapper;
@@ -26,6 +25,7 @@ import com.acooly.portlets.alog.core.service.ActionLogUserKeyParser;
 import com.acooly.portlets.alog.core.service.ActionMappingService;
 import com.acooly.portlets.alog.core.service.AlogCacheService;
 import com.acooly.portlets.alog.core.service.AlogService;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.net.HttpHeaders;
@@ -144,22 +144,20 @@ public class AlogServiceImpl implements AlogService {
         if (Strings.isNotBlank(params) && request != null) {
             Map data = Maps.newLinkedHashMap();
             List<String> parameters = Lists.newArrayList(params.split(","));
-            if (parameters.contains("*")) {
-                data = Servlets.getParameters(request, null, false);
-            } else {
-                String paramValue = null;
-                for (String key : parameters) {
-
-                    if (Strings.endsWith(key, "*") && Strings.length(key) > 1) {
-                        String prefixPart = Strings.substringBefore(key, "*");
-                        data.putAll(Servlets.getParameters(request, prefixPart, false));
-                    } else {
-                        paramValue = Servlets.getParameter(request, key);
-                        if (Strings.isNotBlank(paramValue)) {
-                            data.put(key, paramValue);
+            String queryString = request.getQueryString();
+            Map<String, String> qsMap = Maps.newHashMap();
+            Splitter.on("&").omitEmptyStrings().trimResults()
+                    .withKeyValueSeparator(Splitter.on("=").trimResults()).split(queryString)
+                    .forEach((k, v) -> {
+                        if (Strings.isNotBlank(k) && Strings.isNotBlank(v)) {
+                            qsMap.put(k, v);
                         }
-                    }
-                }
+                    });
+
+            if (parameters.contains("*")) {
+                data.putAll(qsMap);
+            } else {
+                data.putAll(Maps.filterKeys(qsMap, k -> parameters.contains(k)));
             }
 
             if (data.isEmpty()) {
@@ -175,6 +173,7 @@ public class AlogServiceImpl implements AlogService {
                 log.debug("最大：{}，丢弃: {}:{}", MAX_DATA_LENGTH, lastKey, lastValue);
                 jsonData = JsonMapper.nonEmptyMapper().toJson(data);
             }
+            actionLog.setData(jsonData);
             log.debug("alog 收集配置参数: {}", jsonData);
         }
 
@@ -301,5 +300,6 @@ public class AlogServiceImpl implements AlogService {
     private boolean isMiniProgram(String userAgentString) {
         return Strings.contains(userAgentString, ActionChannel.MiniProgram.code());
     }
+
 
 }
