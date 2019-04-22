@@ -8,6 +8,8 @@
  */
 package com.acooly.portlets.alog.analysis.persist.service;
 
+import com.acooly.core.utils.Dates;
+
 import java.util.Date;
 
 /**
@@ -30,6 +32,13 @@ public interface ActionAnalysisService {
      */
     default void analysisVisitsByDay() {
         analysisVisitsByDay(new Date());
+    }
+
+    /**
+     * 统计昨天的访问量
+     */
+    default void analysisVisitsByYesterday() {
+        analysisVisitsByDay(Dates.minusDay(new Date()));
     }
 
 }

@@ -243,7 +243,7 @@ public class AlogServiceImpl implements AlogService {
                     .append(browser.getName()).append("-")
                     .append(browser.getBrowserType().getName());
             actionLog.setChannelInfo(channelInfo.toString());
-            actionLog.setChannelVersion(userAgent.getBrowserVersion().getVersion());
+            actionLog.setChannelVersion(userAgent.getBrowserVersion() == null ? null : userAgent.getBrowserVersion().getVersion());
         }
         // 请求IP
         if (Strings.isBlank(actionLog.getUserIp())) {

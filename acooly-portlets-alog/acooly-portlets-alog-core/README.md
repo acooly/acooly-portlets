@@ -192,7 +192,7 @@ alog的数据分析需要依赖：`acooly-portlets-alog-analysis`模块，该模
 * 任务名称: log访问量日归档
 * 任务类型: LOCAL（本地）
 * 执行类名: com.acooly.portlets.alog.analysis.persist.service.ActionAnalysisService
-* 执行方法: analysisVisitsByDay
+* 执行方法: analysisVisitsByYesterday
 * 任务定时: 0 10 0 * * ?   (每天凌晨00:10，可自行调整)
 
 >PS: 必须添加定时任务，后台的：行为日志->行为分析->访问量分析功能才可用
