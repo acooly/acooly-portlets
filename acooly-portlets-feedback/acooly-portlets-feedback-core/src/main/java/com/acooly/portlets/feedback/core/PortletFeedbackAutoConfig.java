@@ -46,7 +46,7 @@ public class PortletFeedbackAutoConfig {
 
 
     @Bean
-    public StandardDatabaseScriptIniter portletCommentScriptIniter() {
+    public StandardDatabaseScriptIniter portletFeedbackScriptIniter() {
         return new StandardDatabaseScriptIniter() {
             @Override
             public String getEvaluateTable() {
