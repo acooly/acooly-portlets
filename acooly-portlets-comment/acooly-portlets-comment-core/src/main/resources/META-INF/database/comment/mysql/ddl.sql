@@ -32,6 +32,7 @@ CREATE TABLE `p_comment_log` (
   `action_type` varchar(45) NOT NULL COMMENT '操作类型{举报:report,thumbsup:点赞}',
   `user_ip` varchar(45) DEFAULT NULL COMMENT '操作IP',
   `action_content` varchar(512) DEFAULT NULL COMMENT '相关内容',
+  `status` varchar(32) DEFAULT NULL COMMENT '状态',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `comments` varchar(128) DEFAULT NULL COMMENT '备注',
