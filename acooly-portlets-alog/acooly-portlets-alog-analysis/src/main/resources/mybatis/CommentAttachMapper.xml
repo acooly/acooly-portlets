@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.comment.core.dao.CommentAttachDao">
+
+    <resultMap id="commentAttachResultMap" type="com.acooly.portlets.comment.core.entity.CommentAttach">
+        <id property="id" column="commentAttach_id"/>
+        <result property="commentId" column="commentAttach_comment_id"/>
+        <result property="commentNo" column="commentAttach_comment_no"/>
+        <result property="attachType" column="commentAttach_attach_type"/>
+        <result property="thumbnail" column="commentAttach_thumbnail"/>
+        <result property="attachPath" column="commentAttach_attach_path"/>
+        <result property="sortTime" column="commentAttach_sort_time"/>
+        <result property="createTime" column="commentAttach_create_time"/>
+        <result property="updateTime" column="commentAttach_update_time"/>
+        <result property="comments" column="commentAttach_comments"/>
+    </resultMap>
+
+    <sql id="commentAttachSqlSelect">
+            commentAttach.id as commentAttach_id,
+            commentAttach.comment_id as commentAttach_comment_id,
+            commentAttach.comment_no as commentAttach_comment_no,
+            commentAttach.attach_type as commentAttach_attach_type,
+            commentAttach.thumbnail as commentAttach_thumbnail,
+            commentAttach.attach_path as commentAttach_attach_path,
+            commentAttach.sort_time as commentAttach_sort_time,
+            commentAttach.create_time as commentAttach_create_time,
+            commentAttach.update_time as commentAttach_update_time,
+            commentAttach.comments as commentAttach_comments
+    </sql>
+
+</mapper>
