@@ -28,20 +28,21 @@
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-core</artifactId>
-            <version>4.2.0-SNAPSHOT</version>
+            <version>${openapi.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-service-impl</artifactId>
-            <version>4.2.0-SNAPSHOT</version>
+            <version>${openapi.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-mock</artifactId>
-            <version>${acooly.version}</version>
+            <version>${openapi.version}</version>
             <scope>provided</scope>
         </dependency>
 

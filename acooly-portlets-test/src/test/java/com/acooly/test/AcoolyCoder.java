@@ -13,14 +13,14 @@ public class AcoolyCoder {
         DefaultCodeGenerateService service = (DefaultCodeGenerateService) Generator.getGenerator();
         //set workspace if possible
         if (StringUtils.isBlank(service.getGenerateConfiguration().getWorkspace())) {
-            String workspace = getProjectPath() + "acooly-portlets-alog/acooly-portlets-alog-analysis";
+            String workspace = getProjectPath() + "acooly-portlets-comment/acooly-portlets-comment-core";
             service.getGenerateConfiguration().setWorkspace(workspace);
         }
         //set root pacakge if possible
         if (StringUtils.isBlank(service.getGenerateConfiguration().getRootPackage())) {
             service.getGenerateConfiguration().setRootPackage(getRootPackage());
         }
-        service.generateTable("p_action_analysis_visits");
+        service.generateTable("p_comment_attach");
     }
 
     public static String getProjectPath() {
@@ -31,6 +31,6 @@ public class AcoolyCoder {
     }
 
     private static String getRootPackage() {
-        return "com.acooly.portlets.alog.analysis.persist";
+        return "com.acooly.portlets.comment.core";
     }
 }

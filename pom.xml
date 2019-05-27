@@ -16,6 +16,7 @@
 
     <properties>
         <acooly.version>4.2.0-SNAPSHOT</acooly.version>
+        <openapi.version>4.2.1-SNAPSHOT</openapi.version>
     </properties>
 
 
