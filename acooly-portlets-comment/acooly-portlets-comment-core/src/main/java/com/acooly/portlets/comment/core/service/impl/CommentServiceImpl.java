@@ -18,21 +18,26 @@ import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
 import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import com.acooly.portlets.comment.core.PortletCommentProperties;
 import com.acooly.portlets.comment.core.entity.Comment;
+import com.acooly.portlets.comment.core.entity.CommentAttach;
 import com.acooly.portlets.comment.core.entity.CommentLog;
+import com.acooly.portlets.comment.core.manage.CommentAttachManager;
 import com.acooly.portlets.comment.core.manage.CommentLogManager;
 import com.acooly.portlets.comment.core.manage.CommentManager;
 import com.acooly.portlets.comment.core.service.CommentService;
 import com.acooly.portlets.comment.core.service.CommentThumbsupCacheManager;
 import com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent;
 import com.acooly.portlets.comment.core.service.event.CommentSuccessEvent;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +54,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentLogManager commentLogManager;
-
+    @Autowired
+    private CommentAttachManager commentAttachManager;
     @Autowired
     PortletCommentProperties portletCommentProperties;
 
@@ -80,7 +86,20 @@ public class CommentServiceImpl implements CommentService {
             if (Strings.isBlank(comment.getCommentNo())) {
                 comment.setCommentNo(Ids.getDid());
             }
+            List<CommentAttachInfo> attachInfos = commentBaseInfo.getAttachInfos();
+            comment.setAttachCount(Collections3.isNotEmpty(attachInfos) ? attachInfos.size() : 0);
             commentManager.save(comment);
+
+            if (Collections3.isNotEmpty(attachInfos)) {
+                List<CommentAttach> attaches = Lists.newArrayList();
+                attachInfos.forEach(e -> {
+                    CommentAttach commentAttach = BeanCopier.copy(e, CommentAttach.class);
+                    commentAttach.setCommentId(comment.getId());
+                    commentAttach.setCommentNo(comment.getCommentNo());
+                    attaches.add(commentAttach);
+                });
+                commentAttachManager.saves(attaches);
+            }
 
             CommentInfo commentInfo = convert(comment);
             event.setCommentInfo(commentInfo);
@@ -89,6 +108,7 @@ public class CommentServiceImpl implements CommentService {
         } catch (BusinessException be) {
             throw be;
         } catch (Exception e) {
+            log.error("评论 [错误]: {}", e.getMessage());
             throw new BusinessException(CommonErrorCodes.INTERNAL_ERROR);
         }
     }
@@ -226,39 +246,75 @@ public class CommentServiceImpl implements CommentService {
         if (map != null && map.size() > 0) {
             params.putAll(map);
         }
-
-        Map<String, Boolean> orderMap = Maps.newLinkedHashMap();
-        orderMap.put("sticky", false);
-        orderMap.put("id", false);
-
-        if (sortMap != null && sortMap.size() > 0) {
-            orderMap.putAll(sortMap);
-        }
+        Map<String, Boolean> orderMap = getOrderMap(sortMap);
         PageInfo<Comment> pageInfoEntity = new PageInfo<>(pageInfo.getCountOfCurrentPage(), pageInfo.getCurrentPage());
         commentManager.query(pageInfoEntity, params, orderMap);
         pageInfo.setTotalPage(pageInfoEntity.getTotalPage());
         pageInfo.setTotalCount(pageInfoEntity.getTotalCount());
-
-        if (queryChild == null) {
-            queryChild = true;
+        if (Collections3.isEmpty(pageInfoEntity.getPageResults())) {
+            pageInfo.setPageResults(Lists.newArrayList());
+            return pageInfo;
         }
+
+
+        List<Long> commentIds = Lists.newArrayList();
 
         List<CommentInfo> commentInfos = Lists.newArrayList();
-        if (Collections3.isNotEmpty(pageInfoEntity.getPageResults())) {
-            CommentInfo commentInfo = null;
-            for (Comment comment : pageInfoEntity.getPageResults()) {
-                commentInfo = convert(comment);
-                if (queryChild && comment.getRepeats() > 0) {
-                    commentInfo.setChildren(queryWithParentId(comment.getId(), sortMap));
+        for (Comment comment : pageInfoEntity.getPageResults()) {
+            commentIds.add(comment.getId());
+            commentInfos.add(convert(comment));
+//                if (queryChild && comment.getRepeats() > 0) {
+//                    commentInfo.setChildren(queryWithParentId(comment.getId(), sortMap));
+//                }
+
+        }
+
+        // 子评论查询
+        if (queryChild != null && queryChild) {
+            Multimap<Long, CommentInfo> children = queryChildren(commentIds, sortMap);
+            Collection<CommentInfo> commentInfoCollection = null;
+            for (CommentInfo commentInfo : commentInfos) {
+                commentInfoCollection = children.get(commentInfo.getId());
+                commentInfos.addAll(Collections3.extractToList(commentInfoCollection, "id"));
+                if (Collections3.isNotEmpty(commentInfoCollection)) {
+                    commentInfo.setChildren(Lists.newArrayList(commentInfoCollection));
                 }
-                commentInfos.add(commentInfo);
             }
         }
-        doMarkThumbsup(userNo, commentInfos);
+
+        // 附件查询
+        Multimap<Long, CommentAttachInfo> commentAttachInfoMultimap = queryAttach(commentIds);
+        for (CommentInfo commentInfo : commentInfos) {
+            if (Collections3.isNotEmpty(commentInfo.getChildren())) {
+                for (CommentInfo subCommentInfo : commentInfo.getChildren()) {
+                    Collection<CommentAttachInfo> attchs = commentAttachInfoMultimap.get(subCommentInfo.getId());
+                    if (Collections3.isNotEmpty(attchs)) {
+                        subCommentInfo.setAttachInfos(Lists.newArrayList(attchs));
+                        subCommentInfo.setAttachCount(attchs.size());
+                    }
+                }
+            }
+            Collection<CommentAttachInfo> attchs = commentAttachInfoMultimap.get(commentInfo.getId());
+            if (Collections3.isNotEmpty(attchs)) {
+                commentInfo.setAttachInfos(Lists.newArrayList(attchs));
+                commentInfo.setAttachCount(attchs.size());
+            }
+        }
+
+        // 当前用户点赞标志
+        if (Strings.isNotBlank(userNo)) {
+            doMarkThumbsup(userNo, commentInfos);
+        }
         pageInfo.setPageResults(commentInfos);
         return pageInfo;
     }
 
+    /**
+     * 标记是否被当前用户点赞
+     *
+     * @param actionUserNo
+     * @param commentInfos
+     */
     protected void doMarkThumbsup(String actionUserNo, List<CommentInfo> commentInfos) {
         if (Strings.isBlank(actionUserNo)) {
             return;
@@ -285,10 +341,22 @@ public class CommentServiceImpl implements CommentService {
     }
 
 
+    private Map<String, Boolean> getOrderMap(Map<String, Boolean> sortMap) {
+        Map<String, Boolean> orderMap = Maps.newLinkedHashMap();
+        orderMap.put("sticky", false);
+        orderMap.put("id", false);
+
+        if (sortMap != null && sortMap.size() > 0) {
+            orderMap.putAll(sortMap);
+        }
+        return orderMap;
+    }
+
     protected List<CommentInfo> queryWithParentId(Long parentId, Map<String, Boolean> sortMap) {
         Map<String, Object> params = Maps.newHashMap();
         params.put("EQ_parentId", parentId);
         params.put("RLIKE_status", "enable");
+        Map<String, Boolean> subSortMap = Maps.newHashMap();
         List<Comment> comments = commentManager.query(params, sortMap);
         List<CommentInfo> commentInfos = null;
         if (Collections3.isNotEmpty(comments)) {
@@ -300,12 +368,72 @@ public class CommentServiceImpl implements CommentService {
         return commentInfos;
     }
 
+    /**
+     * 批量子查询
+     *
+     * @param commentIds
+     * @return
+     */
+    protected Multimap<Long, CommentAttachInfo> queryAttach(List<Long> commentIds) {
+        Multimap<Long, CommentAttachInfo> children = ArrayListMultimap.create();
+        Map<String, Object> params = Maps.newHashMap();
+        params.put("IN_commentId", commentIds);
+        Map<String, Boolean> subSortMap = Maps.newHashMap();
+        subSortMap.put("commentId", true);
+        List<CommentAttach> commentAttaches = commentAttachManager.query(params, subSortMap);
+
+        for (CommentAttach commentAttach : commentAttaches) {
+            children.put(commentAttach.getCommentId(), convert(commentAttach));
+        }
+        return children;
+    }
+
+    protected Multimap<Long, CommentInfo> queryChildren(List<Long> parentIds, Map<String, Boolean> sortMap) {
+        Multimap<Long, CommentInfo> children = ArrayListMultimap.create();
+        Map<String, Object> params = Maps.newHashMap();
+        params.put("IN_parentId", parentIds);
+        params.put("RLIKE_status", "enable");
+        Map<String, Boolean> subSortMap = Maps.newHashMap();
+        subSortMap.put("parentId", true);
+        subSortMap.putAll(sortMap);
+        List<Comment> comments = commentManager.query(params, subSortMap);
+        if (Collections3.isEmpty(comments)) {
+            return children;
+        }
+        for (Comment comment : comments) {
+            children.put(comment.getParentId(), convert(comment));
+        }
+        return children;
+    }
+
+
+    private List<CommentInfo> convert(List<Comment> comments, boolean includeChildren, Map<String, Boolean> orderMap) {
+
+        List<CommentInfo> commentInfos = Lists.newArrayList();
+        if (Collections3.isNotEmpty(comments)) {
+            CommentInfo commentInfo = null;
+            for (Comment comment : comments) {
+                commentInfo = convert(comment);
+                if (includeChildren && comment.getRepeats() > 0) {
+                    commentInfo.setChildren(queryWithParentId(comment.getId(), orderMap));
+                }
+                commentInfos.add(commentInfo);
+            }
+        }
+
+
+        return Lists.newArrayList();
+    }
 
     private CommentInfo convert(Comment comment) {
         CommentInfo commentInfo = BeanCopier.copy(comment, CommentInfo.class);
         commentInfo.setPubDate(comment.getCreateTime());
         commentInfo.setStatusText(comment.getStatus().getMessage());
         return commentInfo;
+    }
+
+    private CommentAttachInfo convert(CommentAttach commentAttach) {
+        return BeanCopier.copy(commentAttach, CommentAttachInfo.class);
     }
 
     private CommentLogInfo convert(CommentLog commentLog) {

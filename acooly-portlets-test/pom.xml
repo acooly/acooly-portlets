@@ -71,11 +71,11 @@
             <version>${project.parent.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>com.acooly</groupId>-->
-        <!--<artifactId>acooly-portlets-comment-openapi</artifactId>-->
-        <!--<version>${project.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-comment-openapi</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- 组件：安全组件 -->
         <dependency>

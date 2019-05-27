@@ -1,19 +1,23 @@
 package com.acooly.portlets.comment.client.message;
 
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
+import com.acooly.openapi.framework.common.annotation.OpenApiFieldCondition;
 import com.acooly.openapi.framework.common.message.ApiRequest;
+import com.acooly.portlets.comment.client.dto.CommentAttachInfo;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * @author zhangpu
  * @date 2019-01-07 00:51
  */
 @Data
+@Deprecated
 public class CommentApiRequest extends ApiRequest {
 
 
@@ -77,6 +81,24 @@ public class CommentApiRequest extends ApiRequest {
     @NotEmpty
     @OpenApiField(desc = "业务KEY", constraint = "标记评论的业务,是业务的唯一标志", demo = "1")
     private String busiKey;
+
+    /**
+     * 附件数
+     */
+    @OpenApiFieldCondition("查询有效，创建时无效")
+    @OpenApiField(desc = "附件数量", constraint = "查询有效，创建时无效", demo = "3", ordinal = 9)
+    private int attachCount;
+
+    /**
+     * 星级
+     */
+    @Max(5)
+    @OpenApiField(desc = "星级", constraint = "评论星级（1-5星）", demo = "5", ordinal = 10)
+    private int star;
+
+    @OpenApiFieldCondition("单笔查询()和创建有效，评论列表查询为空")
+    @OpenApiField(desc = "附件", constraint = "评论的附件，支持最多10个，可为图片和视频。请采用专用接口上传附件获得缩略图和附件的相对地址", ordinal = 11)
+    private List<CommentAttachInfo> attachInfos;
 
 
 }

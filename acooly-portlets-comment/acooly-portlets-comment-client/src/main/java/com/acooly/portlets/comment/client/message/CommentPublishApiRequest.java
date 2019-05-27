@@ -1,33 +1,26 @@
 package com.acooly.portlets.comment.client.message;
 
-import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
-import com.acooly.openapi.framework.common.message.ApiResponse;
+import com.acooly.openapi.framework.common.annotation.OpenApiFieldCondition;
+import com.acooly.openapi.framework.common.message.ApiRequest;
+import com.acooly.portlets.comment.client.dto.CommentAttachInfo;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
-import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.util.List;
 
 /**
+ * 评论发布 请求报文
+ *
  * @author zhangpu
- * @date 2019-01-07 00:53
+ * @date 2019-01-07 00:51
  */
 @Data
-@Deprecated
-public class CommentApiResponse extends ApiResponse {
+public class CommentPublishApiRequest extends ApiRequest {
 
-    /**
-     * 评论ID
-     * 查询时有效，添加时为空
-     */
-    @OpenApiField(desc = "评论ID", constraint = "评论唯一标志，查询时有效，添加时为空", demo = "11")
-    @NotNull
-    private Long id;
 
     /**
      * 父节点
@@ -48,9 +41,23 @@ public class CommentApiResponse extends ApiResponse {
     /**
      * 用户名（冗余）
      */
-    @Size(min = 1, max = 32)
+    @Size(max = 32)
     @OpenApiField(desc = "评论人用户名", constraint = "业务层用户名", demo = "acooly")
     private String userName;
+
+    /**
+     * 用户头像（冗余）
+     */
+    @Size(max = 255)
+    @OpenApiField(desc = "用户头像", constraint = "业务层用户名", demo = "acooly")
+    private String profilePhoto;
+
+    /**
+     * 请求IP
+     */
+    @Size(max = 32)
+    @OpenApiField(desc = "用户IP", constraint = "请求操作的用户IP", demo = "218.210.99.78")
+    private String userIp;
 
     /**
      * 评论内容
@@ -76,27 +83,23 @@ public class CommentApiResponse extends ApiResponse {
     @OpenApiField(desc = "业务KEY", constraint = "标记评论的业务,是业务的唯一标志", demo = "1")
     private String busiKey;
 
+    /**
+     * 附件数
+     */
+    @OpenApiFieldCondition("查询有效，创建时无效")
+    @OpenApiField(desc = "附件数量", constraint = "查询有效，创建时无效", demo = "3", ordinal = 9)
+    private int attachCount;
 
-    @OpenApiField(desc = "点赞数", constraint = "点赞数量", demo = "11")
-    private int thumbsup = 0;
+    /**
+     * 星级
+     */
+    @Max(5)
+    @OpenApiField(desc = "星级", constraint = "评论星级（1-5星）", demo = "5", ordinal = 10)
+    private int star;
 
-    @OpenApiField(desc = "复评数", constraint = "子评论数量", demo = "0")
-    private int repeats = 0;
+    @OpenApiFieldCondition("单笔查询()和创建有效，评论列表查询为空")
+    @OpenApiField(desc = "附件", constraint = "评论的附件，支持最多10个，可为图片和视频。请采用专用接口上传附件获得缩略图和附件的相对地址", ordinal = 11)
+    private List<CommentAttachInfo> attachInfos;
 
-    @OpenApiField(desc = "状态", constraint = "评论状态", demo = "apply")
-    @NotNull
-    private CommentStatusEnum status;
-
-    @OpenApiField(desc = "状态说明", constraint = "评论状态说明", demo = "已评论")
-    @NotEmpty
-    private String statusText;
-
-    @OpenApiField(desc = "评论时间", constraint = "评论时间 yyyy-MM-dd HH:mm:ss", demo = "2019-01-01 02:02:02")
-    @NotNull
-    private Date pubDate;
-
-    @OpenApiField(desc = "是否置顶", constraint = "是否置顶")
-    @NotNull
-    private WhetherStatus sticky;
 
 }

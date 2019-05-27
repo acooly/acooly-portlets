@@ -18,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 /**
@@ -117,6 +118,17 @@ public class Comment extends AbstractEntity {
      * 复评数
      */
     private int repeats = 0;
+
+    /**
+     * 附件数
+     */
+    private int attachCount;
+
+    /**
+     * 星级
+     */
+    @Max(5)
+    private int star;
 
     /**
      * 是否置顶
