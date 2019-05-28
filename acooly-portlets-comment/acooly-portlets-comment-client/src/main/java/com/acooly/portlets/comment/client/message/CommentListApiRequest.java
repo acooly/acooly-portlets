@@ -32,7 +32,6 @@ public class CommentListApiRequest extends PageApiRequest {
     @OpenApiField(desc = "业务KEY", constraint = "标记评论的业务,是业务的唯一标志", demo = "1", ordinal = 2)
     private String busiKey;
 
-
     /**
      * 用户编码
      * 用于标志查询的结果记录中，该用户是否已点赞
@@ -41,10 +40,14 @@ public class CommentListApiRequest extends PageApiRequest {
     @OpenApiField(desc = "操作用户标志", constraint = "操作用户编码", demo = "201111112121212", ordinal = 3)
     private String actionUserNo;
 
-    @OpenApiField(desc = "是否查询子评论", constraint = "是否查询子评论", demo = "no", ordinal = 4)
-    private WhetherStatus childrenInclude = WhetherStatus.yes;
 
-    @OpenApiField(desc = "是否有附件", constraint = "是否有附件", demo = "no", ordinal = 4)
-    private WhetherStatus attacheInclude = WhetherStatus.no;
+    @OpenApiField(desc = "是否返回子评论", constraint = "查询结果是否包含子评论", demo = "no", ordinal = 5)
+    private WhetherStatus childrenInclude;
+
+    @OpenApiField(desc = "是否有附件", constraint = "查询条件：查询是否有附件的评论，为空表示所有", demo = "no", ordinal = 4)
+    private WhetherStatus attachQuery;
+
+    @OpenApiField(desc = "是否返回附件", constraint = "查询结果是否包含附件列表", demo = "no", ordinal = 6)
+    private WhetherStatus attachInclude = WhetherStatus.no;
 
 }

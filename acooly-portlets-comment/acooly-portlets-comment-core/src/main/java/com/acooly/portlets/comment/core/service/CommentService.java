@@ -60,14 +60,16 @@ public interface CommentService {
      * @param busiType   [可选] 业务类型（默认内置: DEFAULT）
      * @param map        [可选] 扩展条件（可覆盖内置）
      * @param sortMap    [可选] 扩展排序（可覆盖内置）
-     * @param queryChild [可选] 是否查询子评论（默认为：true）
+     * @param childrenInclude [可选] 是否查询子评论（默认为：true）
+     * @param attachInclude [可选] 是否查询子评论（默认为：false）
      * @return
      */
     PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
-                                Map<String, Object> map, Map<String, Boolean> sortMap, Boolean queryChild);
+                                Map<String, Object> map, Map<String, Boolean> sortMap, Boolean childrenInclude, Boolean attachInclude);
 
 
     default PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType) {
-        return query(pageInfo, userNo, busiKey, busiType, null, null, null);
+        return query(pageInfo, userNo, busiKey, busiType, null, null, null, null);
     }
+
 }

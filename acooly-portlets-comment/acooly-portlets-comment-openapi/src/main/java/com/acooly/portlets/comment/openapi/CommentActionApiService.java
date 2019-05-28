@@ -10,6 +10,7 @@ import com.acooly.portlets.comment.client.dto.CommentActionResult;
 import com.acooly.portlets.comment.client.message.CommentActionApiRequest;
 import com.acooly.portlets.comment.client.message.CommentActionApiResponse;
 import com.acooly.portlets.comment.core.service.CommentService;
+import com.acooly.portlets.common.PortletsContants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @OpenApiNote("评论组件的操作服务接口。包括：" +
         "<li>1、CommentLogActionTypeEnum.report: 举报</li>" +
         "<li>1、CommentLogActionTypeEnum.thumbsup: 点赞</li>")
-@ApiDocType(code = "Portlets", name = "前端组件")
+@ApiDocType(code = PortletsContants.APIDOC_TYPE_CODE, name = PortletsContants.APIDOC_TYPE_NAME)
 @OpenApiService(name = "commentAction", desc = "评论操作", owner = "zhangpu")
 public class CommentActionApiService extends BaseApiService<CommentActionApiRequest, CommentActionApiResponse> {
 

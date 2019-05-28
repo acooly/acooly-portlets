@@ -14,6 +14,8 @@ CREATE TABLE `p_comment` (
   `origin_content` varchar(1024) DEFAULT NULL,
   `thumbsup` int(11) DEFAULT NULL COMMENT '点赞数',
   `repeats` int(11) DEFAULT '0' COMMENT '复评数',
+  `star` int(11) DEFAULT '0' COMMENT '星级1-5',
+  `attach_count` int(11) DEFAULT '0' COMMENT '附件数量',
   `sticky` varchar(32) DEFAULT NULL COMMENT '是否置顶{yes:是,no:否}',
   `status` varchar(32) DEFAULT NULL COMMENT '状态{enable_publish:发布,enable_report:举报,enable_review:管理编辑,disabled:禁用}',
   `create_time` datetime DEFAULT NULL,
