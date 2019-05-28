@@ -16,6 +16,7 @@ acooly-portlets-comment
 * 支持与业务层的解耦，通过外部定义和传入busiType和busiKey实现业务与评论的关联
 * 支持后台管理员编辑处理评论。包括：编辑和禁用等。
 * 支持本地单项目集成，openapi服务和dubbo服务多种方式部署和应用
+* 支持附件（图片/视频）[2019-05-28]
 
 ## 集成
 
@@ -115,9 +116,11 @@ public interface CommentService {
 
 3、接口服务
 
-* 评论接口：CommentApiService
-* 评论点赞：CommentThumbsupApiService
-* 评论查询：CommentListApiService
+* [废弃]评论接口：CommentApiService （兼容可用）
+* 评论发布：CommentPublishApiService (commentPublish)
+* 评论点赞：CommentThumbsupApiService (commentThumbsup)
+* 评论详情：CommentInfoApiService (commentInfo)
+* 评论查询：CommentListApiService (commentList)
 
 ### 扩展
 1、评论发布成功事件
