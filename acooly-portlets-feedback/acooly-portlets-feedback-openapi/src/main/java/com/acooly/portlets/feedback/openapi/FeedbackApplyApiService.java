@@ -9,8 +9,8 @@
  */
 package com.acooly.portlets.feedback.openapi;
 
+import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
-import com.acooly.openapi.framework.common.annotation.OpenApiNote;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
 import com.acooly.openapi.framework.core.service.base.BaseApiService;
 import com.acooly.portlets.common.PortletsContants;
@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Slf4j
 @ApiDocType(code = PortletsContants.APIDOC_TYPE_CODE, name = PortletsContants.APIDOC_TYPE_NAME)
-@OpenApiNote("反馈提交服务，自少必须填写反馈类型和内容")
+@ApiDocNote("反馈提交服务，自少必须填写反馈类型和内容")
 @OpenApiService(name = "feedbackApply", desc = "反馈提交", owner = "zhangpu")
 public class FeedbackApplyApiService extends BaseApiService<FeedbackApplyApiRequest, FeedbackApplyApiResponse> {
 

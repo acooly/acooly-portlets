@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 public class FeedbackApplyApiRequest extends ApiRequest {
 
     @NotNull
-    @OpenApiField(desc = "反馈提交信息", constraint = "反馈提交信息", demo = "JSON结构体")
+    @OpenApiField(desc = "反馈提交信息", constraint = "反馈提交信息", demo = "JSON结构体", ordinal = 1)
     private FeedbackApplyInfo feedbackApplyInfo;
 
 }

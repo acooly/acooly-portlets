@@ -2,6 +2,7 @@ package com.acooly.portlets.comment.openapi;
 
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.utils.enums.WhetherStatus;
+import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
 import com.acooly.openapi.framework.common.annotation.OpenApiNote;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
@@ -24,7 +25,7 @@ import java.util.Map;
  * @date 2019-01-07 01:04
  */
 @Slf4j
-@OpenApiNote("评论查询接口。<br>接口参数说明" +
+@ApiDocNote("评论查询接口。<br>接口参数说明" +
         "<li>1、查询有效评论（被管理员屏蔽外），busiType和busiKey为必选参数，表示针对的业务层busiType这业务类型的busiKey这个业务数据的评论</li>" +
         "<li>2、默认以顶层的评论进行分页，同时也默认会查询所有的子评论并放置到顶层评论的children中（目前只支持两层）,可以设置childrenInclude=no不查询子评论</li>" +
         "<li>3、如果传入actionUserNo(表示当前登录的用户)，列表会返回每条记录是否被该用户点赞（actionThumbsup=yes）</li>" +

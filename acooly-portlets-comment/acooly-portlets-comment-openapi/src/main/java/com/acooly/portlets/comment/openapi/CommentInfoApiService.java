@@ -1,5 +1,6 @@
 package com.acooly.portlets.comment.openapi;
 
+import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
 import com.acooly.openapi.framework.common.annotation.OpenApiNote;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
@@ -18,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2019-01-07 01:04
  */
 @Slf4j
-@OpenApiNote("单个评论详情查询接口。")
+@ApiDocNote("单个评论详情查询接口。")
 @ApiDocType(code = PortletsContants.APIDOC_TYPE_CODE, name = PortletsContants.APIDOC_TYPE_NAME)
 @OpenApiService(name = "commentInfo", desc = "评论详情", owner = "zhangpu")
 public class CommentInfoApiService extends BaseApiService<CommentInfoApiRequest, CommentInfoApiResponse> {

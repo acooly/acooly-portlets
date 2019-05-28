@@ -1,6 +1,7 @@
 package com.acooly.portlets.comment.openapi;
 
 import com.acooly.core.utils.mapper.BeanCopier;
+import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
 import com.acooly.openapi.framework.common.annotation.OpenApiNote;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
@@ -21,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2019-01-07 01:04
  */
 @Slf4j
-@OpenApiNote("评论组件的操作服务接口。包括：" +
+@ApiDocNote("评论组件的操作服务接口。包括：" +
         "<li>1、CommentLogActionTypeEnum.report: 举报</li>" +
         "<li>1、CommentLogActionTypeEnum.thumbsup: 点赞</li>")
 @ApiDocType(code = PortletsContants.APIDOC_TYPE_CODE, name = PortletsContants.APIDOC_TYPE_NAME)
