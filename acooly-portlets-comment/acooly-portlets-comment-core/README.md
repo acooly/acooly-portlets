@@ -130,3 +130,10 @@ com.acooly.portlets.comment.core.service.event.CommentSuccessEvent
 2、评论操作（点赞/举报等）成功事件
 
 com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent
+
+## changelog
+
+## 4.2.0.SNAPSHOT-20190528
+
+* 2019-05-28 - 评论组件增强：1、支持附件（图片和视频），原来的comment接口作废（兼容可用），替换为commentPublish；2、增强commentList接口，支持有无附件过滤，支持设置是否返回附件和子评论。3、新增单个评论详情查询commentInfo，以配合commentList的最小数据化查询。注意：新增了表：p_comment_attach，请使用附件功能的项目手动更新（新项目不用考虑） - [zhangpu] 554689d
+
