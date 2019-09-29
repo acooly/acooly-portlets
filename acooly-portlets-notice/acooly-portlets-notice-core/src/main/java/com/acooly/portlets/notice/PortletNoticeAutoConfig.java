@@ -39,7 +39,7 @@ public class PortletNoticeAutoConfig {
     private PortletNoticeProperties noticeProperties;
 
     @Bean
-    public StandardDatabaseScriptIniter appScriptIniter() {
+    public StandardDatabaseScriptIniter noticeScriptIniter() {
         return new StandardDatabaseScriptIniter() {
             @Override
             public String getEvaluateTable() {
