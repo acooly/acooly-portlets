@@ -19,14 +19,6 @@ import com.acooly.portlets.comment.client.message.*;
 public interface CommentApiClientService {
 
     /**
-     * 评论发表
-     *
-     * @param request
-     * @return
-     */
-    CommentApiResponse comment(CommentApiRequest request);
-
-    /**
      * 评论操作
      *
      * @param request

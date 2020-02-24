@@ -6,12 +6,11 @@
 
 package com.acooly.portlets.notice.facade.dto;
 
-import com.acooly.core.common.facade.DtoBase;
 import com.acooly.core.common.facade.InfoBase;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -30,14 +29,14 @@ public class NoticeReadDto extends InfoBase {
     }
 
     /**
-	 * 消息接收人
-	 */
-	@NotBlank(message = "接收人不能为空")
-	private String receiver;
-	
-	/**
-	 * 消息id
-	 */
-	@NotNull(message = "消息id不能为空")
-	private Long noticeId;
+     * 消息接收人
+     */
+    @NotBlank(message = "接收人不能为空")
+    private String receiver;
+
+    /**
+     * 消息id
+     */
+    @NotNull(message = "消息id不能为空")
+    private Long noticeId;
 }

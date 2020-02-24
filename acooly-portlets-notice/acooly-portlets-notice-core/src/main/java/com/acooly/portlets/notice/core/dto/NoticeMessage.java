@@ -9,7 +9,7 @@ import com.acooly.portlets.notice.facade.enums.NoticeContentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import java.util.Map;
 

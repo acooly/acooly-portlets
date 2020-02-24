@@ -6,6 +6,9 @@ import com.acooly.openapi.framework.common.message.ApiRequest;
 import com.acooly.portlets.comment.client.dto.CommentAttachInfo;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Max;
@@ -18,7 +21,8 @@ import java.util.List;
  * @author zhangpu
  * @date 2019-01-07 00:51
  */
-@Data
+@Getter
+@Setter
 public class CommentPublishApiRequest extends ApiRequest {
 
     /**

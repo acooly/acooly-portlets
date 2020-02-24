@@ -5,12 +5,15 @@ import com.acooly.openapi.framework.common.message.ApiResponse;
 import com.acooly.portlets.comment.client.dto.CommentInfo;
 import com.acooly.portlets.comment.client.dto.CommentLogInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author zhangpu
  * @date 2019-01-07 00:58
  */
-@Data
+@Getter
+@Setter
 public class CommentActionApiResponse extends ApiResponse {
 
     @OpenApiField(desc = "评论信息", constraint = "被操作评论信息", ordinal = 1)

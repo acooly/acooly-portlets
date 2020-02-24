@@ -10,6 +10,8 @@ package com.acooly.portlets.alog.analysis.persist.dto;
 
 import com.acooly.core.common.facade.InfoBase;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +19,8 @@ import javax.validation.constraints.NotNull;
  * @author zhangpu
  * @date 2019-03-24 17:57
  */
-@Data
+@Getter
+@Setter
 public class ActionVisitsInfo extends InfoBase {
 
     @NotNull

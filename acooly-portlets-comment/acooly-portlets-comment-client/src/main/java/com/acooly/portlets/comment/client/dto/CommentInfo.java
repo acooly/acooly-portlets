@@ -5,6 +5,8 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import com.google.common.collect.Lists;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.constraints.NotBlank;
 
@@ -19,7 +21,8 @@ import java.util.List;
  * @date 2019-01-06 19:53
  */
 @Slf4j
-@Data
+@Getter
+@Setter
 public class CommentInfo extends CommentBaseInfo {
 
     /**

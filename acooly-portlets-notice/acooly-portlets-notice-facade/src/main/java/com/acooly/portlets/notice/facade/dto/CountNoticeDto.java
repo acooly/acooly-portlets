@@ -7,13 +7,16 @@
 package com.acooly.portlets.notice.facade.dto;
 
 import com.acooly.core.common.facade.InfoBase;
-import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * Created by liubin@qiudot.com on 2018-08-28 11:33.
  */
-@Data
+@Getter
+@Setter
 public class CountNoticeDto extends InfoBase {
 
     public CountNoticeDto() {

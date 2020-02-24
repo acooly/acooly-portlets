@@ -12,6 +12,8 @@ package com.acooly.portlets.feedback.client.dto;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,7 +23,8 @@ import javax.validation.constraints.Size;
  *
  * @author zhangpu 2019-01-14 21:39
  */
-@Data
+@Getter
+@Setter
 public class FeedbackInfo extends FeedbackApplyInfo {
 
     @NotNull

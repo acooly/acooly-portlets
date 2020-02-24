@@ -17,7 +17,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ import java.util.List;
 @EnableConfigurationProperties({SiteConfigProperties.class})
 @ConditionalOnProperty(value = SiteConfigProperties.PREFIX + ".enable", matchIfMissing = true)
 @ComponentScan(basePackages = "com.acooly.portlets.siteconfig")
-public class SiteConfigAutoConfig extends WebMvcConfigurerAdapter {
+public class SiteConfigAutoConfig {
 
     @Autowired
     private SiteConfigProperties portletProperties;

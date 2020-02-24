@@ -1,7 +1,10 @@
 package com.acooly.portlets.comment.client.openapi;
 
 import com.acooly.openapi.framework.client.AbstractApiClientService;
-import com.acooly.portlets.comment.client.message.*;
+import com.acooly.portlets.comment.client.message.CommentActionApiRequest;
+import com.acooly.portlets.comment.client.message.CommentActionApiResponse;
+import com.acooly.portlets.comment.client.message.CommentListApiRequest;
+import com.acooly.portlets.comment.client.message.CommentListApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +16,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommentApiClientServiceImpl extends AbstractApiClientService implements CommentApiClientService {
 
-    @Override
-    public CommentApiResponse comment(CommentApiRequest request) {
-        return request(request, CommentApiResponse.class);
-    }
 
     @Override
     public CommentActionApiResponse commentAction(CommentActionApiRequest request) {

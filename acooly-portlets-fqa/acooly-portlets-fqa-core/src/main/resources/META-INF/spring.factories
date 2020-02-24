@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.acooly.portlets.feedback.core.PortletFeedbackAutoConfig
+com.acooly.core.common.boot.component.ComponentInitializer=\
+com.acooly.portlets.feedback.core.PortletFeedbackComponentInitializer

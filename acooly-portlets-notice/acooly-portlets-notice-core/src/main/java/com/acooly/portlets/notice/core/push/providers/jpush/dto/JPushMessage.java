@@ -9,7 +9,7 @@ package com.acooly.portlets.notice.core.push.providers.jpush.dto;
 
 import com.acooly.core.utils.mapper.JsonMapper;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import java.util.Map;
 

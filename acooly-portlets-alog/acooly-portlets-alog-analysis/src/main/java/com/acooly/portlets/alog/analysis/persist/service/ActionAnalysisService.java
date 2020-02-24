@@ -11,6 +11,7 @@ package com.acooly.portlets.alog.analysis.persist.service;
 import com.acooly.core.utils.Dates;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhangpu
@@ -38,7 +39,7 @@ public interface ActionAnalysisService {
      * 统计昨天的访问量
      */
     default void analysisVisitsByYesterday() {
-        analysisVisitsByDay(Dates.minusDay(new Date()));
+        analysisVisitsByDay(Dates.subDate(new Date(), 1, TimeUnit.DAYS));
     }
 
 }

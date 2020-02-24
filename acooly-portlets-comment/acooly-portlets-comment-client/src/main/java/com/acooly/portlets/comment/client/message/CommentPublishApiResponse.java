@@ -2,6 +2,8 @@ package com.acooly.portlets.comment.client.message;
 
 import com.acooly.openapi.framework.common.message.ApiResponse;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 评论发布 相应报文
@@ -9,7 +11,8 @@ import lombok.Data;
  * @author zhangpu
  * @date 2019-01-07 00:53
  */
-@Data
+@Getter
+@Setter
 public class CommentPublishApiResponse extends ApiResponse {
 
 }

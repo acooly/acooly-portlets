@@ -13,13 +13,16 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.ApiResponse;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * @author zhangpu 2019-01-15 01:03
  */
-@Data
+@Getter
+@Setter
 public class FeedbackApplyApiResponse extends ApiResponse {
 
     @NotNull

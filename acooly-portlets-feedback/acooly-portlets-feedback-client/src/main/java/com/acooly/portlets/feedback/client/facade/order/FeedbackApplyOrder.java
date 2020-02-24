@@ -12,13 +12,16 @@ package com.acooly.portlets.feedback.client.facade.order;
 import com.acooly.core.common.facade.OrderBase;
 import com.acooly.portlets.feedback.client.dto.FeedbackApplyInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * @author zhangpu 2019-01-15 00:56
  */
-@Data
+@Getter
+@Setter
 public class FeedbackApplyOrder extends OrderBase {
 
     @NotNull

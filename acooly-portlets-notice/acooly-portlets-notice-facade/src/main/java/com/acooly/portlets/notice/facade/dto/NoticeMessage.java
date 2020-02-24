@@ -18,7 +18,7 @@ import com.acooly.portlets.notice.facade.enums.PushTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import org.springframework.util.Assert;
 
 import java.util.List;

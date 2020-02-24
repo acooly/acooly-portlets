@@ -12,13 +12,16 @@ package com.acooly.portlets.feedback.client.facade.result;
 import com.acooly.core.common.facade.ResultBase;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * @author zhangpu 2019-01-15 00:56
  */
-@Data
+@Getter
+@Setter
 public class FeedbackApplyResult extends ResultBase {
 
     @NotNull

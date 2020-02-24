@@ -34,20 +34,6 @@ public class CommentApiServiceTest extends AbstractApiServieTests {
     String username = "acooly";
     String busiKey = "1213";
 
-    @Test
-    public void testComment() {
-        CommentApiRequest request = new CommentApiRequest();
-        request.setUserNo(userNo);
-        request.setUserName(username);
-        request.setUserIp("211.12.1.12");
-        request.setProfilePhoto("/aaa/aa/aa/a/png");
-        request.setBusiType(CommentBusiType.DEFAULT.code());
-        request.setBusiKey("1213");
-        request.setContent("这里是发布的评论内容");
-        request.setStar(4);
-        CommentApiResponse response = request(request, CommentApiResponse.class);
-        log.info("CommentApiResponse: {}", response);
-    }
 
     @Test
     public void testCommentPublish() {

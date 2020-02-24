@@ -13,6 +13,9 @@ import com.acooly.openapi.framework.common.message.ApiRequest;
 import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
 import javax.persistence.EnumType;
@@ -26,7 +29,8 @@ import javax.validation.constraints.Size;
  * @author zhangpu
  * @date 2019-03-26 03:39
  */
-@Data
+@Getter
+@Setter
 public class AlogRequest extends ApiRequest {
 
     /**
