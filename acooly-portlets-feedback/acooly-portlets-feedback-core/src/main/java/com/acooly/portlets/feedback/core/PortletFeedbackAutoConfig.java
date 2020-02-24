@@ -24,6 +24,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
@@ -39,6 +40,7 @@ import static com.acooly.portlets.feedback.core.PortletFeedbackProperties.PREFIX
 @Configuration
 @EnableConfigurationProperties({PortletFeedbackProperties.class})
 @ConditionalOnProperty(value = PREFIX + ".enable", matchIfMissing = true)
+@ComponentScan(basePackages = {"com.acooly.portlets.feedback"})
 @MapperScan("com.acooly.portlets.feedback.core.dao")
 public class PortletFeedbackAutoConfig {
     @Autowired

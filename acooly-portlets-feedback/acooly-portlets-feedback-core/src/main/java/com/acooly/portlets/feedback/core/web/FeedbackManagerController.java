@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.feedback.core.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.common.web.support.JsonEntityResult;
 import com.acooly.module.security.domain.User;
 import com.acooly.module.security.utils.ShiroUtils;
@@ -34,7 +34,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/feedback/feedback")
-public class FeedbackManagerController extends AbstractJQueryEntityController<Feedback, FeedbackManager> {
+public class FeedbackManagerController extends AbstractJsonEntityController<Feedback, FeedbackManager> {
 
 
     {

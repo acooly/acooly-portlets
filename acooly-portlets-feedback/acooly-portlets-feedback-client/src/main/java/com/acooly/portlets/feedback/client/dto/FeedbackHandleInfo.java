@@ -14,7 +14,7 @@ import com.acooly.core.utils.Ids;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,7 +34,7 @@ public class FeedbackHandleInfo extends DtoBase {
     /**
      * 回复内容
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 512)
     @OpenApiField(desc = "回复内容", constraint = "回复内容", demo = "这里是后台运营处理后回复的内容")
     private String replyContent;

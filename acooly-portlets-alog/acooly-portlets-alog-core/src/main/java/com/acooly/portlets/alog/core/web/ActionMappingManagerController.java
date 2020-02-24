@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.portlets.alog.core.entity.ActionMapping;
 import com.acooly.portlets.alog.core.service.ActionMappingService;
 import com.acooly.portlets.alog.core.enums.ActionMappingTypeEnum;
@@ -27,7 +27,7 @@ import com.acooly.portlets.alog.core.enums.ActionMappingTypeEnum;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/alog/actionMapping")
-public class ActionMappingManagerController extends AbstractJQueryEntityController<ActionMapping, ActionMappingService> {
+public class ActionMappingManagerController extends AbstractJsonEntityController<ActionMapping, ActionMappingService> {
 	
 
 	{

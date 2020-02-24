@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.notice.core.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.common.web.support.JsonResult;
 import com.acooly.core.utils.mapper.JsonMapper;
 import com.acooly.portlets.notice.PortletNoticeProperties;
@@ -39,7 +39,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/notice/noticeInfo")
-public class NoticeInfoManagerController extends AbstractJQueryEntityController<NoticeInfo, NoticeInfoService> {
+public class NoticeInfoManagerController extends AbstractJsonEntityController<NoticeInfo, NoticeInfoService> {
 
     {
         allowMapping = "*";

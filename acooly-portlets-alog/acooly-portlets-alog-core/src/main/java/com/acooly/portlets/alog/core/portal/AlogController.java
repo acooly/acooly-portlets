@@ -8,7 +8,7 @@
  */
 package com.acooly.portlets.alog.core.portal;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.common.web.support.JsonResult;
 import com.acooly.core.utils.Strings;
 import com.acooly.portlets.alog.core.AlogProperties;
@@ -35,7 +35,7 @@ import static com.acooly.portlets.alog.core.AlogProperties.PREFIX;
 @ConditionalOnProperty(value = PREFIX + ".enablePortal", matchIfMissing = true)
 @RestController
 @RequestMapping("/acooly/alog")
-public class AlogController extends AbstractJQueryEntityController {
+public class AlogController extends AbstractJsonEntityController {
 
     {
         super.allowMapping = "";

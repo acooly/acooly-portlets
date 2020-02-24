@@ -13,7 +13,7 @@ import com.acooly.openapi.framework.common.message.ApiRequest;
 import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -32,7 +32,7 @@ public class AlogRequest extends ApiRequest {
     /**
      * 操作
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 255)
     @OpenApiField(desc = "行为Key", constraint = "业务定义的用户行为埋点，可在后台定义", demo = "case_detail_view", ordinal = 1)
     private String actionKey;

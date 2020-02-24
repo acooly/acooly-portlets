@@ -45,7 +45,7 @@ public class AlogApiListener extends AbstractListener<AfterServiceExecuteEvent> 
     @Override
     public void onOpenApiEvent(AfterServiceExecuteEvent event) {
         try {
-            HttpServletRequest request = ApiContextHolder.getApiContext().getOrignalRequest();
+            HttpServletRequest request = ApiContextHolder.getApiContext().getHttpRequest();
             UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader(HttpHeaders.USER_AGENT));
             if (alogProperties.getOpenApiOnlyApp() && userAgent.getBrowser().getBrowserType() != BrowserType.APP) {
                 // 不是来之移动App的请求，忽略
@@ -55,7 +55,7 @@ public class AlogApiListener extends AbstractListener<AfterServiceExecuteEvent> 
             ActionLogInfo actionLogInfo = new ActionLogInfo();
             actionLogInfo.setActionKey(apiContext.getServiceName());
             actionLogInfo.setActionName(apiContext.getOpenApiService().desc());
-            alogService.log(actionLogInfo, ApiContextHolder.getApiContext().getOrignalRequest());
+            alogService.log(actionLogInfo, ApiContextHolder.getApiContext().getHttpRequest());
         } catch (Exception e) {
             log.warn("OpenApi-Alog服务后置事件监听处理失败：{}", e.getMessage());
         }

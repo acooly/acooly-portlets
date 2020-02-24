@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.alog.core.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
 import com.acooly.portlets.alog.core.entity.ActionLog;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/alog/actionLog")
-public class ActionLogManagerController extends AbstractJQueryEntityController<ActionLog, ActionLogService> {
+public class ActionLogManagerController extends AbstractJsonEntityController<ActionLog, ActionLogService> {
 
 
     {

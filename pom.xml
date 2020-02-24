@@ -5,20 +5,14 @@
     <parent>
         <artifactId>acooly-app-parent</artifactId>
         <groupId>com.acooly</groupId>
-        <version>4.2.0-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
     <groupId>com.acooly</groupId>
     <artifactId>acooly-portlets</artifactId>
-    <version>4.2.0-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
 
     <name>acooly-portlets Group</name>
     <packaging>pom</packaging>
-
-    <properties>
-        <acooly.version>4.2.0-SNAPSHOT</acooly.version>
-        <openapi.version>4.2.1-SNAPSHOT</openapi.version>
-    </properties>
-
 
     <dependencyManagement>
 

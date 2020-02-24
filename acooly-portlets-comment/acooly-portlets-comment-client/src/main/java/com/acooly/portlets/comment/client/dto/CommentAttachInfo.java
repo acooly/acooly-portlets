@@ -12,7 +12,7 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.comment.client.enums.CommentAttachTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,7 +44,7 @@ public class CommentAttachInfo extends InfoBase {
     /**
      * 附件地址
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 128)
     @OpenApiField(desc = "附件地址", constraint = "附件地址", demo = "http://cdn.xxx.com/xxx/attach.jpg", ordinal = 6)
     private String attachPath;

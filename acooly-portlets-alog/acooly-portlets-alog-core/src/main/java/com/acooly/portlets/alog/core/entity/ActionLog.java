@@ -12,7 +12,7 @@ import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -37,7 +37,7 @@ public class ActionLog extends AbstractEntity {
     /**
      * 操作
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 512)
     private String actionKey;
 

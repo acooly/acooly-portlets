@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.portlets.comment.core.entity.CommentLog;
 import com.acooly.portlets.comment.core.manage.CommentLogManager;
 import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
@@ -27,7 +27,7 @@ import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/comment/commentLog")
-public class CommentLogManagerController extends AbstractJQueryEntityController<CommentLog, CommentLogManager> {
+public class CommentLogManagerController extends AbstractJsonEntityController<CommentLog, CommentLogManager> {
 	
 
 	{

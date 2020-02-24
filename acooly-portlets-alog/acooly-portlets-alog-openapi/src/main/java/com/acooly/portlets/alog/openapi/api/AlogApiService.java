@@ -40,6 +40,6 @@ public class AlogApiService extends BaseApiService<AlogRequest, ApiResponse> {
     @Override
     protected void doService(AlogRequest request, ApiResponse response) {
         ActionLogInfo actionLogInfo = BeanCopier.copy(request, ActionLogInfo.class);
-        alogService.log(actionLogInfo, ApiContextHolder.getApiContext().getOrignalRequest());
+        alogService.log(actionLogInfo, ApiContextHolder.getApiContext().getHttpRequest());
     }
 }

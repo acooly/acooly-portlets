@@ -10,6 +10,7 @@ import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
 import com.acooly.core.common.service.EntityServiceImpl;
 import com.acooly.core.utils.Assert;
+import com.acooly.core.utils.Asserts;
 import com.acooly.core.utils.Collections3;
 import com.acooly.portlets.alog.core.dao.ActionMappingDao;
 import com.acooly.portlets.alog.core.entity.ActionMapping;
@@ -49,8 +50,8 @@ public class ActionMappingServiceImpl extends EntityServiceImpl<ActionMapping, A
     @CachePut(cacheNames = "alogActionMapping", key = "#actionMapping.actionKey")
     @Override
     public void save(ActionMapping actionMapping) throws BusinessException {
-        Assert.notNull(actionMapping);
-        Assert.hasLength(actionMapping.getActionKey());
+        Asserts.notNull(actionMapping);
+        Asserts.notEmpty(actionMapping.getActionKey());
         List<ActionMapping> actionMappings = getEntityDao().findByActionKey(actionMapping.getActionKey());
         if (!Collections3.isEmpty(actionMappings)) {
             throw new BusinessException(CommonErrorCodes.OBJECT_NOT_UNIQUE, "映射配置actionKey已存在");

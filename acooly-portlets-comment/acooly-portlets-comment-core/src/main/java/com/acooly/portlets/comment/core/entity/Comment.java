@@ -12,7 +12,7 @@ import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -53,21 +53,21 @@ public class Comment extends AbstractEntity {
     /**
      * 业务类型
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 32)
     private String busiType;
 
     /**
      * 业务标志
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 32)
     private String busiKey;
 
     /**
      * 评论人编号
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 64)
     private String userNo;
 
@@ -98,7 +98,7 @@ public class Comment extends AbstractEntity {
     /**
      * 评论内容
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 1024)
     private String content;
 

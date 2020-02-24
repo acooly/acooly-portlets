@@ -6,7 +6,7 @@ import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -41,7 +41,7 @@ public class CommentInfo extends CommentBaseInfo {
     private CommentStatusEnum status;
 
     @OpenApiField(desc = "状态说明", constraint = "评论状态说明", demo = "已评论", ordinal = 15)
-    @NotEmpty
+    @NotBlank
     private String statusText;
 
     @OpenApiField(desc = "评论时间", constraint = "评论时间 yyyy-MM-dd HH:mm:ss", demo = "2019-01-01 02:02:02", ordinal = 16)

@@ -12,7 +12,7 @@ import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -49,7 +49,7 @@ public class Feedback extends AbstractEntity {
     /**
      * 内容
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 512)
     private String content;
 

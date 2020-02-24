@@ -11,7 +11,7 @@ import com.acooly.core.common.domain.AbstractEntity;
 import com.acooly.portlets.comment.client.enums.CommentAttachTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -41,7 +41,7 @@ public class CommentAttach extends AbstractEntity {
     /**
      * 评论编码
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 64)
     private String commentNo;
 
@@ -61,7 +61,7 @@ public class CommentAttach extends AbstractEntity {
     /**
      * 附件地址
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 128)
     private String attachPath;
 

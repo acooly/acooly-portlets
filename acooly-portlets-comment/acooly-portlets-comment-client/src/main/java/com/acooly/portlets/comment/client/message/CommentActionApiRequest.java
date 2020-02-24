@@ -4,7 +4,7 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.ApiRequest;
 import com.acooly.portlets.comment.client.enums.CommentLogActionTypeEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,7 +31,7 @@ public class CommentActionApiRequest extends ApiRequest {
      * 用户编码
      */
     @Size(min = 1, max = 64)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "用户标志", constraint = "业务层用户编码", demo = "201111112121212", ordinal = 3)
     private String userNo;
 

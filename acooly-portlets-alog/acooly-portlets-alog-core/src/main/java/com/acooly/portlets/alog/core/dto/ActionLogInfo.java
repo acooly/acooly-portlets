@@ -11,7 +11,7 @@ package com.acooly.portlets.alog.core.dto;
 import com.acooly.portlets.alog.client.enums.ActionChannel;
 import com.acooly.portlets.alog.client.enums.ActionOS;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,7 +27,7 @@ public class ActionLogInfo {
     /**
      * 操作
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 255)
     private String actionKey;
 

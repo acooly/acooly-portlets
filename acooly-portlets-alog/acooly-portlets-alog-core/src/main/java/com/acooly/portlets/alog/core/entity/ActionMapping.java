@@ -11,12 +11,12 @@ import com.acooly.core.common.domain.AbstractEntity;
 import com.acooly.portlets.alog.core.enums.ActionMappingTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -42,14 +42,14 @@ public class ActionMapping extends AbstractEntity {
     /**
      * 操作Key
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 255)
     private String actionKey;
 
     /**
      * 操作名称
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 32)
     private String actionName;
 

@@ -5,7 +5,7 @@ import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.PageApiRequest;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.Size;
 
@@ -21,7 +21,7 @@ public class CommentListApiRequest extends PageApiRequest {
      * 自定义业务分类
      */
     @Size(max = 32)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "业务分类", constraint = "自定义业务分类", demo = "DEFAULT", ordinal = 1)
     private String busiType = CommentBusiType.DEFAULT.code();
 

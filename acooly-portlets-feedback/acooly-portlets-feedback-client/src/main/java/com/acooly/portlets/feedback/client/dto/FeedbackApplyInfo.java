@@ -14,7 +14,7 @@ import com.acooly.core.utils.Ids;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,7 +37,7 @@ public class FeedbackApplyInfo extends DtoBase {
     /**
      * 内容
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 512)
     @OpenApiField(desc = "反馈内容", constraint = "反馈内容,不建议HTML格式，推荐纯文本", demo = "这是我提交的建议内容", ordinal = 2)
     private String content;

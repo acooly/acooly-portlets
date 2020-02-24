@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.portlets.notice.core.entity.NoticeRead;
 import com.acooly.portlets.notice.core.service.NoticeReadService;
 import com.acooly.portlets.notice.core.enums.NoticeReadStatusEnum;
@@ -29,7 +29,7 @@ import com.google.common.collect.Maps;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/notice/noticeRead")
-public class NoticeReadManagerController extends AbstractJQueryEntityController<NoticeRead, NoticeReadService> {
+public class NoticeReadManagerController extends AbstractJsonEntityController<NoticeRead, NoticeReadService> {
 	
 
 	{

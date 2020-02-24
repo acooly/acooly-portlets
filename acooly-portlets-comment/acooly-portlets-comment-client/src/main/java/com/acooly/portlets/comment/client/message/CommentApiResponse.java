@@ -6,7 +6,7 @@ import com.acooly.openapi.framework.common.message.ApiResponse;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
 import com.acooly.portlets.comment.client.enums.CommentStatusEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -40,7 +40,7 @@ public class CommentApiResponse extends ApiResponse {
      * 用户编码
      */
     @Size(min = 10, max = 64)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "评论人编码", constraint = "业务层用户编码", demo = "201111112121212", ordinal = 3)
     private String userNo;
 
@@ -55,7 +55,7 @@ public class CommentApiResponse extends ApiResponse {
      * 评论内容
      */
     @Size(min = 1, max = 1024)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "评论内容", constraint = "评论内容，支持剪短的多媒体内容评论",
             demo = "开启评论不要脸模式！这个<b>APP</b>写得非常棒！5分钟就配置好了！", ordinal = 5)
     private String content;
@@ -64,7 +64,7 @@ public class CommentApiResponse extends ApiResponse {
      * 自定义业务分类
      */
     @Size(max = 32)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "业务分类", constraint = "自定义业务分类", demo = "DEFAULT", ordinal = 6)
     private String busiType = CommentBusiType.DEFAULT.code();
 
@@ -72,7 +72,7 @@ public class CommentApiResponse extends ApiResponse {
      * 自定义业务ID（绑定ID），可选
      */
     @Size(min = 1, max = 32)
-    @NotEmpty
+    @NotBlank
     @OpenApiField(desc = "业务KEY", constraint = "标记评论的业务,是业务的唯一标志", demo = "1", ordinal = 7)
     private String busiKey;
 
@@ -88,7 +88,7 @@ public class CommentApiResponse extends ApiResponse {
     private CommentStatusEnum status;
 
     @OpenApiField(desc = "状态说明", constraint = "评论状态说明", demo = "已评论", ordinal = 11)
-    @NotEmpty
+    @NotBlank
     private String statusText;
 
     @OpenApiField(desc = "评论时间", constraint = "评论时间 yyyy-MM-dd HH:mm:ss", demo = "2019-01-01 02:02:02", ordinal = 12)

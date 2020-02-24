@@ -8,7 +8,7 @@
  */
 package com.acooly.portlets.test.alog;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 @RequestMapping("/alog/test")
-public class AlogTestController extends AbstractJQueryEntityController {
+public class AlogTestController extends AbstractJsonEntityController {
 
     {
         super.allowMapping = "";

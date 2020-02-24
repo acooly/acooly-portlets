@@ -13,7 +13,7 @@ import com.acooly.portlets.notice.facade.enums.NoticeStatusEnum;
 import com.acooly.portlets.notice.facade.enums.NoticeTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -48,7 +48,7 @@ public class NoticeInfo extends AbstractEntity {
     /**
      * 消息内容
      */
-    @NotEmpty
+    @NotBlank
     @Size(max  = 1024)
     private String content = "";
 
@@ -78,7 +78,7 @@ public class NoticeInfo extends AbstractEntity {
     /**
      * 发送人
      */
-    @NotEmpty
+    @NotBlank
     @Size(max = 32)
     private String sender = "";
 

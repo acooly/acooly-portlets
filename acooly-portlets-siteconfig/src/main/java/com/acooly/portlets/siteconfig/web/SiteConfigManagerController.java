@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.siteconfig.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.portlets.siteconfig.entity.SiteConfig;
 import com.acooly.portlets.siteconfig.enums.SiteConfigKeyEnum;
 import com.acooly.portlets.siteconfig.enums.SiteConfigTypeEnum;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/manage/module/portlet/siteConfig")
 public class SiteConfigManagerController
-        extends AbstractJQueryEntityController<SiteConfig, SiteConfigService> {
+        extends AbstractJsonEntityController<SiteConfig, SiteConfigService> {
 
     @SuppressWarnings("unused")
     @Autowired

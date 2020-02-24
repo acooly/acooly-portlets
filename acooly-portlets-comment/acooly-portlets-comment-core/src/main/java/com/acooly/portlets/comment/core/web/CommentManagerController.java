@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.comment.core.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.utils.Dates;
 import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.enums.WhetherStatus;
@@ -33,7 +33,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/manage/portlets/comment/comment")
-public class CommentManagerController extends AbstractJQueryEntityController<Comment, CommentManager> {
+public class CommentManagerController extends AbstractJsonEntityController<Comment, CommentManager> {
 
 
     {

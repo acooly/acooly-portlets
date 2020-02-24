@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.acooly</groupId>
         <artifactId>acooly-portlets</artifactId>
-        <version>4.2.0-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>acooly-portlets-test</artifactId>
@@ -64,6 +64,12 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-feedback-openapi</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.acooly</groupId>
@@ -87,21 +93,17 @@
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-core</artifactId>
-            <version>${openapi.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-client</artifactId>
-            <version>${openapi.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.acooly</groupId>
             <artifactId>openapi-framework-apidoc</artifactId>
-            <version>${openapi.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

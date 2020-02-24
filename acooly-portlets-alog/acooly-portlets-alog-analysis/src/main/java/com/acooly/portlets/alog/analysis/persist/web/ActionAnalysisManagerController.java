@@ -6,7 +6,7 @@
  */
 package com.acooly.portlets.alog.analysis.persist.web;
 
-import com.acooly.core.common.web.AbstractJQueryEntityController;
+import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.utils.Dates;
 import com.acooly.core.utils.Servlets;
 import com.acooly.core.utils.Strings;
@@ -36,7 +36,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/manage/alog/analysis")
-public class ActionAnalysisManagerController extends AbstractJQueryEntityController<ActionAnalysisVisits, ActionAnalysisVisitsService> {
+public class ActionAnalysisManagerController extends AbstractJsonEntityController<ActionAnalysisVisits, ActionAnalysisVisitsService> {
 
 
     {
