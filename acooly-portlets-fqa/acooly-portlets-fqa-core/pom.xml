@@ -11,5 +11,42 @@
 
     <artifactId>acooly-portlets-fqa-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-portlets-fqa-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-treetype</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-ds</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-appservice</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -1,7 +1,11 @@
-INSERT INTO `sys_resource` (`ID`, `PARENTID`, `NAME`, `TYPE`, `SHOW_STATE`, `ORDER_TIME`, `VALUE`, `SHOW_MODE`, `ICON`, `DESCN`)
-VALUES ('20190101',NULL ,'反馈组件', 'MENU', '0', '2017-12-13 15:02:00', NULL, '1', 'fa fa-comments', NULL);
-INSERT INTO `sys_resource`(`ID`, `PARENTID`, `NAME`, `TYPE`, `SHOW_STATE`, `ORDER_TIME`, `VALUE`, `SHOW_MODE`, `ICON`, `DESCN`, `create_time`, `update_time`)
-VALUES (2019011501, 20190101, '反馈管理', 'URL', 0, '2019-01-14 22:24:33', '/manage/portlets/feedback/feedback/index.html', 1, 'fa fa-comments', NULL,'2019-01-14 22:24:33', '2019-01-14 22:24:33');
+INSERT INTO `sys_resource` (`id`, `parentid`, `name`, `type`, `show_state`, `order_time`, `value`, `show_mode`, `icon`, `descn`, `create_time`, `update_time`)
+VALUES
+	(202002291422, NULL, 'FQA', 'MENU', 0, '2020-02-26 12:45:23', '', 1, 'fa-question-circle', NULL, '2020-02-26 12:45:23', '2020-02-26 12:45:23'),
+	(202002291423, 202002291422, '常见问题', 'URL', 0, '2020-02-26 12:45:57', '/manage/portlets/fqa/fqa/index.html', 1, 'fa-circle-o', NULL, '2020-02-26 12:45:20', '2020-02-26 12:45:57'),
+	(202002291424, 202002291422, '问题分类', 'URL', 0, '2020-02-26 12:47:45', '/manage/module/treeType/treeType/index.html?theme=acooly-portlets-fqa', 1, 'fa-circle-o', NULL, '2020-02-26 12:47:45', '2020-02-26 12:47:45');
 
-INSERT INTO `sys_role_resc` (`ROLE_ID`, `RESC_ID`) VALUES ('1', '20190101');
-INSERT INTO `sys_role_resc` (`ROLE_ID`, `RESC_ID`) VALUES ('1', '2019011501');
+INSERT INTO `sys_role_resc` (`role_id`, `resc_id`)
+VALUES
+	(1, 202002291422),
+	(1, 202002291423),
+	(1, 202002291424);

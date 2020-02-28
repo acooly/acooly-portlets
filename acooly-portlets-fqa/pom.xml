@@ -11,8 +11,34 @@
 
     <artifactId>acooly-portlets-fqa</artifactId>
     <packaging>pom</packaging>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-fqa-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-fqa-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.acooly</groupId>
+                <artifactId>acooly-portlets-fqa-openapi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
         <module>acooly-portlets-fqa-core</module>
+        <module>acooly-portlets-fqa-client</module>
+        <module>acooly-portlets-fqa-openapi</module>
     </modules>
 
 

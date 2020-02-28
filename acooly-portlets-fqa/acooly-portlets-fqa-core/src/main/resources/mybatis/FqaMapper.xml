@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.fqa.core.dao.FqaDao">
+
+    <resultMap id="fqaResultMap" type="com.acooly.portlets.fqa.core.entity.Fqa">
+        <id property="id" column="fqa_id"/>
+        <result property="ask" column="fqa_ask"/>
+        <result property="question" column="fqa_question"/>
+        <result property="author" column="fqa_author"/>
+        <result property="askType" column="fqa_ask_type"/>
+        <result property="hits" column="fqa_hits"/>
+        <result property="status" column="fqa_status"/>
+        <result property="createTime" column="fqa_create_time"/>
+        <result property="updateTime" column="fqa_update_time"/>
+        <result property="comments" column="fqa_comments"/>
+    </resultMap>
+
+    <sql id="fqaSqlSelect">
+            fqa.id as fqa_id,
+            fqa.ask as fqa_ask,
+            fqa.question as fqa_question,
+            fqa.author as fqa_author,
+            fqa.ask_type as fqa_ask_type,
+            fqa.hits as fqa_hits,
+            fqa.status as fqa_status,
+            fqa.create_time as fqa_create_time,
+            fqa.update_time as fqa_update_time,
+            fqa.comments as fqa_comments
+    </sql>
+
+</mapper>
