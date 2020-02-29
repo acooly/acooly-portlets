@@ -19,7 +19,7 @@ import org.junit.Test;
 public class FeedbackOpenApiTest extends AbstractApiServieTests {
 
     {
-        this.gatewayUrl = "http://127.0.0.1:8080/gateway.do";
+        this.gatewayUrl = "http://127.0.0.1:8084/gateway.do";
     }
 
 
@@ -34,6 +34,8 @@ public class FeedbackOpenApiTest extends AbstractApiServieTests {
         applyInfo.setPhoneNo("13896177630");
         applyInfo.setMail("zhangpu@acooly.cn");
         applyInfo.setAddress("asdfasdfasdf地址弟弟");
+        applyInfo.setBusiCode("feedback_0001");
+        applyInfo.setBusiName("聚合收单");
         FeedbackApplyApiRequest request = new FeedbackApplyApiRequest();
         request.setFeedbackApplyInfo(applyInfo);
         FeedbackApplyApiResponse response = request(request, FeedbackApplyApiResponse.class);

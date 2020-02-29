@@ -25,6 +25,11 @@
 
         <dependency>
             <groupId>com.acooly</groupId>
+            <artifactId>acooly-component-treetype</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.acooly</groupId>
             <artifactId>acooly-component-event</artifactId>
         </dependency>
 

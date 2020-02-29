@@ -78,8 +78,10 @@
         $(".tree-icon,.tree-file").removeClass("tree-file");
         $(".tree-icon,.tree-folder").removeClass("tree-folder-open tree-folder");
         for (var i = 0; i < data.length; i++) {
-            var node = $("#manage_fqa_searchform_askTypeId").combotree('tree').tree("find", data[i].id);
-            $("#manage_fqa_searchform_askTypeId").combotree('tree').tree('expandAll', node.target);//展开所有节点
+            if (data[i].id) {
+                var node = $("#manage_fqa_searchform_askTypeId").combotree('tree').tree("find", data[i].id);
+                $("#manage_fqa_searchform_askTypeId").combotree('tree').tree('expandAll', node.target);//展开所有节点
+            }
         }
     }
 </script>

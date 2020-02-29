@@ -17,7 +17,11 @@
 	<tr>
 		<th>内容:</th>
 		<td>${feedback.content}</td>
-	</tr>					
+	</tr>
+	<tr>
+		<th>业务分类:</th>
+		<td>${feedback.busiCode} : ${feedback.busiName}</td>
+	</tr>
 	<tr>
 		<th>用户标志:</th>
 		<td>${feedback.userKey}</td>

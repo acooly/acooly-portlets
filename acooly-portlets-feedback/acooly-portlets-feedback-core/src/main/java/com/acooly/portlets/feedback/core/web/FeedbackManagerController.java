@@ -8,12 +8,17 @@ package com.acooly.portlets.feedback.core.web;
 
 import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.common.web.support.JsonEntityResult;
+import com.acooly.core.common.web.support.JsonListResult;
+import com.acooly.core.utils.Servlets;
 import com.acooly.module.security.domain.User;
 import com.acooly.module.security.utils.ShiroUtils;
+import com.acooly.module.treetype.entity.TreeType;
+import com.acooly.module.treetype.service.TreeTypeService;
 import com.acooly.portlets.feedback.client.dto.FeedbackHandleInfo;
 import com.acooly.portlets.feedback.client.dto.FeedbackInfo;
 import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
+import com.acooly.portlets.feedback.core.PortletFeedbackProperties;
 import com.acooly.portlets.feedback.core.entity.Feedback;
 import com.acooly.portlets.feedback.core.manage.FeedbackManager;
 import com.acooly.portlets.feedback.core.service.FeedbackService;
@@ -24,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,6 +51,23 @@ public class FeedbackManagerController extends AbstractJsonEntityController<Feed
     private FeedbackManager feedbackManager;
     @Autowired
     private FeedbackService feedbackService;
+    @Autowired
+    private TreeTypeService treeTypeService;
+
+    @RequestMapping("loadTypes")
+    @ResponseBody
+    public JsonListResult<TreeType> loadTypes(HttpServletRequest request, HttpServletResponse response) {
+        JsonListResult<TreeType> result = new JsonListResult();
+        try {
+            result.appendData(this.referenceData(request));
+            List<TreeType> treeTypes = treeTypeService.tree(PortletFeedbackProperties.TREE_TYPE_SCHEME_FEEDBACK, "/");
+            result.setTotal(Long.valueOf(treeTypes.size()));
+            result.setRows(treeTypes);
+        } catch (Exception e) {
+            this.handleException(result, "加载FQA分类树", e);
+        }
+        return result;
+    }
 
     @Override
     protected Map<String, Boolean> getSortMap(HttpServletRequest request) {
@@ -78,6 +101,21 @@ public class FeedbackManagerController extends AbstractJsonEntityController<Feed
     protected void referenceData(HttpServletRequest request, Map<String, Object> model) {
         model.put("allTypes", FeedbackTypeEnum.mapping());
         model.put("allStatuss", FeedbackStatusEnum.mapping());
+    }
+
+    @Override
+    protected Map<String, Object> getSearchParams(HttpServletRequest request) {
+        Map<String, Object> map = super.getSearchParams(request);
+        TreeType treeType = loadTreeType(request);
+        if (treeType != null) {
+            map.put("LIKE_busiCode", treeType.getCode());
+        }
+        return map;
+    }
+
+    protected TreeType loadTreeType(HttpServletRequest request) {
+        Long busiTypeId = Servlets.getLongParameter(request, "busiTypeId");
+        return treeTypeService.get(busiTypeId);
     }
 
 }

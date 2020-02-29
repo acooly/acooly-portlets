@@ -21,6 +21,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PortletFeedbackProperties.PREFIX)
 public class PortletFeedbackProperties {
     public static final String PREFIX = "acooly.portlets.feedback";
+    public static final String TREE_TYPE_SCHEME_FEEDBACK = "feedback";
     /**
      * 是否启用该组件
      */

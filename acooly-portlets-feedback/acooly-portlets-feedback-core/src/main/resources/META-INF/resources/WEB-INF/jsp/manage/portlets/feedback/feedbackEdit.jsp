@@ -6,7 +6,7 @@
         <input name="id" type="hidden" />
         <table class="tableForm" width="100%">
 			<tr>
-				<th width="25%">类型：</th>
+				<th width="20%">类型：</th>
 				<td>${feedback.type.message}</td>
 			</tr>					
 			<tr>
@@ -18,8 +18,12 @@
 				<td>${feedback.content}</td>
 			</tr>
 			<tr>
+				<th>业务分类:</th>
+				<td>${feedback.busiCode} : ${feedback.busiName}</td>
+			</tr>
+			<tr>
 				<th>回复内容：</th>
-				<td><textarea rows="3" cols="40" placeholder="请输入回复内容..." style="width:300px;" name="replyContent" class="easyui-validatebox" data-options="validType:['length[1,512]']"></textarea></td>
+				<td><textarea rows="6" cols="40" placeholder="请输入回复内容..." style="width:380px;" name="replyContent" class="easyui-validatebox" data-options="validType:['length[1,512]']"></textarea></td>
 			</tr>
 			<tr>
 				<th>状态：</th>

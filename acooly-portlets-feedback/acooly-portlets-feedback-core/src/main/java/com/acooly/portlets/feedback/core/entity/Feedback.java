@@ -12,12 +12,12 @@ import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import javax.validation.constraints.NotBlank;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -118,5 +118,15 @@ public class Feedback extends AbstractEntity {
      */
     @Size(max = 255)
     private String comments;
+
+    /**
+     * 业务模块编码
+     */
+    private String busiCode;
+
+    /**
+     * 业务模块名称
+     */
+    private String busiName;
 
 }

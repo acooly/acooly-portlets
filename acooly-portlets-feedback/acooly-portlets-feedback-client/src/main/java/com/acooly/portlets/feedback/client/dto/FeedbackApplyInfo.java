@@ -13,12 +13,10 @@ import com.acooly.core.common.facade.DtoBase;
 import com.acooly.core.utils.Ids;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.feedback.client.enums.FeedbackTypeEnum;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -101,6 +99,16 @@ public class FeedbackApplyInfo extends DtoBase {
     @Size(max = 255)
     @OpenApiField(desc = "其他联系信息", constraint = "补充的联系信息", demo = "公司电话:76878903", ordinal = 10)
     private String contactInfo;
+
+
+    @Size(max = 128)
+    @OpenApiField(desc = "业务分类编码", constraint = "业务分类编码，在管理后台定义。", demo = "feedback_0001", ordinal = 11)
+    private String busiCode;
+
+    @Size(max = 128)
+    @OpenApiField(desc = "业务分类名称", constraint = "业务分类名称", demo = "智能分账", ordinal = 12)
+    private String busiName;
+
 
     public FeedbackApplyInfo() {
         setBizOrderNo(Ids.getDid());
