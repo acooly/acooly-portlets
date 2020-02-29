@@ -13,7 +13,7 @@ import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.module.treetype.entity.TreeType;
 import com.acooly.module.treetype.service.TreeTypeService;
-import com.acooly.portlets.fqa.PortletFqaConstants;
+import com.acooly.portlets.fqa.core.PortletFqaProperties;
 import com.acooly.portlets.fqa.core.entity.Fqa;
 import com.acooly.portlets.fqa.core.service.FqaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class FqaManagerController extends AbstractJsonEntityController<Fqa, FqaS
         JsonListResult<TreeType> result = new JsonListResult();
         try {
             result.appendData(this.referenceData(request));
-            List<TreeType> treeTypes = treeTypeService.tree(PortletFqaConstants.TREE_TYPE_SCHEME_FQA, "/");
+            List<TreeType> treeTypes = treeTypeService.tree(PortletFqaProperties.TREE_TYPE_SCHEME_FQA, "/");
             result.setTotal(Long.valueOf(treeTypes.size()));
             result.setRows(treeTypes);
         } catch (Exception e) {

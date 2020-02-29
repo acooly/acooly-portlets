@@ -21,6 +21,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = PortletFqaProperties.PREFIX)
 public class PortletFqaProperties {
     public static final String PREFIX = "acooly.portlets.fqa";
+    public static final String TREE_TYPE_SCHEME_FQA = "FQA";
     /**
      * 是否启用该组件
      */
