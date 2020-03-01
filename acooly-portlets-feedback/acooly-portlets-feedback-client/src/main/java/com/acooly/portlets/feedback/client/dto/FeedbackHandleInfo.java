@@ -9,8 +9,7 @@
  */
 package com.acooly.portlets.feedback.client.dto;
 
-import com.acooly.core.common.facade.DtoBase;
-import com.acooly.core.utils.Ids;
+import com.acooly.core.common.facade.InfoBase;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.portlets.feedback.client.enums.FeedbackStatusEnum;
 import io.swagger.annotations.ApiModel;
@@ -30,7 +29,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ApiModel(value = "FeedbackHandleInfo", description = "客户反馈处理信息")
-public class FeedbackHandleInfo extends DtoBase {
+public class FeedbackHandleInfo extends InfoBase {
 
     @NotNull
     @OpenApiField(desc = "ID", constraint = "反馈ID", demo = "1")
@@ -67,7 +66,4 @@ public class FeedbackHandleInfo extends DtoBase {
     @ApiModelProperty(value = "备注", example = "这里是运营备注信息", required = false, position = 5)
     private String comments;
 
-    public FeedbackHandleInfo() {
-        setBizOrderNo(Ids.getDid());
-    }
 }
