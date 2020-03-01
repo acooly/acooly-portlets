@@ -1,4 +1,4 @@
-<!-- title: 评论组件 -->
+<!-- title: 评论点赞组件 -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
 <!-- date: 2019-05-28 -->

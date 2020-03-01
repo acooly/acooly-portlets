@@ -1,4 +1,4 @@
-<!-- title: 客户反馈组件 -->
+<!-- title: 常见问题组件 -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
 <!-- date: 2020-02-18 -->
