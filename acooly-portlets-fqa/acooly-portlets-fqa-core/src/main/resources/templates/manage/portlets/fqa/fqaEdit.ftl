@@ -22,7 +22,7 @@
                     <th width="20%">分类：</th>
                     <td>
                         <select id="manage_fqa_editform_askTypeId" class="easyui-combotree" name="askTypeId" style="width:235px;"
-                                data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=acooly-portlets-fqa',
+                                data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=FQA',
                                 loadFilter:function(data){ return data.rows;},
                                 formatter:function(row){var fa='fa-file-o'; if(row.subCount > 0){fa='fa-folder-o';}  return '<i class=\'fa '+fa+'\' aria-hidden=\'true\'></i> ' + row.text;},
                                 onLoadSuccess:manage_fqa_editform_askType_onLoadSuccess,

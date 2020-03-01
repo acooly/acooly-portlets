@@ -8,7 +8,7 @@
                         <div>
                             问题分类:
                             <select id="manage_fqa_searchform_askTypeId" class="easyui-combotree" name="askTypeId" style="width:100px;"
-                                    data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=acooly-portlets-fqa',
+                                    data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=FQA',
                                     loadFilter:function(data){var rows=data.rows; rows.unshift({id:null,text:'所有',subCount:0}); return rows;},
                                     formatter:function(row){var fa='fa-file-o'; if(row.subCount > 0){fa='fa-folder-o';}  return '<i class=\'fa '+fa+'\' aria-hidden=\'true\'></i> ' + row.text;},
                                     onLoadSuccess:manage_fqa_searchform_askType_onLoadSuccess">
