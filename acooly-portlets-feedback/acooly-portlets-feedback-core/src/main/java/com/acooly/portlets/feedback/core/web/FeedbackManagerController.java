@@ -10,6 +10,7 @@ import com.acooly.core.common.web.AbstractJsonEntityController;
 import com.acooly.core.common.web.support.JsonEntityResult;
 import com.acooly.core.common.web.support.JsonListResult;
 import com.acooly.core.utils.Servlets;
+import com.acooly.core.utils.Strings;
 import com.acooly.module.security.domain.User;
 import com.acooly.module.security.utils.ShiroUtils;
 import com.acooly.module.treetype.entity.TreeType;
@@ -114,8 +115,11 @@ public class FeedbackManagerController extends AbstractJsonEntityController<Feed
     }
 
     protected TreeType loadTreeType(HttpServletRequest request) {
-        Long busiTypeId = Servlets.getLongParameter(request, "busiTypeId");
-        return treeTypeService.get(busiTypeId);
+        String busiTypeId = Servlets.getParameter(request, "busiTypeId");
+        if (Strings.isNumeric(busiTypeId)) {
+            return treeTypeService.get(Long.valueOf(busiTypeId));
+        }
+        return null;
     }
 
 }

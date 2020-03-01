@@ -99,8 +99,11 @@ public class FqaManagerController extends AbstractJsonEntityController<Fqa, FqaS
     }
 
     protected TreeType loadTreeType(HttpServletRequest request) {
-        Long askTypeId = Servlets.getLongParameter(request, "askTypeId");
-        return treeTypeService.get(askTypeId);
+        String askTypeId = Servlets.getParameter(request, "askTypeId");
+        if (Strings.isNumeric(askTypeId)) {
+            return treeTypeService.get(Long.valueOf(askTypeId));
+        }
+        return null;
     }
 
 }

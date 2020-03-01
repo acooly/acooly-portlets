@@ -14,6 +14,7 @@ import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
 import com.acooly.module.treetype.entity.TreeType;
 import com.acooly.module.treetype.service.TreeTypeService;
+import com.acooly.portlets.fqa.core.PortletFqaProperties;
 import com.acooly.portlets.fqa.core.dao.FqaDao;
 import com.acooly.portlets.fqa.core.entity.Fqa;
 import com.acooly.portlets.fqa.core.service.FqaService;
@@ -41,7 +42,8 @@ public class FqaServiceImpl extends EntityServiceImpl<Fqa, FqaDao> implements Fq
         fqa.setStatus(AbleStatus.enable);
 
         if (Strings.isNotBlank(fqa.getAskTypeCode())) {
-            TreeType treeType = treeTypeService.findByCode(fqa.getAskTypeCode());
+            TreeType treeType = treeTypeService.findByCode(PortletFqaProperties.TREE_TYPE_SCHEME_FQA,
+                    fqa.getAskTypeCode());
             if (treeType != null) {
                 fqa.setAskTypeName(treeType.getName());
             }

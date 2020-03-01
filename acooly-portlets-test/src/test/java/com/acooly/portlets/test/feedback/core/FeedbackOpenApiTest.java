@@ -35,7 +35,6 @@ public class FeedbackOpenApiTest extends AbstractApiServieTests {
         applyInfo.setMail("zhangpu@acooly.cn");
         applyInfo.setAddress("asdfasdfasdf地址弟弟");
         applyInfo.setBusiCode("feedback_0001");
-        applyInfo.setBusiName("聚合收单");
         FeedbackApplyApiRequest request = new FeedbackApplyApiRequest();
         request.setFeedbackApplyInfo(applyInfo);
         FeedbackApplyApiResponse response = request(request, FeedbackApplyApiResponse.class);
