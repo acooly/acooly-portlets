@@ -1,6 +1,7 @@
 <!-- title: 消息推送组件 -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
+<!-- date: 2018-12-28 -->
 消息组件
 ====
 acooly-portlets-notice

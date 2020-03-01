@@ -1,12 +1,7 @@
-<!-- title: 反馈组件 -->
+<!-- title: 客户反馈组件 -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
-反馈组件
-====
- 
-acooly-portlets-feedback
-----
-
+<!-- date: 2019-01-15 -->
 ## 1. 简介
 用于互联网业务中常见业务的SNS用户反馈功能，可用于WEB，H5，小程序和App多个场景
 
@@ -16,8 +11,9 @@ acooly-portlets-feedback
 * 反馈提交同时支持手机用户基本联系信息和客户端信息（IP，设备，浏览器等）
 * BOSS后台已集成完善的反馈意见处理功能
 * 在提交反馈和处理反馈的时提供事件发布
-* 支持本地单项目集成，openapi服务和dubbo服务多种方式部署和应用
-
+* 支持本地单项目集成，openapi服务和dubbo/springcloud服务多种方式部署和应用
+* 支持swagger方式输出文档
+* 集成TreeType组件，支持自定义多级业务分类。
 
 
 ## 3. 集成
@@ -39,7 +35,6 @@ acooly-portlets-feedback
 	    <version>${acooly.version}</version>
 	</dependency>
 ```
->ps: 最新acooly.version=4.2.0-SNAPSHOT
 
 ### 3.2. 组件参数
 

@@ -1,12 +1,7 @@
 <!-- title: 评论组件 -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
-评论组件
-====
- 
-acooly-portlets-comment
-----
-
+<!-- date: 2019-05-28 -->
 ## 简介
 用于互联网业务中常见业务的SNS评论功能，通过传入业务类型和业务Key建议与被评论对象的关联关系，实现SNS评论的核心功能封装。
 
