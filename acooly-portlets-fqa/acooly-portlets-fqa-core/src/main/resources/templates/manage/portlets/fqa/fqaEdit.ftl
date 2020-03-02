@@ -19,7 +19,7 @@
             <input name="id" type="hidden"/>
             <table class="tableForm" width="100%">
                 <tr>
-                    <th width="20%">分类：</th>
+                    <th width="10%">分类：</th>
                     <td>
                         <select id="manage_fqa_editform_askTypeId" class="easyui-combotree" name="askTypeId" style="width:235px;"
                                 data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=FQA',
@@ -32,15 +32,15 @@
                 </tr>
                 <tr>
                     <th>问题：</th>
-                    <td><textarea rows="2" cols="40" style="width: 90%;" placeholder="请输入问题(最大128字符)..." name="ask" class="easyui-validatebox" data-options="validType:['length[1,128]'],required:true"></textarea></td>
+                    <td><textarea rows="2" cols="40" style="width: 90%;" placeholder="请输入问题(最大128字符)..." name="question" class="easyui-validatebox"></textarea></td>
                 </tr>
                 <tr>
                     <th>答案：</th>
-                    <td><textarea rows="12" cols="40" style="width: 90%;" placeholder="请输入答案(最多1024字符)..." name="question" class="easyui-validatebox" data-options="validType:['length[1,1024]']"></textarea></td>
+                    <td><textarea id="manage_fqa_editform_answer" rows="12" cols="40" name="answer"></textarea></td>
                 </tr>
                 <tr>
                     <th>作者：</th>
-                    <td><input type="text" name="author" style="width:260px;" placeholder="请输入作者..." class="easyui-validatebox" data-options="validType:['length[1,16]']"/></td>
+                    <td><input type="text" name="author" style="width:260px;" <#if action=='create'>value="${user.username}"</#if>  placeholder="请输入作者..." class="easyui-validatebox" data-options="validType:['length[1,16]']"/></td>
                 </tr>
 
                 <tr>
@@ -57,4 +57,15 @@
             </table>
         </@jodd.form>
     </form>
+    <script type="text/javascript">
+        $(function () {
+            var token = $("meta[name='X-CSRF-TOKEN']").attr("content");// 从meta中获取token
+            var ke = $.acooly.framework.kingEditor({
+                uploadUrl: '/ofile/kindEditor.html?_csrf=' + token,
+                minHeight: '310',
+                textareaId: 'manage_fqa_editform_answer'
+            });
+        });
+    </script>
 </div>
+

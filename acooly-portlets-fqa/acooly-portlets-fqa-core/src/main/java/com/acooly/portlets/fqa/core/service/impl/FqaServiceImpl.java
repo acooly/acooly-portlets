@@ -10,6 +10,7 @@ import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
 import com.acooly.core.common.service.EntityServiceImpl;
+import com.acooly.core.utils.Asserts;
 import com.acooly.core.utils.Strings;
 import com.acooly.core.utils.enums.AbleStatus;
 import com.acooly.core.utils.mapper.BeanCopier;
@@ -26,6 +27,7 @@ import com.acooly.portlets.fqa.dto.FqaInfo;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -52,25 +54,53 @@ public class FqaServiceImpl extends EntityServiceImpl<Fqa, FqaDao> implements Fq
 
     @Override
     public FqaInfo apply(FqaApplyInfo fqaApplyInfo) {
+        Fqa fqa = null;
+        if (fqaApplyInfo.getId() == null) {
+            fqa = save(fqaApplyInfo);
+        } else {
+            fqa = update(fqaApplyInfo);
+        }
+        return convertFqa(fqa);
+    }
+
+    @Override
+    public Fqa save(FqaApplyInfo fqaApplyInfo) {
         Fqa fqa = new Fqa();
         BeanCopier.copy(fqaApplyInfo, fqa);
         fqa.setStatus(AbleStatus.enable);
-
-        if (Strings.isNotBlank(fqa.getAskTypeCode())) {
+        if (Strings.isNotBlank(fqa.getTypeCode())) {
             TreeType treeType = treeTypeService.findByCode(PortletFqaProperties.TREE_TYPE_SCHEME_FQA,
-                    fqa.getAskTypeCode());
+                    fqa.getTypeCode());
             if (treeType != null) {
-                fqa.setAskTypeName(treeType.getName());
+                fqa.setTypeName(treeType.getName());
             }
         }
         save(fqa);
-        FqaBody fqaBody = new FqaBody(fqa.getId(), fqaApplyInfo.getQuestion());
+        FqaBody fqaBody = new FqaBody(fqa.getId(), fqaApplyInfo.getAnswer());
         fqaBodyService.save(fqaBody);
-        FqaInfo fqaInfo = convertFqa(fqa);
-        fqaInfo.setQuestion(fqaBody.getBody());
-        return fqaInfo;
+        fqa.setAnswer(fqaBody.getBody());
+        return fqa;
     }
 
+    @Override
+    @CacheEvict(value = FQA_QUERY_CATCH_NAME ,key = "#fqaApplyInfo.id")
+    public Fqa update(FqaApplyInfo fqaApplyInfo) {
+        Fqa fqa = get(fqaApplyInfo.getId());
+        BeanCopier.copy(fqaApplyInfo, fqa);
+        // 如果修改了
+        if (!Strings.equals(fqaApplyInfo.getTypeCode(), fqa.getTypeCode()) && Strings.isNotBlank(fqa.getTypeCode())) {
+            TreeType treeType = treeTypeService.findByCode(PortletFqaProperties.TREE_TYPE_SCHEME_FQA,
+                    fqa.getTypeCode());
+            if (treeType != null) {
+                fqa.setTypeName(treeType.getName());
+            }
+        }
+        update(fqa);
+        FqaBody fqaBody = new FqaBody(fqa.getId(), fqaApplyInfo.getAnswer());
+        fqaBodyService.update(fqaBody);
+        fqa.setAnswer(fqaBody.getBody());
+        return fqa;
+    }
 
     @Override
     @Cacheable(value = FQA_QUERY_CATCH_NAME, key = "#id")
@@ -82,13 +112,13 @@ public class FqaServiceImpl extends EntityServiceImpl<Fqa, FqaDao> implements Fq
         FqaInfo fqaInfo = convertFqa(fqa);
         FqaBody fqaBody = fqaBodyService.get(id);
         if (fqaBody != null) {
-            fqaInfo.setQuestion(fqaBody.getBody());
+            fqaInfo.setAnswer(fqaBody.getBody());
         }
         return fqaInfo;
     }
 
     @Override
-    @CacheEvict(value = "FQA_QUERY_CATCH_NAME", key = "#id")
+    @CacheEvict(value = FQA_QUERY_CATCH_NAME, key = "#id")
     public void removeById(Serializable id) throws BusinessException {
         super.removeById(id);
     }

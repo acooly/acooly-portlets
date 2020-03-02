@@ -16,6 +16,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -37,19 +38,19 @@ public class FqaHitsCacheService implements InitializingBean {
     private Map<Long, Integer> caches = Maps.newConcurrentMap();
 
     private void init() {
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
-        executor.scheduleAtFixedRate(() -> {
-            consume();
-        }, 1, portletFqaProperties.getHitCache().getSavePeriodSeconds(), TimeUnit.SECONDS);
-        ShutdownHooks.addShutdownHook(() -> {
-            try {
-                executor.shutdown();
-            } catch (Exception e) {
-                //
-            }
-            log.info("FQA-Hits 消费线程关闭...");
-        }, "FQA-Hits 关闭消费线程");
-        log.info("FQA-Hits 消费队列和线程初始化完成...");
+//        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
+//        executor.scheduleAtFixedRate(() -> {
+//            consume();
+//        }, 1, portletFqaProperties.getHitCache().getSavePeriodSeconds(), TimeUnit.SECONDS);
+//        ShutdownHooks.addShutdownHook(() -> {
+//            try {
+//                executor.shutdown();
+//            } catch (Exception e) {
+//                //
+//            }
+//            log.info("FQA-Hits 消费线程关闭...");
+//        }, "FQA-Hits 关闭消费线程");
+//        log.info("FQA-Hits 消费队列和线程初始化完成...");
     }
 
     public void produce(Long id) {

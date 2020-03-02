@@ -12,10 +12,7 @@ import com.acooly.core.utils.enums.AbleStatus;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -36,7 +33,7 @@ public class Fqa extends AbstractEntity {
      */
     @NotEmpty
     @Size(max = 128)
-    private String ask;
+    private String question;
 
     /**
      * 作者
@@ -48,12 +45,12 @@ public class Fqa extends AbstractEntity {
      * 问题分类编码
      */
     @Size(max = 32)
-    private String askTypeCode;
+    private String typeCode;
     /**
      * 问题分类名称(冗余)
      */
     @Size(max = 32)
-    private String askTypeName;
+    private String typeName;
 
     /**
      * 访问量
@@ -71,5 +68,11 @@ public class Fqa extends AbstractEntity {
      */
     @Size(max = 45)
     private String comments;
+
+    /**
+     * 答案
+     */
+    @Transient
+    private String answer;
 
 }

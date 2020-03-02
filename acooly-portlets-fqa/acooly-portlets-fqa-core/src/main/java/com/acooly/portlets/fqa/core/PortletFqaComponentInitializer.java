@@ -24,6 +24,6 @@ public class PortletFqaComponentInitializer implements ComponentInitializer {
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
 
-
+        setPropertyIfMissing("acooly.security.xss.exclusions.faq[0]", "/manage/portlets/fqa/fqa/**");
     }
 }

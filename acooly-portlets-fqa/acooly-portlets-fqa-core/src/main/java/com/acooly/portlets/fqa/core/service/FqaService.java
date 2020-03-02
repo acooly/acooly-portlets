@@ -32,6 +32,22 @@ public interface FqaService extends EntityService<Fqa> {
     FqaInfo apply(FqaApplyInfo fqaApplyInfo);
 
     /**
+     * 管理：新增
+     *
+     * @param fqaApplyInfo
+     * @return
+     */
+    Fqa save(FqaApplyInfo fqaApplyInfo);
+
+    /**
+     * 管理:更新
+     *
+     * @param fqaApplyInfo
+     * @return
+     */
+    Fqa update(FqaApplyInfo fqaApplyInfo);
+
+    /**
      * 分页查询
      *
      * @param pageInfo

@@ -35,9 +35,9 @@
             <tr>
                 <th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
                 <th field="id" sortable="true" sum="true">ID</th>
-                <th field="ask" formatter="contentFormatter">问题</th>
+                <th field="question" formatter="contentFormatter">问题</th>
                 <th field="author">作者</th>
-                <th field="askTypeName">问题分类</th>
+                <th field="typeName">问题分类</th>
                 <th field="hits" sortable="true">访问量</th>
                 <th field="status" formatter="mappingFormatter">状态</th>
                 <th field="createTime" formatter="dateFormatter">创建时间</th>
