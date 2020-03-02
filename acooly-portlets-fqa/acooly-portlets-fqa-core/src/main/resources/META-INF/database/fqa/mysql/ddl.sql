@@ -12,3 +12,11 @@ CREATE TABLE `p_fqa` (
   `comments` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `p_fqa_body` (
+  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `body` text COLLATE utf8mb4_unicode_ci COMMENT '答案内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='FQA答案详情';

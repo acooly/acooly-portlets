@@ -6,6 +6,7 @@
  */
 package com.acooly.portlets.fqa.core.service.impl;
 
+import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
 import com.acooly.core.common.service.EntityServiceImpl;
@@ -17,11 +18,20 @@ import com.acooly.module.treetype.service.TreeTypeService;
 import com.acooly.portlets.fqa.core.PortletFqaProperties;
 import com.acooly.portlets.fqa.core.dao.FqaDao;
 import com.acooly.portlets.fqa.core.entity.Fqa;
+import com.acooly.portlets.fqa.core.entity.FqaBody;
+import com.acooly.portlets.fqa.core.service.FqaBodyService;
 import com.acooly.portlets.fqa.core.service.FqaService;
 import com.acooly.portlets.fqa.dto.FqaApplyInfo;
 import com.acooly.portlets.fqa.dto.FqaInfo;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * p_fqa Service实现
@@ -32,8 +42,13 @@ import org.springframework.stereotype.Service;
 @Service("fqaService")
 public class FqaServiceImpl extends EntityServiceImpl<Fqa, FqaDao> implements FqaService {
 
+    public static final String FQA_QUERY_CATCH_NAME = "acooly-portlets-fqa_cache";
+
     @Autowired
     private TreeTypeService treeTypeService;
+    @Autowired
+    private FqaBodyService fqaBodyService;
+
 
     @Override
     public FqaInfo apply(FqaApplyInfo fqaApplyInfo) {
@@ -49,18 +64,45 @@ public class FqaServiceImpl extends EntityServiceImpl<Fqa, FqaDao> implements Fq
             }
         }
         save(fqa);
+        FqaBody fqaBody = new FqaBody(fqa.getId(), fqaApplyInfo.getQuestion());
+        fqaBodyService.save(fqaBody);
         FqaInfo fqaInfo = convertFqa(fqa);
+        fqaInfo.setQuestion(fqaBody.getBody());
         return fqaInfo;
     }
 
-    @Override
-    public FqaInfo detail(Long id) {
 
+    @Override
+    @Cacheable(value = FQA_QUERY_CATCH_NAME, key = "#id")
+    public FqaInfo detail(Long id) {
         Fqa fqa = get(id);
         if (fqa == null) {
             throw new BusinessException(CommonErrorCodes.OBJECT_NOT_EXIST);
         }
-        return convertFqa(fqa);
+        FqaInfo fqaInfo = convertFqa(fqa);
+        FqaBody fqaBody = fqaBodyService.get(id);
+        if (fqaBody != null) {
+            fqaInfo.setQuestion(fqaBody.getBody());
+        }
+        return fqaInfo;
+    }
+
+    @Override
+    @CacheEvict(value = "FQA_QUERY_CATCH_NAME", key = "#id")
+    public void removeById(Serializable id) throws BusinessException {
+        super.removeById(id);
+    }
+
+
+    @Override
+    public PageInfo<FqaInfo> list(PageInfo<FqaInfo> pageInfo, Map<String, Object> map, Map<String, Boolean> sortMap) {
+        PageInfo<Fqa> pageInfoFqa = new PageInfo<>(pageInfo.getCountOfCurrentPage(), pageInfo.getCurrentPage());
+        query(pageInfoFqa, map, sortMap);
+        List<FqaInfo> faqInfos = Lists.transform(pageInfoFqa.getPageResults(),
+                f -> BeanCopier.copy(f, FqaInfo.class));
+        pageInfo.setPageResults(faqInfos);
+        pageInfo.setTotalCount(pageInfoFqa.getTotalCount());
+        return pageInfo;
     }
 
     protected FqaInfo convertFqa(Fqa fqa) {

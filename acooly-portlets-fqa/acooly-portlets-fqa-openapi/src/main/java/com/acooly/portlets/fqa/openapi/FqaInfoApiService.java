@@ -54,8 +54,7 @@ public class FqaInfoApiService extends BaseApiService<FqaInfoApiRequest, FqaInfo
         FqaInfo fqaInfo = null;
         FqaApplyInfo fqaApplyInfo = BeanCopier.copy(request, FqaApplyInfo.class);
         if (fqaService != null) {
-            Fqa fqa = fqaService.get(request.getId());
-            BeanCopier.copy(fqa, fqaInfo);
+            fqaInfo = fqaService.detail(request.getId());
         } else {
             FqaApplyOrder order = new FqaApplyOrder(fqaApplyInfo);
             SingleResult<FqaInfo> result = fqaRemoteService.get(SingleOrder.from(request.getId()));

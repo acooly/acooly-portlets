@@ -1,9 +1,9 @@
 /*
-* acooly.cn Inc.
-* Copyright (c) 2020 All Rights Reserved.
-* create by zhangpu@acooly.cn
-* date:2020-02-26
-*/
+ * acooly.cn Inc.
+ * Copyright (c) 2020 All Rights Reserved.
+ * create by zhangpu@acooly.cn
+ * date:2020-02-26
+ */
 package com.acooly.portlets.fqa.core.entity;
 
 
@@ -34,32 +34,26 @@ public class Fqa extends AbstractEntity {
     /**
      * 问题
      */
-	@NotEmpty
-	@Size(max = 128)
+    @NotEmpty
+    @Size(max = 128)
     private String ask;
-
-    /**
-     * 答案
-     */
-	@Size(max = 1024)
-    private String question;
 
     /**
      * 作者
      */
-	@Size(max = 16)
+    @Size(max = 16)
     private String author;
 
     /**
      * 问题分类编码
      */
-	@Size(max = 32)
+    @Size(max = 32)
     private String askTypeCode;
     /**
      * 问题分类名称(冗余)
      */
     @Size(max = 32)
-	private String askTypeName;
+    private String askTypeName;
 
     /**
      * 访问量
@@ -75,7 +69,7 @@ public class Fqa extends AbstractEntity {
     /**
      * 备注
      */
-	@Size(max = 45)
+    @Size(max = 45)
     private String comments;
 
 }

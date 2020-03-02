@@ -7,13 +7,12 @@
 package com.acooly.portlets.fqa.openapi.message;
 
 
-import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.PageApiRequest;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -28,9 +27,19 @@ import javax.validation.constraints.Size;
 @Setter
 public class FqaListApiRequest extends PageApiRequest {
 
-    @NotNull
-    @Size(max = 16)
-    @OpenApiField(desc = "是否包含答案", constraint = "是否包含答案", demo = "yes", ordinal = 2)
-    private WhetherStatus includeQuestion = WhetherStatus.yes;
+    /**
+     * 问题分类
+     */
+    @Size(max = 32)
+    @OpenApiField(desc = "问题分类编码", constraint = "问题分类，根据独立多级分类模块自定义", demo = "0001", ordinal = 2)
+    @ApiModelProperty(value = "问题分类编码", notes = "问题分类，根据独立多级分类模块自定义,来自后台管理定义，请参考接口: treeTypeList",
+            example = "0001", required = false, position = 2)
+    private String askTypeCode;
+
+    @Size(max = 32)
+    @OpenApiField(desc = "搜索关键字", constraint = "搜索关键字", demo = "签名", ordinal = 1)
+    @ApiModelProperty(value = "搜索关键字", example = "签名", required = false, position = 1)
+    private String keywords;
+
 
 }

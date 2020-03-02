@@ -8,6 +8,10 @@
  */
 package com.acooly.portlets.fqa.openapi;
 
+import com.acooly.core.common.dao.support.PageInfo;
+import com.acooly.core.common.facade.PageOrder;
+import com.acooly.core.common.facade.PageResult;
+import com.acooly.core.utils.Strings;
 import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
@@ -16,12 +20,16 @@ import com.acooly.openapi.framework.common.enums.ResponseType;
 import com.acooly.openapi.framework.core.service.base.BaseApiService;
 import com.acooly.portlets.common.PortletsContants;
 import com.acooly.portlets.fqa.core.service.FqaService;
+import com.acooly.portlets.fqa.dto.FqaInfo;
 import com.acooly.portlets.fqa.facade.api.FqaRemoteService;
 import com.acooly.portlets.fqa.openapi.message.FqaListApiRequest;
 import com.acooly.portlets.fqa.openapi.message.FqaListApiResponse;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Map;
 
 /**
  * FQA分页查询
@@ -44,9 +52,28 @@ public class FqaListApiService extends BaseApiService<FqaListApiRequest, FqaList
     @Reference(version = "1.0")
     private FqaRemoteService fqaRemoteService;
 
-
     @Override
     protected void doService(FqaListApiRequest request, FqaListApiResponse response) {
-
+        Map<String, Object> map = Maps.newHashMap();
+        if (Strings.isNotBlank(request.getAskTypeCode())) {
+            map.put("EQ_askTypeCode", request.getAskTypeCode());
+        }
+        if (Strings.isNotBlank(request.getKeywords())) {
+            map.put("LIKE_ask", request.getKeywords());
+        }
+        Map<String, Boolean> sortMap = Maps.newHashMap();
+        sortMap.put("hits", false);
+        sortMap.put("id", false);
+        if (fqaService != null) {
+            PageInfo pageInfo = new PageInfo(request.getLimit(), request.getStart());
+            fqaService.list(pageInfo, map, sortMap);
+            response.setRows(pageInfo.getPageResults());
+            response.setTotalPages(pageInfo.getTotalPage());
+            response.setTotalRows(pageInfo.getTotalCount());
+        } else {
+            PageOrder order = request.toOrder(PageOrder.class);
+            PageResult<FqaInfo> result = fqaRemoteService.fqaList(order);
+            response.setPageResult(result);
+        }
     }
 }

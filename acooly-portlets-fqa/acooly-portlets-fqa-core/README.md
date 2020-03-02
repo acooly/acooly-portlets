@@ -9,8 +9,10 @@
 
 * BOSS后台添加和维护常见问题库
 * 集成TreeType组件，支持自定义多级分类。
+* 支持自动查询缓存
 * 支持本地单项目集成，openapi服务和dubbo/springcloud服务多种方式部署和应用
 * 支持swagger方式输出文档
+* [todo] FQA内容的缓存计数
 
 ## 3. 集成
 

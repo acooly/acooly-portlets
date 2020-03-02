@@ -9,6 +9,7 @@ package com.acooly.portlets.fqa.dto;
 
 import com.acooly.core.common.facade.InfoBase;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
+import com.acooly.openapi.framework.common.annotation.OpenApiFieldCondition;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -40,8 +41,9 @@ public class FqaApplyInfo extends InfoBase {
      * 答案
      */
     @Size(max = 1024)
-    @OpenApiField(desc = "答案", constraint = "答案", demo = "卖家ID指的是收款方ID，可以是个人或企业会员ID。", ordinal = 3)
-    @ApiModelProperty(value = "答案", example = "卖家ID指的是收款方ID，可以是个人或企业会员ID。", required = false, position = 3)
+    @OpenApiFieldCondition("列表分页查询时候为空; 添加和单笔详情查询时不为空")
+    @OpenApiField(desc = "答案", constraint = "答案,支持富文本方式，建议简短在1024内。", demo = "卖家ID指的是收款方ID，可以是个人或企业会员ID。", ordinal = 3)
+    @ApiModelProperty(value = "答案", notes = "支持富文本方式，建议简短在1024内,列表分页查询时候为空; 添加和单笔详情查询时不为空", example = "卖家ID指的是收款方ID，可以是个人或企业会员ID。", required = false, position = 3)
     private String question;
 
     /**
