@@ -13,7 +13,7 @@
         }
     }
 </script>
-<div style="margin-top: 20px;">
+<div style="margin-top: 10px;">
     <form id="manage_fqa_editform" action="/manage/portlets/fqa/fqa/<#if action=='create'>saveJson<#else>updateJson</#if>.html" method="post">
 		<@jodd.form bean="fqa" scope="request">
             <input name="id" type="hidden"/>
@@ -32,11 +32,11 @@
                 </tr>
                 <tr>
                     <th>问题：</th>
-                    <td><textarea rows="2" cols="40" style="width: 90%;" placeholder="请输入问题(最大128字符)..." name="question" class="easyui-validatebox"></textarea></td>
+                    <td><input type="text" style="width: 90%;" placeholder="请输入问题(最大128字符)..." name="question" class="easyui-validatebox"/></td>
                 </tr>
                 <tr>
                     <th>答案：</th>
-                    <td><textarea id="manage_fqa_editform_answer" rows="12" cols="40" name="answer"></textarea></td>
+                    <td><textarea id="manage_fqa_editform_answer" rows="16" cols="40" name="answer"></textarea></td>
                 </tr>
                 <tr>
                     <th>作者：</th>
@@ -60,11 +60,29 @@
     <script type="text/javascript">
         $(function () {
             var token = $("meta[name='X-CSRF-TOKEN']").attr("content");// 从meta中获取token
-            var ke = $.acooly.framework.kingEditor({
-                uploadUrl: '/ofile/kindEditor.html?_csrf=' + token,
-                minHeight: '310',
-                textareaId: 'manage_fqa_editform_answer'
-            });
+            var options = {
+                minHeight: '400px',
+                resizeType: 1, // 2或1或0，2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动;默认值:2
+                allowFileManager: true, // true时显示浏览远程服务器按钮 ;默认值: false
+                allowMediaUpload: false, // true时显示视音频上传按钮。默认值: true
+                allowFlashUpload: false, // true时显示Flash上传按钮;默认值: true
+                items: ['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat',
+                    'lineheight', '|', 'justifyleft', 'justifycenter', 'justifyright', 'anchor', 'plainpaste', 'wordpaste', 'clearhtml',
+                    'quickformat', 'insertorderedlist', 'insertunorderedlist', '|', 'image', 'multiimage', 'source', 'preview'],
+                // 上传的url
+                uploadJson: '/ofile/kindEditor.html?_csrf=' + token,
+                // 加载完成后改变皮肤
+                afterCreate: function () {
+                    var color = $('.panel-header').css('background-color');
+                    $('.ke-toolbar').css('background-color', color);
+                },
+                // 失去焦点时，保存
+                afterBlur: function () {
+                    this.sync();
+                }
+            };
+            KindEditor.options.filterMode = false;
+            KindEditor.create('#manage_fqa_editform_answer', options);
         });
     </script>
 </div>
