@@ -4,12 +4,10 @@ import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.openapi.framework.common.annotation.OpenApiField;
 import com.acooly.openapi.framework.common.message.PageApiRequest;
 import com.acooly.portlets.comment.client.enums.CommentBusiType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-
 import javax.validation.constraints.Size;
 
 /**
@@ -53,5 +51,8 @@ public class CommentListApiRequest extends PageApiRequest {
 
     @OpenApiField(desc = "是否返回附件", constraint = "查询结果是否包含附件列表", demo = "no", ordinal = 6)
     private WhetherStatus attachInclude = WhetherStatus.no;
+
+    @OpenApiField(desc = "是否只查询当前用户数据", constraint = "是否只查询当前用户数据，当actionUserNo不为空时有效", demo = "no", ordinal = 7)
+    private WhetherStatus userInclude = WhetherStatus.no;
 
 }

@@ -4,7 +4,6 @@ import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.utils.enums.WhetherStatus;
 import com.acooly.openapi.framework.common.annotation.ApiDocNote;
 import com.acooly.openapi.framework.common.annotation.ApiDocType;
-import com.acooly.openapi.framework.common.annotation.OpenApiNote;
 import com.acooly.openapi.framework.common.annotation.OpenApiService;
 import com.acooly.openapi.framework.core.service.base.BaseApiService;
 import com.acooly.portlets.comment.client.dto.CommentInfo;
@@ -59,7 +58,7 @@ public class CommentListApiService extends BaseApiService<CommentListApiRequest,
         Boolean attachInclude = request.getAttachInclude() == null ? false :
                 (request.getAttachInclude() == WhetherStatus.yes ? true : false);
         commentService.query(pageInfo, request.getActionUserNo(), request.getBusiKey(), request.getBusiType(),
-                map, null, childrenInclude, attachInclude);
+                map, null, childrenInclude, attachInclude, request.getUserInclude().isBool());
 
         response.setTotalPages(pageInfo.getTotalPage());
         response.setTotalRows(pageInfo.getTotalCount());

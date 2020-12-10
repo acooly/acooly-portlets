@@ -3,7 +3,6 @@ package com.acooly.portlets.comment.core.service.impl;
 import com.acooly.core.common.dao.support.PageInfo;
 import com.acooly.core.common.exception.BusinessException;
 import com.acooly.core.common.exception.CommonErrorCodes;
-import com.acooly.core.utils.Asserts;
 import com.acooly.core.utils.Collections3;
 import com.acooly.core.utils.Ids;
 import com.acooly.core.utils.Strings;
@@ -250,14 +249,19 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
                                        Map<String, Object> map, Map<String, Boolean> sortMap,
-                                       Boolean childrenInclude, Boolean attachInclude) {
-        Asserts.notNull(busiKey);
+                                       Boolean childrenInclude, Boolean attachInclude, Boolean userInclude) {
         // 分页查询顶层有效数据
         Map<String, Object> params = Maps.newHashMap();
-        params.put("EQ_busiKey", busiKey);
+        if (Strings.isNotBlank(busiKey)) {
+            params.put("EQ_busiKey", busiKey);
+        }
         params.put("EQ_busiType", busiType);
         params.put("RLIKE_status", "enable");
         params.put("NULL_parentId", "");
+
+        if(userInclude != null && userInclude && Strings.isNotBlank(userNo)){
+            params.put("EQ_userNo", userNo);
+        }
 
         if (map != null && map.size() > 0) {
             params.putAll(map);

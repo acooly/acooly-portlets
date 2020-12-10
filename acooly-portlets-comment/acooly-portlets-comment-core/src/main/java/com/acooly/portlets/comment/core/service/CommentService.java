@@ -54,22 +54,51 @@ public interface CommentService {
      * 3、根据置顶和时间倒叙排序
      * 4、预留其他查询参数和排序参数（都可为空）
      *
-     * @param pageInfo   [必选] 分页参数
-     * @param userNo     [可选] 查询指定用户的标志（记录是否点赞）
-     * @param busiKey    [必选] 被评论的业务对象ID
-     * @param busiType   [可选] 业务类型（默认内置: DEFAULT）
-     * @param map        [可选] 扩展条件（可覆盖内置）
-     * @param sortMap    [可选] 扩展排序（可覆盖内置）
+     * @param pageInfo        [必选] 分页参数
+     * @param userNo          [可选] 标志查询结果是否被指定用户点赞（记录是否点赞）
+     * @param busiKey         [可选] 被评论的业务对象ID
+     * @param busiType        [可选] 业务类型（默认内置: DEFAULT）
+     * @param map             [可选] 扩展条件（可覆盖内置）
+     * @param sortMap         [可选] 扩展排序（可覆盖内置）
      * @param childrenInclude [可选] 是否查询子评论（默认为：true）
-     * @param attachInclude [可选] 是否查询子评论（默认为：false）
+     * @param attachInclude   [可选] 是否查询评论附件（默认为：false）
+     * @param userInclude     [可选] 是否只查询指定用户的评论数据（userNo为不空时有效）（默认为：false）
      * @return
      */
     PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
-                                Map<String, Object> map, Map<String, Boolean> sortMap, Boolean childrenInclude, Boolean attachInclude);
+                                Map<String, Object> map, Map<String, Boolean> sortMap,
+                                Boolean childrenInclude, Boolean attachInclude, Boolean userInclude);
 
+    /**
+     * 默认实现
+     *
+     * @param pageInfo        [必选] 分页参数
+     * @param userNo          [可选] 标志查询结果是否被指定用户点赞（记录是否点赞）
+     * @param busiKey         [可选] 被评论的业务对象ID
+     * @param busiType        [可选] 业务类型（默认内置: DEFAULT）
+     * @param map             [可选] 扩展条件（可覆盖内置）
+     * @param sortMap         [可选] 扩展排序（可覆盖内置）
+     * @param childrenInclude [可选] 是否查询子评论（默认为：true）
+     * @param attachInclude   [可选] 是否查询评论附件（默认为：false）
+     * @return
+     */
+    default PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType,
+                                        Map<String, Object> map, Map<String, Boolean> sortMap,
+                                        Boolean childrenInclude, Boolean attachInclude) {
+        return query(pageInfo, userNo, busiKey, busiType, map, sortMap, childrenInclude, attachInclude, null);
+    }
 
+    /**
+     * 默认实现
+     *
+     * @param pageInfo [必选] 分页参数
+     * @param userNo   [可选] 标志查询结果是否被指定用户点赞（记录是否点赞）
+     * @param busiKey  [可选] 被评论的业务对象ID
+     * @param busiType [可选] 业务类型（默认内置: DEFAULT）
+     * @return
+     */
     default PageInfo<CommentInfo> query(PageInfo<CommentInfo> pageInfo, String userNo, String busiKey, String busiType) {
-        return query(pageInfo, userNo, busiKey, busiType, null, null, null, null);
+        return query(pageInfo, userNo, busiKey, busiType, null, null, null, null, null);
     }
 
 }
