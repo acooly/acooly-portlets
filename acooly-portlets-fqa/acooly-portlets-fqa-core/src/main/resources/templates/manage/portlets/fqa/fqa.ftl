@@ -6,8 +6,9 @@
                 <tr>
                     <td align="left">
                         <div>
+                            问题: <input type="text" class="text" size="15" name="search_LIKE_question"/>
                             问题分类:
-                            <select id="manage_fqa_searchform_askTypeId" class="easyui-combotree" name="askTypeId" style="width:100px;"
+                            <select id="manage_fqa_searchform_askTypeId" class="easyui-combotree" name="askTypeId" style="width:150px;"
                                     data-options="url:'/manage/module/treeType/treeType/loadTree.html?theme=FQA',
                                     loadFilter:function(data){var rows=data.rows; rows.unshift({id:null,text:'所有',subCount:0}); return rows;},
                                     formatter:function(row){var fa='fa-file-o'; if(row.subCount > 0){fa='fa-folder-o';}  return '<i class=\'fa '+fa+'\' aria-hidden=\'true\'></i> ' + row.text;},
@@ -30,7 +31,7 @@
     <!-- 列表和工具栏 -->
     <div data-options="region:'center',border:false">
         <table id="manage_fqa_datagrid" class="easyui-datagrid" url="/manage/portlets/fqa/fqa/listJson.html" toolbar="#manage_fqa_toolbar" fit="true" border="false" fitColumns="false"
-               pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 ]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true" singleSelect="true">
+               pagination="true" idField="id" pageSize="20" pageList="[ 10, 20, 30, 40, 50 , 100 ,200]" sortName="id" sortOrder="desc" checkOnSelect="true" selectOnCheck="true" singleSelect="true">
             <thead>
             <tr>
                 <th field="showCheckboxWithId" checkbox="true" data-options="formatter:function(value, row, index){ return row.id }">编号</th>
@@ -51,20 +52,24 @@
         <!-- 每行的Action动作模板 -->
         <div id="manage_fqa_action" style="display: none;">
             <a onclick="$.acooly.framework.edit({url:'/manage/portlets/fqa/fqa/edit.html',id:'{0}',entity:'fqa',width:800,height:600});" href="#" title="编辑"><i class="fa fa-pencil fa-lg fa-fw fa-col"></i></a>
-            <a onclick="$.acooly.framework.show('/manage/portlets/fqa/fqa/show.html?id={0}',800,600);" href="#" title="查看"><i class="fa fa-file-o fa-lg fa-fw fa-col"></i></a>
-            <a onclick="$.acooly.framework.remove('/manage/portlets/fqa/fqa/deleteJson.html','{0}','manage_fqa_datagrid');" href="#" title="删除"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i></a>
+            <a onclick="$.acooly.framework.show('/manage/portlets/fqa/fqa/show.html?id={0}',800,600);" href="#" title="查看"><i class="fa fa-commenting-o"></i></a>
+            <!--<a onclick="$.acooly.framework.remove('/manage/portlets/fqa/fqa/deleteJson.html','{0}','manage_fqa_datagrid');" href="#" title="删除"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i></a>-->
         </div>
 
         <!-- 表格的工具栏 -->
         <div id="manage_fqa_toolbar">
-            <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/portlets/fqa/fqa/create.html',entity:'fqa',width:800,height:600})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
+            <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.create({url:'/manage/portlets/fqa/fqa/create.html',entity:'fqa',width:1000,height:700})"><i class="fa fa-plus-circle fa-lg fa-fw fa-col"></i>添加</a>
             <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.removes('/manage/portlets/fqa/fqa/deleteJson.html','manage_fqa_datagrid')"><i class="fa fa-trash-o fa-lg fa-fw fa-col"></i>批量删除</a>
+            
+            <!--
             <a href="#" class="easyui-menubutton" data-options="menu:'#manage_fqa_exports_menu'"><i class="fa fa-arrow-circle-o-down fa-lg fa-fw fa-col"></i>批量导出</a>
             <div id="manage_fqa_exports_menu" style="width:150px;">
                 <div onclick="$.acooly.framework.exports('/manage/portlets/fqa/fqa/exportXls.html','manage_fqa_searchform','p_fqa')"><i class="fa fa-file-excel-o fa-lg fa-fw fa-col"></i>Excel</div>
                 <div onclick="$.acooly.framework.exports('/manage/portlets/fqa/fqa/exportCsv.html','manage_fqa_searchform','p_fqa')"><i class="fa fa-file-text-o fa-lg fa-fw fa-col"></i>CSV</div>
             </div>
             <a href="#" class="easyui-linkbutton" plain="true" onclick="$.acooly.framework.imports({url:'/manage/portlets/fqa/fqa/importView.html',uploader:'manage_fqa_import_uploader_file'});"><i class="fa fa-arrow-circle-o-up fa-lg fa-fw fa-col"></i>批量导入</a>
+           -->
+            
         </div>
     </div>
 </div>
