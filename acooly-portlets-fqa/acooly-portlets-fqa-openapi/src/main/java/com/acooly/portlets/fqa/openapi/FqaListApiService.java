@@ -64,16 +64,19 @@ public class FqaListApiService extends BaseApiService<FqaListApiRequest, FqaList
         Map<String, Boolean> sortMap = Maps.newHashMap();
         sortMap.put("hits", false);
         sortMap.put("id", false);
+        PageInfo pageInfo = new PageInfo(request.getLimit(), request.getStart());
         if (fqaService != null) {
-            PageInfo pageInfo = new PageInfo(request.getLimit(), request.getStart());
-            fqaService.list(pageInfo, map, sortMap);
-            response.setRows(pageInfo.getPageResults());
-            response.setTotalPages(pageInfo.getTotalPage());
-            response.setTotalRows(pageInfo.getTotalCount());
+            pageInfo = fqaService.list(pageInfo, map, sortMap);
         } else {
-            PageOrder order = request.toOrder(PageOrder.class);
+            PageOrder order = new PageOrder();
+            order.setPageInfo(pageInfo);
+            order.setMap(map);
+            order.setSortMap(sortMap);
             PageResult<FqaInfo> result = fqaRemoteService.fqaList(order);
-            response.setPageResult(result);
+            pageInfo = result.getDto();
         }
+        response.setRows(pageInfo.getPageResults());
+        response.setTotalPages(pageInfo.getTotalPage());
+        response.setTotalRows(pageInfo.getTotalCount());
     }
 }
