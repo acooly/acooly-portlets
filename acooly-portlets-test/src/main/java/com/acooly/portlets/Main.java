@@ -1,4 +1,4 @@
-package com.acooly.portlets.test;
+package com.acooly.portlets;
 
 import com.acooly.core.common.BootApp;
 import com.acooly.core.common.boot.Apps;

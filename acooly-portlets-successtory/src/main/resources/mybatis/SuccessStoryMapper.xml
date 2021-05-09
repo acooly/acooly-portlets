@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acooly.portlets.successtory.core.dao.SuccessStoryDao">
+
+    <resultMap id="successStoryResultMap" type="com.acooly.portlets.successtory.core.entity.SuccessStory">
+        <id property="id" column="successStory_id"/>
+        <result property="title" column="successStory_title"/>
+        <result property="discn" column="successStory_discn"/>
+        <result property="type" column="successStory_type"/>
+        <result property="industry" column="successStory_industry"/>
+        <result property="logo" column="successStory_logo"/>
+        <result property="website" column="successStory_website"/>
+        <result property="comments" column="successStory_comments"/>
+        <result property="createTime" column="successStory_create_time"/>
+        <result property="updateTime" column="successStory_update_time"/>
+    </resultMap>
+
+    <sql id="successStorySqlSelect">
+            successStory.ID as successStory_ID,
+            successStory.title as successStory_title,
+            successStory.discn as successStory_discn,
+            successStory.type as successStory_type,
+            successStory.industry as successStory_industry,
+            successStory.logo as successStory_logo,
+            successStory.website as successStory_website,
+            successStory.comments as successStory_comments,
+            successStory.create_time as successStory_create_time,
+            successStory.update_time as successStory_update_time
+    </sql>
+
+</mapper>

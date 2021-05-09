@@ -37,6 +37,7 @@
         <module>acooly-portlets-common</module>
         <module>acooly-portlets-siteconfig</module>
         <module>acooly-portlets-fqa</module>
+        <module>acooly-portlets-successtory</module>
     </modules>
 
     <distributionManagement>
