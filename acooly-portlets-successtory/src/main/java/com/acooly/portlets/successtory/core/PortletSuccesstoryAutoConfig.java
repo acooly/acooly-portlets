@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import static com.acooly.portlets.successtory.core.PortletSuccesstoryProperties.
 @Configuration
 @EnableConfigurationProperties({PortletSuccesstoryProperties.class})
 @ConditionalOnProperty(value = PREFIX + ".enable", matchIfMissing = true)
+@ComponentScan(basePackages = {"com.acooly.portlets.successtory"})
 public class PortletSuccesstoryAutoConfig {
 
     @Autowired
