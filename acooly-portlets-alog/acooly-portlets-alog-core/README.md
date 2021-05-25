@@ -1,4 +1,5 @@
 <!-- title: 行为日志组件 -->
+<!-- name: acooly-portlets-alog -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
 <!-- date: 2019-01-11 -->
@@ -30,7 +31,7 @@ alog组件主要提供两个方面的能力：收集和分析。
 	<dependency>
 		<groupId>com.acooly</groupId>
 		<artifactId>acooly-portlets-alog-core</artifactId>
-		<verion>4.2.1-SNAPSHOT</version>
+		<verion>${acooly.version}</version>
 	</dependency>
 ```
 
@@ -199,4 +200,38 @@ alog的数据分析需要依赖：`acooly-portlets-alog-analysis`模块，该模
 * acooly-portlets-alog-core模块下：`resource/static/acooly/alog/alog_test.html`
 * acooly-portlets-test模块下：`AlogTestController`和`resource/templates/alog`
 
+## 6.changelog
+
+### 5.0.0-SNAPSHOT.20200301
+
+2020-03-01
+
+* 优化：清除过期API使用和其他非规范代码，消除编译警告。
+
+### 4.2.0-SNAPSHOT.20190528
+
+2019-05-28
+
+* 优化：调整JS收集模式的跨站配置ACCESS_CONTROL_ALLOW_ORIGIN不包含原始请求参数
+* fix: 跨站域名访问配置参数正常支持多个。allowOrigins
+* fix: alog-openapi模块的启用和关闭通过acooly.alog.enable参数控制
+* 优化：扩展支持referer，修正跨站提交日志时无法收集cookies的BUG
+* 优化：调整JS和防御策略，对日志收集访问忽略csrf
+
+### 4.2.0-SNAPSHOT.20190330
+
+2019-03-30
+
+* 优化：增加缓存清理功能
+* fix：初始化24小时小时名称时没有"00"点的问题，造成NullPointException
+* fix：IOS请求时，解析渠道版本错误导致搜集失败的问题。
+* 优化：重构alog参数收集，支持js方式的queryString方式收集
+* 新增：analysisByYesterday方法，以便于凌晨时统计昨日的所有访问信息
+
+### 4.2.0-SNAPSHOT.20190327
+
+2019-03-27
+
+* 完成alog行为日志的收集开发。
+* 完成alog管理和alog-analysis的开发。
 

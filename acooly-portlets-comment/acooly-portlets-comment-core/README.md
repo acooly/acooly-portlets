@@ -1,4 +1,5 @@
 <!-- title: 评论点赞组件 -->
+<!-- name: acooly-portlets-comment -->
 <!-- type: portlets -->
 <!-- author: zhangpu -->
 <!-- date: 2019-05-28 -->
@@ -128,7 +129,19 @@ com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent
 
 ## changelog
 
+## 5.0.0.SNAPSHOT.20201210
+
+2020-12-10
+
+优化：支持按指定用户(userNo)查询该用户全局数据的能力；
+优化：busiKey为可选
+游湖：清除过期API使用和其他非规范代码，消除编译警告
+
 ## 4.2.0.SNAPSHOT-20190528
 
-* 2019-05-28 - 评论组件增强：1、支持附件（图片和视频），原来的comment接口作废（兼容可用），替换为commentPublish；2、增强commentList接口，支持有无附件过滤，支持设置是否返回附件和子评论。3、新增单个评论详情查询commentInfo，以配合commentList的最小数据化查询。注意：新增了表：p_comment_attach，请使用附件功能的项目手动更新（新项目不用考虑） - [zhangpu] 554689d
+2019-05-28
+
+* 增强：支持附件（图片和视频），原来的comment接口作废（兼容可用），替换为commentPublish；
+* 增强：commentList接口，支持有无附件过滤，支持设置是否返回附件和子评论。
+* 新增：单个评论详情查询commentInfo，以配合commentList的最小数据化查询。注意：新增了表：p_comment_attach，请使用附件功能的项目手动更新（新项目不用考虑）
 
