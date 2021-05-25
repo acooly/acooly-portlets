@@ -129,7 +129,7 @@ com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent
 
 ## changelog
 
-## 5.0.0.SNAPSHOT.20201210
+### 5.0.0.SNAPSHOT.20201210
 
 2020-12-10
 
@@ -137,7 +137,7 @@ com.acooly.portlets.comment.core.service.event.CommentActionSuccessEvent
 优化：busiKey为可选
 游湖：清除过期API使用和其他非规范代码，消除编译警告
 
-## 4.2.0.SNAPSHOT-20190528
+### 4.2.0.SNAPSHOT-20190528
 
 2019-05-28
 
