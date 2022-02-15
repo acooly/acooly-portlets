@@ -133,6 +133,15 @@ public class JPushNotification {
      */
     @JsonProperty("content-available")
     private String contentAvailable;
+    
+    
+	/**
+	 * 推送的时候携带 ”mutable-content":true 
+	 * 说明是支持iOS10的UNNotificationServiceExtension，如果不携带此字段则是普通的 Remote Notification。详情参考：UNNotificationServiceExtension
+	 */
+	@JsonProperty("mutable-content")
+	private boolean mutableContent=true;
+    
 
     /** IOS8才支持。设置APNs payload中的"category"字段值 */
     private String category;
