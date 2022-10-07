@@ -5,11 +5,11 @@
     <parent>
         <artifactId>acooly-app-parent</artifactId>
         <groupId>com.acooly</groupId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>5.2.0-SNAPSHOT</version>
     </parent>
     <groupId>com.acooly</groupId>
     <artifactId>acooly-portlets</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>5.2.0-SNAPSHOT</version>
 
     <name>acooly-portlets Group</name>
     <packaging>pom</packaging>
@@ -22,10 +22,7 @@
                 <artifactId>acooly-portlets-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
         </dependencies>
-
-
     </dependencyManagement>
 
     <modules>
@@ -51,24 +48,6 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-configuration-processor</artifactId>
-            <version>${project.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.acooly</groupId>
-            <artifactId>acooly-core-docs</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
     <build>
         <resources>
             <resource>
