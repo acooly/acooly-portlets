@@ -9,11 +9,13 @@
 
 ## 组件列表
 
-1. [acooly-portlets-alog：行为日志组件](./acooly-portlets-alog/acooly-portlets-alog-core/README.md)
-2. [acooly-portlets-comment：评论组件](./acooly-portlets-comment/acooly-portlets-comment-core/README.md)
-3. [acooly-portlets-feedback：客户反馈组件](./acooly-portlets-feedback/acooly-portlets-feedback-core/README.md)
-4. [acooly-portlets-fqa：常见问题组件](./acooly-portlets-fqa/acooly-portlets-fqa-core/README.md)
-5. [acooly-portlets-notice：消息推送组件（支持友盟，JPush等）](./acooly-portlets-notice/acooly-portlets-notice-core/README.md)
-6. [acooly-portlets-siteconfig：网站配置组件](./acooly-portlets-siteconfig/README.md)
-7. [acooly-portlets-successtory：成功案例组件](./acooly-portlets-successtory/README.md)
 
+|组件 | 名称 | 说明 |
+|---|---|---|
+|[acooly-portlets-alog-core](./acooly-portlets-alog/acooly-portlets-alog-core/README.md)|行为日志组件|互联网常用的站点分析工具（比如：百度站点工具）可以完成大通用访问行为的分析，但存在以下两个问题没有很好的解决，这也是本组件需要重点满足的需求。|
+|[acooly-portlets-comment-core](./acooly-portlets-comment/acooly-portlets-comment-core/README.md)|评论点赞组件|用于互联网业务中常见业务的SNS评论功能，通过传入业务类型和业务Key建议与被评论对象的关联关系，实现SNS评论的核心功能封装。|
+|[acooly-portlets-feedback-core](./acooly-portlets-feedback/acooly-portlets-feedback-core/README.md)|客户反馈组件|用于互联网业务中常见业务的SNS用户反馈功能，可用于WEB，H5，小程序和App多个场景|
+|[acooly-portlets-fqa-core](./acooly-portlets-fqa/acooly-portlets-fqa-core/README.md)|常见问题组件|用于互联网业务中常见问题的FQA，可用于WEB，H5，小程序和App多个场景|
+|[acooly-portlets-notice-core](./acooly-portlets-notice/acooly-portlets-notice-core/README.md)|消息推送组件|该组件用来向app推送消息使用，支持多种推送渠道：极光、友盟。可结构性扩展。|
+|[acooly-portlets-siteconfig](./acooly-portlets-siteconfig/README.md)|网站配置组件|该组件提供通用网站必须的参数配置。|
+|[acooly-portlets-successtory](./acooly-portlets-successtory/README.md)|成功案例|该组件提供通用前端（网站，App，H5）的成功案例管理功能，提供图（LOGO）文（简介）方式的成功案例数据管理，前端可根据该后端数据，提供portal或接口开发。|
